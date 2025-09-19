@@ -1,0 +1,160 @@
+{
+  "badges": [
+    {
+      "id": "first-quest",
+      "name": "First Steps",
+      "description": "Complete your very first quest",
+      "type": "questmaster",
+      "icon": "/images/badges/first-quest.png",
+      "requirements": [
+        {
+          "type": "quests_completed",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "id": "quiz-master",
+      "name": "Quiz Master",
+      "description": "Complete 10 quiz quests with high scores",
+      "type": "knowledge-seeker",
+      "icon": "/images/badges/quiz-master.png",
+      "requirements": [
+        {
+          "type": "quests_completed",
+          "target": 10
+        }
+      ]
+    },
+    {
+      "id": "eco-warrior-bronze",
+      "name": "Eco Warrior Bronze",
+      "description": "Earn your first 100 points protecting the environment",
+      "type": "eco-warrior",
+      "icon": "/images/badges/eco-warrior-bronze.png",
+      "requirements": [
+        {
+          "type": "points_earned",
+          "target": 100
+        }
+      ]
+    },
+    {
+      "id": "eco-warrior-silver",
+      "name": "Eco Warrior Silver",
+      "description": "Earn 500 points through environmental actions",
+      "type": "eco-warrior",
+      "icon": "/images/badges/eco-warrior-silver.png",
+      "requirements": [
+        {
+          "type": "points_earned",
+          "target": 500
+        }
+      ]
+    },
+    {
+      "id": "eco-warrior-gold",
+      "name": "Eco Warrior Gold",
+      "description": "Earn 1500 points as a true environmental champion",
+      "type": "eco-warrior",
+      "icon": "/images/badges/eco-warrior-gold.png",
+      "requirements": [
+        {
+          "type": "points_earned",
+          "target": 1500
+        }
+      ]
+    },
+    {
+      "id": "pet-lover",
+      "name": "Pet Lover",
+      "description": "Feed your pet 50 times",
+      "type": "pet-lover",
+      "icon": "/images/badges/pet-lover.png",
+      "requirements": [
+        {
+          "type": "pet_fed",
+          "target": 50
+        }
+      ]
+    },
+    {
+      "id": "pet-master",
+      "name": "Pet Master",
+      "description": "Evolve your pet to adult stage",
+      "type": "pet-lover",
+      "icon": "/images/badges/pet-master.png",
+      "requirements": [
+        {
+          "type": "pet_stage_reached",
+          "target": 4
+        }
+      ]
+    },
+    {
+      "id": "photographer",
+      "name": "Eco Photographer",
+      "description": "Complete 5 photo-based environmental quests",
+      "type": "eco-warrior",
+      "icon": "/images/badges/photographer.png",
+      "requirements": [
+        {
+          "type": "photo_quests_completed",
+          "target": 5
+        }
+      ]
+    },
+    {
+      "id": "daily-champion",
+      "name": "Daily Champion",
+      "description": "Complete daily quests for 7 consecutive days",
+      "type": "questmaster",
+      "icon": "/images/badges/daily-champion.png",
+      "requirements": [
+        {
+          "type": "daily_streak",
+          "target": 7
+        }
+      ]
+    },
+    {
+      "id": "knowledge-seeker",
+      "name": "Knowledge Seeker",
+      "description": "Score 90% or higher on 5 quiz quests",
+      "type": "knowledge-seeker",
+      "icon": "/images/badges/knowledge-seeker.png",
+      "requirements": [
+        {
+          "type": "high_score_quizzes",
+          "target": 5
+        }
+      ]
+    },
+    {
+      "id": "community-helper",
+      "name": "Community Helper",
+      "description": "Complete 3 community-focused environmental actions",
+      "type": "eco-warrior",
+      "icon": "/images/badges/community-helper.png",
+      "requirements": [
+        {
+          "type": "community_quests_completed",
+          "target": 3
+        }
+      ]
+    },
+    {
+      "id": "pet-elder",
+      "name": "Ancient Pet Guardian",
+      "description": "Evolve your pet to elder stage - the ultimate achievement",
+      "type": "pet-lover",
+      "icon": "/images/badges/pet-elder.png",
+      "requirements": [
+        {
+          "type": "pet_stage_reached",
+          "target": 5
+        }
+      ]
+    }
+  ]
+}

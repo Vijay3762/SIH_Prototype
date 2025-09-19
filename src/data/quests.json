@@ -1,0 +1,313 @@
+{
+  "quests": [
+    {
+      "id": "journey-smog-city",
+      "title": "The Smog City Chronicles",
+      "description": "Join Maya and Alex as they discover the secrets behind their city's mysterious gray skies and learn how to bring back the blue!",
+      "type": "quiz",
+      "difficulty": "medium",
+      "content": {
+        "story": [
+          {
+            "id": "p1",
+            "title": "The Gray Morning",
+            "caption": "Maya woke up to another gray morning. 'Why can't I see the sun anymore?' she wondered, putting on her mask before heading to school.",
+            "dialogue": "Maya: 'Mom, why is the sky always gray now?'\nMom: 'It's the air pollution, sweetie. But maybe we can do something about it!'",
+            "image_prompt": "Vertical comic panel. A young girl Maya looking out her bedroom window at a hazy city skyline under a gray smog dome. She's holding a face mask. The sun is barely visible through the smog. Her mother stands behind her pointing at an air quality app showing 'Very Unhealthy'. Style: vibrant comic book art, bold outlines, expressive characters, 1200x1600.",
+            "image_path": "/story-panels/smog-city/p1.png"
+          },
+          {
+            "id": "p2",
+            "title": "The Traffic Jam Discovery",
+            "caption": "Walking to school, Maya and her friend Alex noticed something strange about the busy street...",
+            "dialogue": "Alex: 'Look at all that smoke coming from the cars!'\nMaya: 'And the tree leaves are all dusty. This can't be good!'",
+            "image_prompt": "Street-level comic panel showing Maya and Alex walking past a dense traffic jam. Cars are idling with visible exhaust fumes. A roadside tree has dust-covered leaves. The kids are pointing and looking concerned. A digital sign shows 'AQI: 285 - Very Unhealthy'. Style: dynamic comic book art with motion lines and expressive faces, 1200x1600.",
+            "image_path": "/story-panels/smog-city/p2.png"
+          },
+          {
+            "id": "p3",
+            "title": "The Factory Visit",
+            "caption": "Their science teacher took them on a field trip to see how factories are fighting pollution with new technology.",
+            "dialogue": "Engineer: 'These new filters can catch 99% of harmful particles!'\nMaya: 'Wow! Technology can really help clean the air!'",
+            "image_prompt": "Industrial scene showing Maya, Alex and classmates with hard hats visiting a modern factory. An engineer shows them new air filtration systems. Tall chimneys have much cleaner emissions. A banner reads 'Clean Tech Initiative'. The kids look amazed and hopeful. Style: educational comic book style with clear details, 1200x1600.",
+            "image_path": "/story-panels/smog-city/p3.png"
+          },
+          {
+            "id": "p4",
+            "title": "Home Solutions",
+            "caption": "Maya's family decided to make their home part of the solution with simple changes that made a big difference.",
+            "dialogue": "Dad: 'Let's open windows at night when air is cleaner!'\nMaya: 'And our new air purifier has a green light - that means healthy air!'",
+            "image_prompt": "Cozy home interior showing Maya's family implementing air quality solutions. Dad opens windows at night, mom tends to indoor plants, Maya points to a small air purifier with green indicator light. A family checklist on wall shows: 'Walk more, Plant trees, Use public transport'. Style: warm, family-friendly comic art, 1200x1600.",
+            "image_path": "/story-panels/smog-city/p4.png"
+          },
+          {
+            "id": "p5",
+            "title": "Community Heroes",
+            "caption": "The whole neighborhood joined 'Clean Air Week' - and Maya discovered she could be an environmental hero too!",
+            "dialogue": "Maya: 'Look! Everyone's riding bikes and planting trees!'\nAlex: 'We're like superheroes saving our city!'",
+            "image_prompt": "Vibrant community scene during Clean Air Week. Maya and Alex ride bicycles with other families. A smooth-running bus lane moves efficiently. A community booth hands out tree saplings. People wear 'Clean Air Hero' badges. The sky shows hints of blue breaking through. Style: celebratory comic book art with bright colors, 1200x1600.",
+            "image_path": "/story-panels/smog-city/p5.png"
+          },
+          {
+            "id": "p6",
+            "title": "Blue Skies Return",
+            "caption": "Months later, Maya woke up to something amazing - a bright blue sky and fresh, clean air!",
+            "dialogue": "Maya: 'Alex, look! I can see the sun clearly!'\nAlex: 'We did it! We helped bring back the blue skies!'",
+            "image_prompt": "Triumphant final panel showing Maya and Alex on their school rooftop, masks off, smiling broadly under a clear blue sky. The city skyline is much clearer. They hold a sign reading 'Air Quality: Good'. Birds fly in the clean air. The sun shines brightly. Style: uplifting, hopeful comic book art with bright, clean colors, 1200x1600.",
+            "image_path": "/story-panels/smog-city/p6.png"
+          }
+        ],
+        "questions": [
+          {
+            "id": "q1",
+            "question": "What did Maya and Alex discover was the best way to reduce air pollution from vehicles?",
+            "options": [
+              "Keeping car engines running while parked",
+              "Using public transport and riding bikes",
+              "Driving alone to reduce traffic",
+              "Using air fresheners in cars"
+            ],
+            "correct_answer": 1,
+            "explanation": "Public transport and biking mean fewer cars on the road, which significantly reduces air pollution!"
+          },
+          {
+            "id": "q2",
+            "question": "What does the AQI (Air Quality Index) tell us?",
+            "options": [
+              "How loud the traffic is",
+              "How many cars are on the road",
+              "How safe the air is to breathe",
+              "What the weather will be like"
+            ],
+            "correct_answer": 2,
+            "explanation": "The AQI measures air pollution levels and tells us whether the air is safe to breathe or if we need protection."
+          },
+          {
+            "id": "q3",
+            "question": "In the story, what was the main source of the particles that made the air unhealthy?",
+            "options": [
+              "Cooking food at home",
+              "Factory emissions and car exhaust",
+              "Planting too many trees",
+              "Opening windows at night"
+            ],
+            "correct_answer": 1,
+            "explanation": "Factories and vehicles release tiny particles into the air that can harm our health when we breathe them."
+          }
+        ],
+        "time_limit": 300,
+        "passing_score": 70
+      },
+      "reward_points": 100,
+      "reward_coins": 50,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "journey-water-guardians",
+      "title": "The Water Guardians",
+      "description": "Follow Zara and Sam as they become Water Guardians, learning the ancient secrets of keeping water clean and precious!",
+      "type": "quiz",
+      "difficulty": "medium",
+      "content": {
+        "story": [
+          {
+            "id": "p1",
+            "title": "The Tale of Two Streams",
+            "caption": "Zara discovered something shocking during her morning jog - two rivers meeting, but they looked completely different!",
+            "dialogue": "Zara: 'Sam, look! One river is crystal clear, but the other is all muddy and brown!'\nSam: 'Something's not right here. Let's investigate!'",
+            "image_prompt": "Dramatic comic panel showing Zara and Sam on a wooden bridge where two rivers meet - one crystal clear blue, one murky brown. The contrast is striking. Children look concerned and determined. A weathered sign reads 'River Watch Station'. Style: adventure comic book art with strong contrasts, 1200x1600.",
+            "image_path": "/story-panels/water-guardians/p1.png"
+          },
+          {
+            "id": "p2",
+            "title": "The Water Detective",
+            "caption": "At the Water Education Center, Zara and Sam learned about the secret life of water in every home.",
+            "dialogue": "Guide: 'See? Gray water from showers is different from black water from toilets!'\nZara: 'So we can actually reuse some water? That's amazing!'",
+            "image_prompt": "Educational cutaway diagram scene showing a house cross-section with colored pipes. A friendly guide points to 'Greywater' (blue pipes from showers/sinks) and 'Blackwater' (dark pipes from toilets). Zara and Sam take notes on tablets, looking fascinated. Style: clear, educational comic book illustration, 1200x1600.",
+            "image_path": "/story-panels/water-guardians/p2.png"
+          },
+          {
+            "id": "p3",
+            "title": "The Garden Experiment",
+            "caption": "Back home, Zara's grandmother showed them an ancient trick - turning used water into garden gold!",
+            "dialogue": "Grandma: 'We filter the shower water and use it for our plants!'\nSam: 'But never for drinking or cooking, right?'\nGrandma: 'Exactly! You're learning fast!'",
+            "image_prompt": "Cozy garden scene with Zara's wise grandmother demonstrating a simple greywater system. A small filter connects to a watering can. Lush plants thrive around them. A clear warning sign reads 'Garden Use Only - Not for Drinking'. The grandmother smiles proudly at the kids. Style: warm, family-oriented comic art, 1200x1600.",
+            "image_path": "/story-panels/water-guardians/p3.png"
+          },
+          {
+            "id": "p4",
+            "title": "Sky Water Treasure",
+            "caption": "The community center taught them how to catch treasure falling from the sky - rainwater!",
+            "dialogue": "Instructor: 'Every drop of rain is precious water we can save!'\nZara: 'And the mesh keeps mosquitoes out - smart!'\nSam: 'We're like water treasure hunters!'",
+            "image_prompt": "Community workshop scene showing an innovative rainwater harvesting setup. Rooftop gutters lead to a large blue collection barrel with mesh filter. Zara and Sam help place a 'Mosquito-Proof Lid'. Other families participate enthusiastically. Style: community-focused, educational comic art, 1200x1600.",
+            "image_path": "/story-panels/water-guardians/p4.png"
+          },
+          {
+            "id": "p5",
+            "title": "Water Quality Detectives",
+            "caption": "Armed with test kits, Zara and Sam became real water quality detectives, solving the mystery of the two rivers.",
+            "dialogue": "Zara: 'The upstream water tests clean, but downstream it's polluted!'\nSam: 'Look how much clearer it gets after the treatment plant!'\nVolunteer: 'You two are natural scientists!'",
+            "image_prompt": "Scientific investigation scene at a community water testing booth. Zara and Sam use colorful test strips on water samples labeled 'Upstream', 'Downstream', 'After Treatment'. A chart shows improving water clarity. They wear junior scientist badges and look excited about their discoveries. Style: scientific adventure comic, 1200x1600.",
+            "image_path": "/story-panels/water-guardians/p5.png"
+          },
+          {
+            "id": "p6",
+            "title": "The Water Guardians Victory",
+            "caption": "Months later, both rivers ran clear and clean. Zara and Sam had become true Water Guardians!",
+            "dialogue": "Zara: 'Look! Fish are swimming in both rivers now!'\nSam: 'We helped make this happen!'\nBoth: 'Segregate, Treat, Reuse - the Water Guardian way!'",
+            "image_prompt": "Triumphant final scene showing the same bridge location, but now both rivers flow clear blue-green. Fish are visible swimming. Zara and Sam wear 'Water Guardian' badges and hold a banner reading 'Segregate, Treat, Reuse'. Other community members celebrate in the background. Style: victorious, celebratory comic book art, 1200x1600.",
+            "image_path": "/story-panels/water-guardians/p6.png"
+          }
+        ],
+        "questions": [
+          {
+            "id": "q1",
+            "question": "What did Zara learn about greywater?",
+            "options": [
+              "It comes from toilets and is very dirty",
+              "It comes from showers and sinks and can be reused safely",
+              "It's the same as drinking water",
+              "It can only be used for washing cars"
+            ],
+            "correct_answer": 1,
+            "explanation": "Greywater from showers, sinks, and laundry can be filtered and reused for gardens - it's much cleaner than blackwater from toilets!"
+          },
+          {
+            "id": "q2",
+            "question": "Why did Zara's grandmother say 'never for drinking or cooking' about greywater?",
+            "options": [
+              "Because it tastes bad",
+              "Because it's only safe for watering plants, not for human consumption",
+              "Because it's too expensive to use",
+              "Because it makes plants grow too fast"
+            ],
+            "correct_answer": 1,
+            "explanation": "Even filtered greywater isn't clean enough for drinking or cooking - it's perfect for gardens but not safe for our bodies!"
+          },
+          {
+            "id": "q3",
+            "question": "How does rainwater harvesting help communities like Zara and Sam's?",
+            "options": [
+              "It makes it rain more often",
+              "It prevents all flooding forever",
+              "It provides extra water supply and reduces runoff",
+              "It makes the water taste better"
+            ],
+            "correct_answer": 2,
+            "explanation": "Collecting rainwater gives communities extra water to use and prevents too much water from running off and causing problems!"
+          }
+        ],
+        "time_limit": 300,
+        "passing_score": 70
+      },
+      "reward_points": 100,
+      "reward_coins": 50,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "journey-zero-waste-heroes",
+      "title": "The Zero Waste Heroes",
+      "description": "Join Leo and Mia on their epic quest to master the Three Sacred Bins and save their neighborhood from the Waste Monster!",
+      "type": "quiz",
+      "difficulty": "easy",
+      "content": {
+        "story": [
+          {
+            "id": "p1",
+            "title": "The Three Sacred Bins",
+            "caption": "Leo stared at the three mysterious bins in his kitchen. Each had a different color and purpose, but which was which?",
+            "dialogue": "Leo: 'Mia, I have a banana peel and a plastic bottle. Which bin do they go in?'\nMia: 'Let me teach you the secret of the Three Sacred Bins!'",
+            "image_prompt": "Kitchen scene with Leo holding a banana peel and plastic bottle, looking puzzled at three clearly labeled bins: 'Wet/Organic (Green)', 'Dry/Recyclable (Blue)', 'Reject (Red)'. His friend Mia stands confidently beside him, ready to teach. The bins have friendly faces and glow slightly. Style: colorful, kid-friendly comic book art, 1200x1600.",
+            "image_path": "/story-panels/zero-waste-heroes/p1.png"
+          },
+          {
+            "id": "p2",
+            "title": "The Compost Magic Circle",
+            "caption": "In Mia's backyard, Leo discovered the amazing transformation happening in the compost bin - kitchen scraps becoming garden gold!",
+            "dialogue": "Mia: 'Watch this magic! Kitchen scraps plus dry leaves equals rich compost!'\nLeo: 'It's like nature's own recycling superpower!'\nMia: 'Exactly! We're helping the Earth heal itself!'",
+            "image_prompt": "Magical garden scene showing a cutaway view of a compost bin with layers of colorful kitchen scraps and brown leaves. Arrows show the transformation into rich, dark compost. Leo and Mia look amazed as earthworms and beneficial insects work their magic. Sparkles indicate the 'magic' of decomposition. Style: whimsical, educational comic art, 1200x1600.",
+            "image_path": "/story-panels/zero-waste-heroes/p2.png"
+          },
+          {
+            "id": "p3",
+            "title": "The Recycling Adventure",
+            "caption": "At the Materials Recovery Facility, Leo and Mia saw how their sorted waste became treasure for new products!",
+            "dialogue": "Worker: 'Your sorted paper becomes new notebooks! Your plastic bottles become new toys!'\nLeo: 'We're not just throwing things away - we're giving them new life!'\nMia: 'We're like waste wizards!'",
+            "image_prompt": "Exciting industrial scene showing a modern recycling facility with conveyor belts sorting colorful materials. Workers in safety gear guide the process. Neat bales of paper, plastic, and metal are labeled for reuse. Leo and Mia wear visitor badges and hard hats, looking amazed at the transformation process. Style: dynamic, industrial comic book art, 1200x1600.",
+            "image_path": "/story-panels/zero-waste-heroes/p3.png"
+          },
+          {
+            "id": "p4",
+            "title": "The Battle Against Waste Monster",
+            "caption": "Leo learned about the scary Waste Monster that grows when people don't sort their trash properly.",
+            "dialogue": "Teacher: 'When waste is mixed, it feeds the Waste Monster and harms our planet!'\nLeo: 'But when we sort properly, we shrink the monster!'\nMia: 'We're the heroes this planet needs!'",
+            "image_prompt": "Split-panel comic showing the contrast: Left side shows a menacing 'Waste Monster' (made of mixed garbage) threatening a landfill with birds and pollution. Right side shows the same area clean and green with proper waste sorting, recycling, and composting. Leo and Mia stand as heroes between the panels. Style: dramatic comic book art with clear good vs. evil contrast, 1200x1600.",
+            "image_path": "/story-panels/zero-waste-heroes/p4.png"
+          },
+          {
+            "id": "p5",
+            "title": "School Champions League",
+            "caption": "Leo and Mia started a Zero Waste Champions program at school, turning waste sorting into an exciting competition!",
+            "dialogue": "Leo: 'Class 5B is winning with perfect sorting!'\nMia: 'But Class 5A is catching up fast!'\nTeacher: 'Everyone's learning and having fun - that's the real victory!'",
+            "image_prompt": "Energetic school scene showing a colorful scoreboard titled 'Zero Waste Champions' with star ratings for different classes. Students enthusiastically sort waste into the correct bins during recess. Leo and Mia wear champion badges and cheer on their classmates. The atmosphere is competitive but fun. Style: school-friendly, energetic comic art, 1200x1600.",
+            "image_path": "/story-panels/zero-waste-heroes/p5.png"
+          },
+          {
+            "id": "p6",
+            "title": "Zero Waste Neighborhood Victory",
+            "caption": "Their entire neighborhood became a Zero Waste Zone, with special collection trucks and happy residents!",
+            "dialogue": "Leo: 'Look! The truck has three compartments for our three types of waste!'\nMia: 'Our whole street is now a Zero Waste Hero Zone!'\nNeighbor: 'Thanks to you kids, our neighborhood is the cleanest it's ever been!'",
+            "image_prompt": "Celebratory neighborhood scene showing a specialized waste collection truck with three clearly marked compartments. Happy neighbors wave as their properly sorted waste is collected. A large banner reads 'Zero Waste Hero Zone'. Leo and Mia are surrounded by grateful community members. The street is clean and beautiful. Style: community celebration comic book art, 1200x1600.",
+            "image_path": "/story-panels/zero-waste-heroes/p6.png"
+          }
+        ],
+        "questions": [
+          {
+            "id": "q1",
+            "question": "Where should Leo put his banana peel according to the Three Sacred Bins system?",
+            "options": [
+              "Blue bin (Dry/Recyclable)",
+              "Green bin (Wet/Organic)",
+              "Red bin (Reject)",
+              "Any bin is fine"
+            ],
+            "correct_answer": 1,
+            "explanation": "Banana peels are organic waste that can be composted, so they belong in the green bin with other wet/organic materials!"
+          },
+          {
+            "id": "q2",
+            "question": "Why did Leo and Mia learn that mixed waste 'feeds the Waste Monster'?",
+            "options": [
+              "Because monsters like to eat garbage",
+              "Because mixed waste makes recycling and composting impossible",
+              "Because it makes waste smell better",
+              "Because it helps plants grow faster"
+            ],
+            "correct_answer": 1,
+            "explanation": "When waste is all mixed together, we can't recycle or compost it properly, so more goes to landfills and harms the environment!"
+          },
+          {
+            "id": "q3",
+            "question": "What amazing discovery did Leo make about proper waste sorting?",
+            "options": [
+              "It makes waste disappear completely",
+              "It costs more money than mixed waste",
+              "It allows more materials to be recycled and reused",
+              "It makes waste collection slower"
+            ],
+            "correct_answer": 2,
+            "explanation": "When we sort waste properly, much more of it can be recycled into new products or composted into soil, reducing what goes to landfills!"
+          }
+        ],
+        "time_limit": 240,
+        "passing_score": 70
+      },
+      "reward_points": 80,
+      "reward_coins": 40,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  ]
+}

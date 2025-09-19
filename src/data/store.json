@@ -1,0 +1,178 @@
+{
+  "food_items": [
+    {
+      "id": "basic-seeds",
+      "name": "Basic Seeds",
+      "description": "Nutritious seeds that provide basic sustenance for your pet",
+      "image_url": "/images/food/basic-seeds.png",
+      "price": 5,
+      "nutrition_value": 15,
+      "happiness_boost": 5,
+      "rarity": "common"
+    },
+    {
+      "id": "fresh-berries",
+      "name": "Fresh Berries",
+      "description": "Sweet berries that boost happiness and health",
+      "image_url": "/images/food/fresh-berries.png",
+      "price": 10,
+      "nutrition_value": 20,
+      "happiness_boost": 15,
+      "rarity": "common"
+    },
+    {
+      "id": "organic-vegetables",
+      "name": "Organic Vegetables",
+      "description": "Healthy organic vegetables grown without pesticides",
+      "image_url": "/images/food/organic-vegetables.png",
+      "price": 15,
+      "nutrition_value": 25,
+      "happiness_boost": 10,
+      "rarity": "common"
+    },
+    {
+      "id": "algae-smoothie",
+      "name": "Algae Smoothie",
+      "description": "A nutritious smoothie perfect for marine pets",
+      "image_url": "/images/food/algae-smoothie.png",
+      "price": 20,
+      "nutrition_value": 30,
+      "happiness_boost": 20,
+      "rarity": "rare"
+    },
+    {
+      "id": "energy-crystals",
+      "name": "Energy Crystals",
+      "description": "Magical crystals that provide powerful energy boosts",
+      "image_url": "/images/food/energy-crystals.png",
+      "price": 50,
+      "nutrition_value": 50,
+      "happiness_boost": 30,
+      "rarity": "rare"
+    },
+    {
+      "id": "solar-fruit",
+      "name": "Solar Fruit",
+      "description": "Rare fruit that absorbs solar energy for maximum nutrition",
+      "image_url": "/images/food/solar-fruit.png",
+      "price": 75,
+      "nutrition_value": 60,
+      "happiness_boost": 40,
+      "rarity": "rare"
+    },
+    {
+      "id": "wind-seeds",
+      "name": "Wind Seeds",
+      "description": "Special seeds carried by the wind with renewable energy",
+      "image_url": "/images/food/wind-seeds.png",
+      "price": 100,
+      "nutrition_value": 70,
+      "happiness_boost": 50,
+      "rarity": "legendary"
+    },
+    {
+      "id": "ocean-kelp",
+      "name": "Premium Ocean Kelp",
+      "description": "The finest kelp from the deepest, cleanest oceans",
+      "image_url": "/images/food/ocean-kelp.png",
+      "price": 80,
+      "nutrition_value": 65,
+      "happiness_boost": 45,
+      "rarity": "rare"
+    },
+    {
+      "id": "golden-acorns",
+      "name": "Golden Acorns",
+      "description": "Legendary acorns from ancient forest guardians",
+      "image_url": "/images/food/golden-acorns.png",
+      "price": 150,
+      "nutrition_value": 80,
+      "happiness_boost": 60,
+      "rarity": "legendary"
+    },
+    {
+      "id": "earth-mushrooms",
+      "name": "Earth Mushrooms",
+      "description": "Rare mushrooms that grow in perfect soil conditions",
+      "image_url": "/images/food/earth-mushrooms.png",
+      "price": 60,
+      "nutrition_value": 55,
+      "happiness_boost": 35,
+      "rarity": "rare"
+    }
+  ],
+  "accessories": [
+    {
+      "id": "basic-collar",
+      "name": "Basic Collar",
+      "description": "A simple but sturdy collar for your pet",
+      "image_url": "/images/accessories/basic-collar.png",
+      "price": 25,
+      "type": "collar",
+      "unlocked_at_stage": "baby"
+    },
+    {
+      "id": "nature-hat",
+      "name": "Nature Hat",
+      "description": "A cute hat made from natural materials",
+      "image_url": "/images/accessories/nature-hat.png",
+      "price": 40,
+      "type": "hat",
+      "unlocked_at_stage": "child"
+    },
+    {
+      "id": "eco-bandana",
+      "name": "Eco Bandana",
+      "description": "A stylish bandana made from recycled fabric",
+      "image_url": "/images/accessories/eco-bandana.png",
+      "price": 35,
+      "type": "collar",
+      "unlocked_at_stage": "child"
+    },
+    {
+      "id": "forest-crown",
+      "name": "Forest Crown",
+      "description": "An elegant crown decorated with leaves and flowers",
+      "image_url": "/images/accessories/forest-crown.png",
+      "price": 75,
+      "type": "hat",
+      "unlocked_at_stage": "adult"
+    },
+    {
+      "id": "solar-wings",
+      "name": "Solar Wings",
+      "description": "Magnificent wings powered by solar energy",
+      "image_url": "/images/accessories/solar-wings.png",
+      "price": 200,
+      "type": "outfit",
+      "unlocked_at_stage": "elder"
+    },
+    {
+      "id": "crystal-necklace",
+      "name": "Crystal Necklace",
+      "description": "A beautiful necklace with energy-storing crystals",
+      "image_url": "/images/accessories/crystal-necklace.png",
+      "price": 120,
+      "type": "collar",
+      "unlocked_at_stage": "adult"
+    },
+    {
+      "id": "rainbow-scarf",
+      "name": "Rainbow Scarf",
+      "description": "A colorful scarf that changes colors like a rainbow",
+      "image_url": "/images/accessories/rainbow-scarf.png",
+      "price": 90,
+      "type": "outfit",
+      "unlocked_at_stage": "adult"
+    },
+    {
+      "id": "wisdom-glasses",
+      "name": "Wisdom Glasses",
+      "description": "Special glasses that enhance your pet's wisdom",
+      "image_url": "/images/accessories/wisdom-glasses.png",
+      "price": 150,
+      "type": "hat",
+      "unlocked_at_stage": "elder"
+    }
+  ]
+}

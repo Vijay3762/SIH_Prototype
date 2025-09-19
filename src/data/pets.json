@@ -1,0 +1,310 @@
+{
+  "species": [
+    {
+      "id": "eco-turtle",
+      "name": "Eco Turtle",
+      "description": "A wise and patient turtle that loves clean oceans and teaches about marine conservation",
+      "growth_stages": {
+        "egg": {
+          "name": "Turtle Egg",
+          "description": "A small, sandy egg waiting to hatch",
+          "image": "/images/pets/turtle/egg.png",
+          "duration_days": 2,
+          "requirements": {
+            "feeding_count": 3
+          }
+        },
+        "baby": {
+          "name": "Baby Turtle",
+          "description": "A tiny turtle taking its first steps toward the ocean",
+          "image": "/images/pets/turtle/baby.png",
+          "duration_days": 7,
+          "requirements": {
+            "feeding_count": 15,
+            "quests_completed": 3
+          }
+        },
+        "child": {
+          "name": "Young Turtle",
+          "description": "A curious turtle learning about ocean conservation",
+          "image": "/images/pets/turtle/child.png",
+          "duration_days": 14,
+          "requirements": {
+            "feeding_count": 35,
+            "quests_completed": 10,
+            "points": 500
+          }
+        },
+        "adult": {
+          "name": "Guardian Turtle",
+          "description": "A wise turtle protecting marine life and teaching others",
+          "image": "/images/pets/turtle/adult.png",
+          "duration_days": 21,
+          "requirements": {
+            "feeding_count": 70,
+            "quests_completed": 25,
+            "points": 1500
+          }
+        },
+        "elder": {
+          "name": "Ancient Sea Sage",
+          "description": "An ancient turtle with deep wisdom about ocean preservation",
+          "image": "/images/pets/turtle/elder.png",
+          "duration_days": -1,
+          "requirements": {
+            "feeding_count": 150,
+            "quests_completed": 50,
+            "points": 5000
+          }
+        }
+      },
+      "preferred_foods": ["seaweed", "algae", "kelp"],
+      "personality": "calm, wise, patient"
+    },
+    {
+      "id": "nature-fox",
+      "name": "Nature Fox",
+      "description": "A playful and clever fox that loves forests and teaches about wildlife conservation",
+      "growth_stages": {
+        "egg": {
+          "name": "Fox Kit Egg",
+          "description": "A cozy egg nestled in forest leaves",
+          "image": "/images/pets/fox/egg.png",
+          "duration_days": 2,
+          "requirements": {
+            "feeding_count": 3
+          }
+        },
+        "baby": {
+          "name": "Fox Kit",
+          "description": "A playful kit learning about the forest",
+          "image": "/images/pets/fox/baby.png",
+          "duration_days": 7,
+          "requirements": {
+            "feeding_count": 15,
+            "quests_completed": 3
+          }
+        },
+        "child": {
+          "name": "Young Fox",
+          "description": "An energetic fox exploring forest conservation",
+          "image": "/images/pets/fox/child.png",
+          "duration_days": 14,
+          "requirements": {
+            "feeding_count": 35,
+            "quests_completed": 10,
+            "points": 500
+          }
+        },
+        "adult": {
+          "name": "Forest Guardian",
+          "description": "A clever fox protecting woodland habitats",
+          "image": "/images/pets/fox/adult.png",
+          "duration_days": 21,
+          "requirements": {
+            "feeding_count": 70,
+            "quests_completed": 25,
+            "points": 1500
+          }
+        },
+        "elder": {
+          "name": "Woodland Sage",
+          "description": "A wise fox with ancient knowledge of forest preservation",
+          "image": "/images/pets/fox/elder.png",
+          "duration_days": -1,
+          "requirements": {
+            "feeding_count": 150,
+            "quests_completed": 50,
+            "points": 5000
+          }
+        }
+      },
+      "preferred_foods": ["berries", "nuts", "mushrooms"],
+      "personality": "playful, clever, energetic"
+    },
+    {
+      "id": "green-dragon",
+      "name": "Green Dragon",
+      "description": "A majestic dragon that controls plant growth and teaches about renewable energy",
+      "growth_stages": {
+        "egg": {
+          "name": "Dragon Egg",
+          "description": "A shimmering green egg pulsing with natural energy",
+          "image": "/images/pets/dragon/egg.png",
+          "duration_days": 2,
+          "requirements": {
+            "feeding_count": 3
+          }
+        },
+        "baby": {
+          "name": "Dragon Hatchling",
+          "description": "A small dragon learning to control plant magic",
+          "image": "/images/pets/dragon/baby.png",
+          "duration_days": 7,
+          "requirements": {
+            "feeding_count": 15,
+            "quests_completed": 3
+          }
+        },
+        "child": {
+          "name": "Young Dragon",
+          "description": "A growing dragon mastering renewable energy",
+          "image": "/images/pets/dragon/child.png",
+          "duration_days": 14,
+          "requirements": {
+            "feeding_count": 35,
+            "quests_completed": 10,
+            "points": 500
+          }
+        },
+        "adult": {
+          "name": "Nature Dragon",
+          "description": "A powerful dragon guardian of renewable resources",
+          "image": "/images/pets/dragon/adult.png",
+          "duration_days": 21,
+          "requirements": {
+            "feeding_count": 70,
+            "quests_completed": 25,
+            "points": 1500
+          }
+        },
+        "elder": {
+          "name": "Ancient Earth Dragon",
+          "description": "A legendary dragon with mastery over all natural forces",
+          "image": "/images/pets/dragon/elder.png",
+          "duration_days": -1,
+          "requirements": {
+            "feeding_count": 150,
+            "quests_completed": 50,
+            "points": 5000
+          }
+        }
+      },
+      "preferred_foods": ["solar_fruit", "wind_seeds", "energy_crystals"],
+      "personality": "majestic, powerful, protective"
+    },
+    {
+      "id": "earth-rabbit",
+      "name": "Earth Rabbit",
+      "description": "A gentle rabbit that teaches about sustainable agriculture and composting",
+      "growth_stages": {
+        "egg": {
+          "name": "Burrow Egg",
+          "description": "A cozy egg buried in rich earth",
+          "image": "/images/pets/rabbit/egg.png",
+          "duration_days": 2,
+          "requirements": {
+            "feeding_count": 3
+          }
+        },
+        "baby": {
+          "name": "Bunny",
+          "description": "A cute bunny learning about soil health",
+          "image": "/images/pets/rabbit/baby.png",
+          "duration_days": 7,
+          "requirements": {
+            "feeding_count": 15,
+            "quests_completed": 3
+          }
+        },
+        "child": {
+          "name": "Garden Rabbit",
+          "description": "A helpful rabbit teaching sustainable farming",
+          "image": "/images/pets/rabbit/child.png",
+          "duration_days": 14,
+          "requirements": {
+            "feeding_count": 35,
+            "quests_completed": 10,
+            "points": 500
+          }
+        },
+        "adult": {
+          "name": "Farm Guardian",
+          "description": "A wise rabbit protecting sustainable agriculture",
+          "image": "/images/pets/rabbit/adult.png",
+          "duration_days": 21,
+          "requirements": {
+            "feeding_count": 70,
+            "quests_completed": 25,
+            "points": 1500
+          }
+        },
+        "elder": {
+          "name": "Earth Sage",
+          "description": "An ancient rabbit with deep knowledge of soil and growth",
+          "image": "/images/pets/rabbit/elder.png",
+          "duration_days": -1,
+          "requirements": {
+            "feeding_count": 150,
+            "quests_completed": 50,
+            "points": 5000
+          }
+        }
+      },
+      "preferred_foods": ["carrots", "lettuce", "compost"],
+      "personality": "gentle, nurturing, wise"
+    }
+  ],
+  "accessories": [
+    {
+      "id": "leaf-crown",
+      "name": "Leaf Crown",
+      "description": "A beautiful crown made of fresh green leaves",
+      "type": "hat",
+      "image_url": "/images/accessories/leaf-crown.png",
+      "price": 50,
+      "unlocked_at_stage": "child",
+      "compatible_species": ["eco-turtle", "nature-fox", "earth-rabbit"]
+    },
+    {
+      "id": "solar-collar",
+      "name": "Solar Collar",
+      "description": "A high-tech collar powered by solar energy",
+      "type": "collar",
+      "image_url": "/images/accessories/solar-collar.png",
+      "price": 100,
+      "unlocked_at_stage": "adult",
+      "compatible_species": ["all"]
+    },
+    {
+      "id": "crystal-pendant",
+      "name": "Crystal Pendant",
+      "description": "A magical pendant that glows with earth energy",
+      "type": "collar",
+      "image_url": "/images/accessories/crystal-pendant.png",
+      "price": 200,
+      "unlocked_at_stage": "elder",
+      "compatible_species": ["green-dragon"]
+    },
+    {
+      "id": "flower-wreath",
+      "name": "Flower Wreath",
+      "description": "A colorful wreath of wildflowers",
+      "type": "hat",
+      "image_url": "/images/accessories/flower-wreath.png",
+      "price": 75,
+      "unlocked_at_stage": "child",
+      "compatible_species": ["earth-rabbit", "nature-fox"]
+    },
+    {
+      "id": "recycled-cape",
+      "name": "Recycled Cape",
+      "description": "A superhero cape made from recycled materials",
+      "type": "outfit",
+      "image_url": "/images/accessories/recycled-cape.png",
+      "price": 150,
+      "unlocked_at_stage": "adult",
+      "compatible_species": ["all"]
+    },
+    {
+      "id": "bamboo-toy",
+      "name": "Bamboo Toy",
+      "description": "A sustainable toy made from bamboo",
+      "type": "toy",
+      "image_url": "/images/accessories/bamboo-toy.png",
+      "price": 30,
+      "unlocked_at_stage": "baby",
+      "compatible_species": ["all"]
+    }
+  ]
+}

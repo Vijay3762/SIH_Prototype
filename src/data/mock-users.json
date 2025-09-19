@@ -1,0 +1,202 @@
+{
+  "users": [
+    {
+      "id": "user-001",
+      "credentials": {
+        "id": "student1",
+        "password": "eco123"
+      },
+      "profile": {
+        "email": "student1@greenwood.edu",
+        "username": "EcoExplorer",
+        "role": "student",
+        "school_id": "school-001",
+        "points": 350,
+        "badges": ["first-quest", "eco-warrior-bronze"],
+        "avatar": {
+          "skin_tone": "medium",
+          "hair_style": "short",
+          "hair_color": "brown",
+          "outfit": "casual-green",
+          "accessories": ["eco-backpack"]
+        },
+        "created_at": "2024-01-15T10:00:00Z"
+      },
+      "pet": {
+        "id": "pet-001",
+        "name": "Leafy",
+        "species": "eco-turtle",
+        "growth_stage": "child",
+        "health": 85,
+        "happiness": 90,
+        "hunger": 30,
+        "accessories": ["bamboo-toy"],
+        "last_fed": "2024-03-15T14:30:00Z"
+      },
+      "inventory": {
+        "coins": 125,
+        "food_items": [
+          { "item_id": "basic-seeds", "quantity": 5 },
+          { "item_id": "fresh-berries", "quantity": 3 }
+        ],
+        "accessories": [
+          { "accessory_id": "bamboo-toy", "equipped": true, "purchased_at": "2024-02-01T12:00:00Z" }
+        ]
+      }
+    },
+    {
+      "id": "user-002",
+      "credentials": {
+        "id": "student2",
+        "password": "nature456"
+      },
+      "profile": {
+        "email": "student2@greenwood.edu",
+        "username": "NatureGuard",
+        "role": "student",
+        "school_id": "school-001",
+        "points": 520,
+        "badges": ["first-quest", "eco-warrior-bronze", "quiz-master"],
+        "avatar": {
+          "skin_tone": "light",
+          "hair_style": "long",
+          "hair_color": "blonde",
+          "outfit": "nature-ranger",
+          "accessories": ["flower-crown"]
+        },
+        "created_at": "2024-01-10T08:30:00Z"
+      },
+      "pet": {
+        "id": "pet-002",
+        "name": "Swift",
+        "species": "nature-fox",
+        "growth_stage": "adult",
+        "health": 95,
+        "happiness": 85,
+        "hunger": 20,
+        "accessories": ["leaf-crown", "eco-bandana"],
+        "last_fed": "2024-03-15T16:00:00Z"
+      },
+      "inventory": {
+        "coins": 200,
+        "food_items": [
+          { "item_id": "organic-vegetables", "quantity": 4 },
+          { "item_id": "algae-smoothie", "quantity": 2 }
+        ],
+        "accessories": [
+          { "accessory_id": "leaf-crown", "equipped": true, "purchased_at": "2024-02-15T10:00:00Z" },
+          { "accessory_id": "eco-bandana", "equipped": true, "purchased_at": "2024-03-01T14:00:00Z" }
+        ]
+      }
+    },
+    {
+      "id": "user-003",
+      "credentials": {
+        "id": "teacher1",
+        "password": "teach789"
+      },
+      "profile": {
+        "email": "teacher1@greenwood.edu",
+        "username": "Ms. Green",
+        "role": "teacher",
+        "school_id": "school-001",
+        "points": 0,
+        "badges": [],
+        "avatar": {
+          "skin_tone": "medium",
+          "hair_style": "professional",
+          "hair_color": "black",
+          "outfit": "teacher-casual",
+          "accessories": ["glasses"]
+        },
+        "created_at": "2024-01-01T09:00:00Z"
+      }
+    },
+    {
+      "id": "user-004",
+      "credentials": {
+        "id": "admin1",
+        "password": "admin999"
+      },
+      "profile": {
+        "email": "admin@greenwood.edu",
+        "username": "Principal Johnson",
+        "role": "school-admin",
+        "school_id": "school-001",
+        "points": 0,
+        "badges": [],
+        "avatar": {
+          "skin_tone": "dark",
+          "hair_style": "short",
+          "hair_color": "gray",
+          "outfit": "formal",
+          "accessories": []
+        },
+        "created_at": "2024-01-01T09:00:00Z"
+      }
+    },
+    {
+      "id": "user-005",
+      "credentials": {
+        "id": "student3",
+        "password": "earth321"
+      },
+      "profile": {
+        "email": "student3@riverdale.edu",
+        "username": "DragonMaster",
+        "role": "student",
+        "school_id": "school-002",
+        "points": 750,
+        "badges": ["first-quest", "eco-warrior-bronze", "eco-warrior-silver", "pet-master"],
+        "avatar": {
+          "skin_tone": "tan",
+          "hair_style": "spiky",
+          "hair_color": "red",
+          "outfit": "adventure",
+          "accessories": ["dragon-pendant"]
+        },
+        "created_at": "2024-01-05T11:00:00Z"
+      },
+      "pet": {
+        "id": "pet-005",
+        "name": "Ember",
+        "species": "green-dragon",
+        "growth_stage": "adult",
+        "health": 100,
+        "happiness": 95,
+        "hunger": 15,
+        "accessories": ["crystal-necklace", "solar-wings"],
+        "last_fed": "2024-03-15T17:30:00Z"
+      },
+      "inventory": {
+        "coins": 300,
+        "food_items": [
+          { "item_id": "energy-crystals", "quantity": 3 },
+          { "item_id": "solar-fruit", "quantity": 2 }
+        ],
+        "accessories": [
+          { "accessory_id": "crystal-necklace", "equipped": true, "purchased_at": "2024-02-20T10:00:00Z" },
+          { "accessory_id": "solar-wings", "equipped": true, "purchased_at": "2024-03-10T15:00:00Z" }
+        ]
+      }
+    }
+  ],
+  "schools": [
+    {
+      "id": "school-001",
+      "name": "Greenwood Elementary",
+      "location": "Mumbai, Maharashtra",
+      "admin_id": "user-004",
+      "students": ["user-001", "user-002"],
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "school-002",
+      "name": "Riverdale Middle School",
+      "location": "Pune, Maharashtra",
+      "admin_id": "user-006",
+      "students": ["user-005"],
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  ]
+}

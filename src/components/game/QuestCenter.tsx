@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { GameState, Quest, QuizQuest, QuizSubmission } from '@/types'
 import { MapPin, Clock, Star, Trophy, Camera, QrCode, CheckCircle, Play, BookOpen, Zap } from 'lucide-react'
-import questsData from '@/data/quests.json'
-import { authService } from '@/lib/auth'
+import { authService, QUEST_CATALOG_EVENT } from '@/lib/auth'
 
 interface QuestCenterProps {
   gameState: GameState
@@ -35,8 +34,17 @@ export default function QuestCenter({ gameState, onQuestComplete }: QuestCenterP
   })
 
   useEffect(() => {
-    // Load quests from seed data
-    setQuests(questsData.quests as Quest[])
+    const loadCatalog = () => {
+      const catalog = authService.getQuestCatalog()
+      setQuests(catalog)
+    }
+
+    loadCatalog()
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener(QUEST_CATALOG_EVENT, loadCatalog)
+      return () => window.removeEventListener(QUEST_CATALOG_EVENT, loadCatalog)
+    }
   }, [])
 
   useEffect(() => {

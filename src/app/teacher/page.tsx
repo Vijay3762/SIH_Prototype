@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
-import { authService } from '@/lib/auth'
-import { User } from '@/types'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { authService, QUEST_CATALOG_EVENT } from '@/lib/auth'
+import { Quest, QuizQuest, User } from '@/types'
 import { useRouter } from 'next/navigation'
 import {
   Users,
@@ -17,6 +17,7 @@ import {
   Coins,
   Target
 } from 'lucide-react'
+import CreateQuestModal from '@/components/teacher/CreateQuestModal'
 
 interface QuestHistoryRecord {
   id: string
@@ -54,7 +55,17 @@ export default function TeacherDashboard() {
   const [showSettings, setShowSettings] = useState(false)
   const [leaderboard, setLeaderboard] = useState<LeaderboardRecord[]>([])
   const [questHistory, setQuestHistory] = useState<QuestHistoryRecord[]>([])
+  const [teacherQuests, setTeacherQuests] = useState<Quest[]>([])
+  const [isQuestModalOpen, setIsQuestModalOpen] = useState(false)
   const router = useRouter()
+
+  const refreshTeacherQuests = useCallback(() => {
+    setTeacherQuests(authService.getCustomQuestsSnapshot())
+  }, [])
+
+  const handleQuestCreated = useCallback(() => {
+    refreshTeacherQuests()
+  }, [refreshTeacherQuests])
 
   useEffect(() => {
     const currentUser = authService.getCurrentUser()
@@ -99,6 +110,15 @@ export default function TeacherDashboard() {
     }
   }, [])
 
+  useEffect(() => {
+    refreshTeacherQuests()
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener(QUEST_CATALOG_EVENT, refreshTeacherQuests)
+      return () => window.removeEventListener(QUEST_CATALOG_EVENT, refreshTeacherQuests)
+    }
+  }, [refreshTeacherQuests])
+
   const handleLogout = async () => {
     await authService.logout()
     router.push('/')
@@ -130,6 +150,12 @@ export default function TeacherDashboard() {
       totalPoints
     }
   }, [leaderboard, questHistory, user?.school_id])
+
+  const sortedTeacherQuests = useMemo(() => {
+    return teacherQuests
+      .slice()
+      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+  }, [teacherQuests])
 
   const recentActivity = useMemo(() => questHistory.slice(0, 6), [questHistory])
 
@@ -422,9 +448,15 @@ export default function TeacherDashboard() {
 
   const renderQuests = () => (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-white font-mono">QUEST MANAGEMENT</h2>
-        <button className="bg-green-600 text-white px-4 py-2 font-mono hover:bg-green-500 flex items-center space-x-2">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-bold text-white font-mono">QUEST MANAGEMENT</h2>
+          <p className="text-sm text-gray-400 font-mono">Upload a PDF to instantly craft SDG13 + NEP2020 quests for your students.</p>
+        </div>
+        <button
+          onClick={() => setIsQuestModalOpen(true)}
+          className="bg-green-600 text-white px-4 py-2 font-mono hover:bg-green-500 flex items-center space-x-2"
+        >
           <Plus className="h-4 w-4" />
           <span>CREATE QUEST</span>
         </button>
@@ -433,31 +465,60 @@ export default function TeacherDashboard() {
       <div className="bg-gray-800 border-2 border-gray-600">
         <div className="border-b-2 border-gray-600 p-4 grid grid-cols-6 gap-4 font-mono text-gray-400 text-sm">
           <div>QUEST</div>
-          <div>TYPE</div>
           <div>DIFFICULTY</div>
-          <div>COMPLETION</div>
-          <div>REWARD</div>
+          <div>QUIZ</div>
+          <div>REWARDS</div>
+          <div>CREATED</div>
           <div>STATUS</div>
         </div>
-        {[
-          { name: 'Ocean Cleanup Challenge', type: 'PHOTO', difficulty: 'MEDIUM', completion: '15/24', reward: '50pts', status: 'ACTIVE' },
-          { name: 'Renewable Energy Quiz', type: 'QUIZ', difficulty: 'HARD', completion: '8/24', reward: '75pts', status: 'ACTIVE' },
-          { name: 'Tree Planting Mission', type: 'QR', difficulty: 'EASY', completion: '22/24', reward: '30pts', status: 'ACTIVE' },
-        ].map((quest, index) => (
-          <div key={index} className="p-4 border-b border-gray-700 grid grid-cols-6 gap-4 items-center">
-            <div className="text-white font-mono">{quest.name}</div>
-            <div className="text-blue-400 font-mono">{quest.type}</div>
-            <div className={`font-mono ${
-              quest.difficulty === 'EASY' ? 'text-green-400' : 
-              quest.difficulty === 'MEDIUM' ? 'text-yellow-400' : 'text-red-400'
-            }`}>
-              {quest.difficulty}
-            </div>
-            <div className="text-cyan-400 font-mono">{quest.completion}</div>
-            <div className="text-yellow-400 font-mono">{quest.reward}</div>
-            <div className="text-green-400 font-mono">{quest.status}</div>
+        {sortedTeacherQuests.length > 0 ? (
+          sortedTeacherQuests.map((quest) => {
+            const quizContent = quest.content as QuizQuest
+            const storyPanels = quizContent.story?.length ?? 0
+            const questionCount = quizContent.questions.length
+            const createdOn = new Date(quest.created_at)
+            const createdLabel = Number.isNaN(createdOn.getTime())
+              ? '—'
+              : createdOn.toLocaleString()
+
+            return (
+              <div key={quest.id} className="p-4 border-b border-gray-700 grid grid-cols-6 gap-4 items-start">
+                <div>
+                  <div className="text-white font-mono font-semibold">{quest.title}</div>
+                  <p className="text-xs text-gray-400 font-mono mt-1 max-w-prose">{quest.description}</p>
+                  <p className="text-xs text-cyan-400 font-mono mt-1">Story panels: {storyPanels} · Questions: {questionCount}</p>
+                </div>
+                <div className={`font-mono uppercase text-sm ${
+                  quest.difficulty === 'easy'
+                    ? 'text-green-400'
+                    : quest.difficulty === 'hard'
+                      ? 'text-red-400'
+                      : 'text-yellow-400'
+                }`}>
+                  {quest.difficulty}
+                </div>
+                <div className="text-sm font-mono text-cyan-300">
+                  <div>Pass: {quizContent.passing_score}%</div>
+                  <div className="text-xs text-gray-400">Time: {quizContent.time_limit ? `${quizContent.time_limit}s` : '—'}</div>
+                </div>
+                <div className="text-sm font-mono text-yellow-300">
+                  <div>{quest.reward_points} pts</div>
+                  <div className="text-xs text-green-300">{quest.reward_coins} coins</div>
+                </div>
+                <div className="text-sm font-mono text-gray-200">
+                  {createdLabel}
+                </div>
+                <div className="text-sm font-mono text-green-400">
+                  {quest.is_active ? 'READY' : 'INACTIVE'}
+                </div>
+              </div>
+            )
+          })
+        ) : (
+          <div className="text-center text-gray-400 font-mono py-8">
+            No teacher-created quests yet. Click “Create Quest” to launch your first SDG13 mission.
           </div>
-        ))}
+        )}
       </div>
     </div>
   )
@@ -567,6 +628,13 @@ export default function TeacherDashboard() {
         {activeTab === 'quests' && renderQuests()}
         {activeTab === 'analytics' && renderAnalytics()}
       </main>
+
+      <CreateQuestModal
+        isOpen={isQuestModalOpen}
+        onClose={() => setIsQuestModalOpen(false)}
+        onQuestCreated={handleQuestCreated}
+        teacherId={user?.id}
+      />
     </div>
   )
 }

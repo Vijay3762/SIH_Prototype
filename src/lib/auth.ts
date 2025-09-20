@@ -9,6 +9,7 @@ import {
   QuizSubmission,
   BadgeType,
   QuizQuest,
+  QuizQuestion,
   PetSpecies,
   PetGrowthStage,
   UserInventory,
@@ -39,6 +40,9 @@ type LeaderboardRecord = {
   updated_at: string
 }
 import mockUsersData from '@/data/mock-users.json'
+import questsData from '@/data/quests.json'
+
+export const QUEST_CATALOG_EVENT = 'prakritiQuestCatalogUpdate'
 
 // Mock authentication service
 export class MockAuthService {
@@ -50,6 +54,8 @@ export class MockAuthService {
   private readonly leaderboardEventName = 'prakritiLeaderboardUpdate'
   private readonly inventoryStoragePrefix = 'prakriti_inventory_'
   private readonly leaderboardStorageKey = 'prakriti_leaderboard'
+  private readonly questCatalogStorageKey = 'prakriti_teacher_quests'
+  private readonly questCatalogEventName = QUEST_CATALOG_EVENT
 
   private isBrowser(): boolean {
     return typeof window !== 'undefined'
@@ -57,6 +63,90 @@ export class MockAuthService {
 
   private getInventoryStorageKey(userId: string) {
     return `${this.inventoryStoragePrefix}${userId}`
+  }
+
+  private sanitizeQuizQuest(candidate: unknown): candidate is QuizQuest {
+    if (!candidate || typeof candidate !== 'object') return false
+    const content = candidate as Partial<QuizQuest>
+    if (!Array.isArray(content.questions)) return false
+    if (typeof content.passing_score !== 'number') return false
+    if (content.time_limit !== undefined && typeof content.time_limit !== 'number') return false
+    return content.questions.every(question => {
+      if (!question || typeof question !== 'object') return false
+      const q = question as Partial<QuizQuestion>
+      return (
+        typeof q.id === 'string' &&
+        typeof q.question === 'string' &&
+        Array.isArray(q.options) &&
+        typeof q.correct_answer === 'number'
+      )
+    })
+  }
+
+  private sanitizeStoredQuest(candidate: unknown): Quest | null {
+    if (!candidate || typeof candidate !== 'object') return null
+    const quest = candidate as Partial<Quest>
+    if (typeof quest.id !== 'string' || typeof quest.title !== 'string') return null
+    if (typeof quest.description !== 'string') return null
+    if (quest.type !== 'quiz') return null
+    if (quest.difficulty !== 'easy' && quest.difficulty !== 'medium' && quest.difficulty !== 'hard') return null
+    if (!this.sanitizeQuizQuest(quest.content)) return null
+    if (typeof quest.reward_points !== 'number' || typeof quest.reward_coins !== 'number') return null
+    if (typeof quest.created_at !== 'string') return null
+    return quest as Quest
+  }
+
+  private readCustomQuests(): Quest[] {
+    if (!this.isBrowser()) return []
+    const stored = window.localStorage.getItem(this.questCatalogStorageKey)
+    if (!stored) return []
+    try {
+      const parsed = JSON.parse(stored) as unknown[]
+      if (!Array.isArray(parsed)) return []
+      return parsed
+        .map(item => this.sanitizeStoredQuest(item))
+        .filter((quest): quest is Quest => Boolean(quest))
+    } catch (error) {
+      console.error('Failed to parse stored quests', error)
+      return []
+    }
+  }
+
+  private persistCustomQuests(quests: Quest[]) {
+    if (!this.isBrowser()) return
+    window.localStorage.setItem(this.questCatalogStorageKey, JSON.stringify(quests))
+    window.dispatchEvent(new CustomEvent(this.questCatalogEventName))
+  }
+
+  private getSeedQuests(): Quest[] {
+    const seed = (questsData.quests || []) as Quest[]
+    return Array.isArray(seed) ? seed.slice() : []
+  }
+
+  getQuestCatalog(options?: { includeSeeds?: boolean }): Quest[] {
+    const includeSeeds = options?.includeSeeds !== false
+    const custom = this.readCustomQuests()
+    if (!includeSeeds) {
+      return custom
+    }
+    return [...custom, ...this.getSeedQuests()]
+  }
+
+  getCustomQuestsSnapshot(): Quest[] {
+    return this.readCustomQuests()
+  }
+
+  addQuestToCatalog(quest: Quest): Quest | null {
+    if (!this.isBrowser()) return null
+    const custom = this.readCustomQuests()
+    const index = custom.findIndex(entry => entry.id === quest.id)
+    if (index >= 0) {
+      custom[index] = quest
+    } else {
+      custom.unshift(quest)
+    }
+    this.persistCustomQuests(custom)
+    return quest
   }
 
   private readStoredInventory(userId: string): UserInventory | null {
@@ -469,7 +559,7 @@ export class MockAuthService {
         updated_at: new Date().toISOString()
       },
       inventory,
-      active_quests: [], // TODO: Load from quests data
+      active_quests: this.getQuestCatalog(),
       completed_quests: completedQuests,
       leaderboard_rank: 1,
       daily_login_streak: 1

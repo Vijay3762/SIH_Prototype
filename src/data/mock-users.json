@@ -24,8 +24,8 @@
       },
       "pet": {
         "id": "pet-001",
-        "name": "Leafy",
-        "species": "eco-turtle",
+        "name": "Glacie",
+        "species": "eco-penguin",
         "growth_stage": "child",
         "health": 85,
         "happiness": 90,

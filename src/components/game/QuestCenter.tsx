@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { GameState, Quest, QuizQuest, StoryPanel } from '@/types'
-import { MapPin, Clock, Star, Trophy, Camera, QrCode, CheckCircle, Play, ChevronLeft, ChevronRight, SkipForward, BookOpen, Zap } from 'lucide-react'
+import Image from 'next/image'
+import { GameState, Quest, QuizQuest } from '@/types'
+import { MapPin, Clock, Star, Trophy, Camera, QrCode, CheckCircle, Play, BookOpen, Zap } from 'lucide-react'
 import questsData from '@/data/quests.json'
 
 interface QuestCenterProps {
@@ -21,8 +22,6 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
   const [timeLeft, setTimeLeft] = useState(300)
   // Story state
   const [showStory, setShowStory] = useState(false)
-  const [currentPanel, setCurrentPanel] = useState(0)
-  const [isTransitioning, setIsTransitioning] = useState(false)
 
   useEffect(() => {
     // Load quests from seed data
@@ -77,7 +76,6 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
       const quizContent = quest.content as QuizQuest
       if (quizContent.story && quizContent.story.length > 0) {
         setShowStory(true)
-        setCurrentPanel(0)
       } else {
         setShowStory(false)
       }
@@ -92,32 +90,9 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
     console.log('Quiz answer:', { questionIndex, answerIndex })
   }
 
-  const handlePanelTransition = (direction: 'next' | 'prev') => {
-    if (!selectedQuest) return
-    
-    setIsTransitioning(true)
-    setTimeout(() => {
-      const quizContent = selectedQuest.content as QuizQuest
-      const storyLength = quizContent.story?.length || 0
-      
-      if (direction === 'next') {
-        setCurrentPanel((p) => Math.min(storyLength - 1, p + 1))
-      } else {
-        setCurrentPanel((p) => Math.max(0, p - 1))
-      }
-      setIsTransitioning(false)
-    }, 150)
-  }
-
   const renderStoryInterface = (quest: Quest) => {
     const quizContent = quest.content as QuizQuest
     const panels = quizContent.story || []
-    const currentPanelData = panels[currentPanel]
-
-    if (!currentPanelData) return null
-
-    const goPrev = () => handlePanelTransition('prev')
-    const goNext = () => handlePanelTransition('next')
     const skipToQuiz = () => setShowStory(false)
     const startQuiz = () => setShowStory(false)
 
@@ -131,7 +106,7 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
         </div>
 
         {/* Header */}
-        <div className="relative z-10 p-6 flex items-center justify-between">
+        <div className="relative z-10 p-6 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center space-x-4">
             <button
               onClick={() => setSelectedQuest(null)}
@@ -141,13 +116,13 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
             </button>
             <div>
               <h1 className="text-3xl font-bold text-white font-serif tracking-wide">{quest.title}</h1>
-              <div className="flex items-center space-x-2 mt-1">
-                <BookOpen className="h-4 w-4 text-neon-cyan" />
-                <span className="text-neon-cyan font-medium">Chapter {currentPanel + 1} of {panels.length}</span>
+              <div className="flex items-center space-x-2 mt-1 text-neon-cyan font-medium">
+                <BookOpen className="h-4 w-4" />
+                <span>Scroll through {panels.length} comic cards</span>
               </div>
             </div>
           </div>
-          
+
           <button
             onClick={skipToQuiz}
             className="btn-pixel bg-neon-yellow/20 border-neon-yellow text-neon-yellow hover:bg-neon-yellow hover:text-black transition-all duration-300 font-bold"
@@ -157,109 +132,52 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
           </button>
         </div>
 
-        {/* Main Comic Panel */}
-        <div className="relative z-10 flex-1 flex items-center justify-center p-6">
-          <div className={`max-w-4xl w-full transition-all duration-300 ${isTransitioning ? 'scale-95 opacity-50' : 'scale-100 opacity-100'}`}>
-            
-            {/* Comic Panel Card */}
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border-8 border-gray-800 relative">
-              
-              {/* Panel Title */}
-              <div className="bg-gradient-to-r from-red-500 to-orange-500 p-4 text-center">
-                <h2 className="text-2xl font-bold text-white font-serif tracking-wider uppercase">
-                  {currentPanelData.title}
-                </h2>
-              </div>
+        {/* Comic Panels */}
+        <div className="relative z-10 px-6 pb-24">
+          <div className="max-w-6xl mx-auto space-y-12">
+            {panels.map((panel, idx) => (
+              <div key={panel.id} className="group relative pt-12">
+                <div className="absolute top-0 left-8 inline-flex items-center gap-3 px-5 py-2 rounded-full border-2 border-neon-cyan bg-black/70 text-neon-cyan shadow-[0_10px_35px_rgba(0,255,255,0.35)] uppercase tracking-widest">
+                  <span className="text-xs font-mono">Panel {idx + 1}</span>
+                  <span className="font-serif text-sm md:text-base max-w-[14rem] truncate">{panel.title}</span>
+                </div>
 
-              {/* Image Area */}
-              <div className="relative h-96 bg-gradient-to-br from-sky-100 to-blue-200 flex items-center justify-center">
-                {/* Image placeholder with comic-style border */}
-                <div className="w-full h-full bg-white border-4 border-dashed border-gray-400 flex items-center justify-center">
-                  <div className="text-center text-gray-500">
-                    <Camera className="h-16 w-16 mx-auto mb-4 opacity-50" />
-                    <p className="text-lg font-medium">Comic Panel Image</p>
-                    <p className="text-sm">Will appear here after generation</p>
+                <div className="relative rounded-[32px] border-8 border-white/10 bg-white/5 overflow-hidden shadow-[0_35px_120px_-30px_rgba(14,197,240,0.45)] transition-transform duration-500 group-hover:scale-[1.01] group-hover:border-neon-cyan/60">
+                  <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/30 via-transparent to-neon-cyan/30 opacity-40 group-hover:opacity-70 transition-opacity duration-500" />
+
+                  <div className="relative w-full aspect-[3/4] min-h-[460px] md:min-h-[600px] lg:min-h-[720px] bg-slate-900 flex items-center justify-center overflow-hidden">
+                    {panel.image_path ? (
+                      <Image
+                        src={panel.image_path}
+                        alt={panel.title || `Panel ${idx + 1}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 90vw, (max-width: 1024px) 70vw, 960px"
+                        priority={idx === 0}
+                      />
+                    ) : (
+                      <div className="text-center text-white/70 max-w-sm mx-auto space-y-3">
+                        <Camera className="h-16 w-16 mx-auto opacity-60" />
+                        <p className="font-semibold tracking-wide uppercase text-sm md:text-base">Comic art will appear here</p>
+                        <p className="text-xs md:text-sm text-white/60">Generate the panel using the saved prompt and place the image at <span className="font-mono text-neon-cyan">{panel.image_path || '/story-panels/...'} </span></p>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/10 via-transparent to-black/20" />
                   </div>
                 </div>
-                
-                {/* Comic-style speech bubble for dialogue */}
-                {(currentPanelData as any).dialogue && (
-                  <div className="absolute top-4 left-4 right-4">
-                    <div className="bg-white rounded-2xl p-4 border-4 border-gray-800 shadow-lg relative">
-                      <div className="absolute -bottom-3 left-8 w-6 h-6 bg-white border-l-4 border-b-4 border-gray-800 transform rotate-45"></div>
-                      <p className="text-gray-800 font-medium leading-relaxed whitespace-pre-line">
-                        {(currentPanelData as any).dialogue}
-                      </p>
-                    </div>
-                  </div>
-                )}
               </div>
+            ))}
 
-              {/* Story Caption */}
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6">
-                <p className="text-white text-lg leading-relaxed font-medium text-center">
-                  {currentPanelData.caption}
-                </p>
-              </div>
-
-              {/* Progress Dots */}
-              <div className="bg-gray-100 p-4 flex justify-center space-x-2">
-                {panels.map((_, idx) => (
-                  <div
-                    key={idx}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      idx === currentPanel 
-                        ? 'bg-blue-500 scale-125' 
-                        : idx < currentPanel 
-                          ? 'bg-green-500' 
-                          : 'bg-gray-300'
-                    }`}
-                  />
-                ))}
-              </div>
+            <div className="flex justify-center pt-4">
+              <button
+                onClick={startQuiz}
+                className="btn-pixel bg-gradient-to-r from-neon-green to-neon-yellow border-neon-green text-gray-900 hover:shadow-neon-green/60 font-pixel text-lg px-12 py-5 transition-transform duration-300 hover:-translate-y-1 hover:scale-105"
+              >
+                <Play className="h-5 w-5 mr-3" />
+                START QUIZ
+              </button>
             </div>
           </div>
-        </div>
-
-        {/* Navigation Controls */}
-        <div className="relative z-10 p-6 flex items-center justify-between">
-          <button
-            onClick={goPrev}
-            disabled={currentPanel === 0}
-            className={`btn-pixel px-8 py-4 text-lg font-bold transition-all duration-300 ${
-              currentPanel === 0
-                ? 'bg-gray-600 border-gray-600 text-gray-400 cursor-not-allowed'
-                : 'bg-neon-blue border-neon-blue text-white hover:bg-white hover:text-neon-blue hover:scale-105'
-            }`}
-          >
-            <ChevronLeft className="h-5 w-5 mr-2" />
-            PREVIOUS
-          </button>
-
-          <div className="text-center">
-            <div className="text-white text-sm opacity-75 mb-1">Swipe or use buttons to navigate</div>
-            <div className="text-neon-cyan font-bold text-lg">
-              {currentPanel + 1} / {panels.length}
-            </div>
-          </div>
-
-          {currentPanel < panels.length - 1 ? (
-            <button
-              onClick={goNext}
-              className="btn-pixel bg-neon-green border-neon-green text-white hover:bg-white hover:text-neon-green hover:scale-105 px-8 py-4 text-lg font-bold transition-all duration-300"
-            >
-              NEXT
-              <ChevronRight className="h-5 w-5 ml-2" />
-            </button>
-          ) : (
-            <button
-              onClick={startQuiz}
-              className="btn-pixel bg-gradient-to-r from-orange-500 to-red-500 border-orange-500 text-white hover:scale-105 px-8 py-4 text-lg font-bold transition-all duration-300 animate-pulse"
-            >
-              <Play className="h-5 w-5 mr-2" />
-              START QUIZ!
-            </button>
-          )}
         </div>
       </div>
     )

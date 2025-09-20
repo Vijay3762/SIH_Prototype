@@ -13,7 +13,7 @@
             "title": "The Gray Morning",
             "caption": "Maya woke up to another gray morning. 'Why can't I see the sun anymore?' she wondered, putting on her mask before heading to school.",
             "dialogue": "Maya: 'Mom, why is the sky always gray now?'\nMom: 'It's the air pollution, sweetie. But maybe we can do something about it!'",
-            "image_prompt": "Vertical comic panel. A young girl Maya looking out her bedroom window at a hazy city skyline under a gray smog dome. She's holding a face mask. The sun is barely visible through the smog. Her mother stands behind her pointing at an air quality app showing 'Very Unhealthy'. Style: vibrant comic book art, bold outlines, expressive characters, 1200x1600.",
+            "image_prompt": "Immersive vertical comic page (1400x2200) in vibrant neo-futuristic style. Maya stands in her bedroom at dawn, gazing through a window at a smog-choked skyline while holding her face mask, and her mom stands behind her showing an air-quality app that reads 'Very Unhealthy'. Add a glowing narration ribbon near the top that says \"Maya woke up to another gray morning, wondering why she couldn't see the sun.\" Include a speech bubble from Maya saying \"Mom, why is the sky always gray now?\" and a speech bubble from Mom replying \"It's the air pollution, sweetie. But maybe we can do something about it!\" Use bold comic inks, luminous haze, and holographic UI accents to keep the page energetic.",
             "image_path": "/story-panels/smog-city/p1.png"
           },
           {
@@ -21,7 +21,7 @@
             "title": "The Traffic Jam Discovery",
             "caption": "Walking to school, Maya and her friend Alex noticed something strange about the busy street...",
             "dialogue": "Alex: 'Look at all that smoke coming from the cars!'\nMaya: 'And the tree leaves are all dusty. This can't be good!'",
-            "image_prompt": "Street-level comic panel showing Maya and Alex walking past a dense traffic jam. Cars are idling with visible exhaust fumes. A roadside tree has dust-covered leaves. The kids are pointing and looking concerned. A digital sign shows 'AQI: 285 - Very Unhealthy'. Style: dynamic comic book art with motion lines and expressive faces, 1200x1600.",
+            "image_prompt": "High-energy vertical comic page (1400x2200) showing Maya and Alex walking past a gridlocked street of idling cars with heavy exhaust and dust-coated trees, while a digital sign flashes 'AQI 285 - Very Unhealthy'. Add an amber narration box that reads \"Walking to school, Maya and her friend Alex noticed something strange about the busy street...\" Include a speech bubble from Alex saying \"Look at all that smoke coming from the cars!\" and a speech bubble from Maya saying \"And the tree leaves are all dusty. This can't be good!\" Use dynamic motion streaks, neon highlights, and interactive comic UI styling.",
             "image_path": "/story-panels/smog-city/p2.png"
           },
           {
@@ -29,7 +29,7 @@
             "title": "The Factory Visit",
             "caption": "Their science teacher took them on a field trip to see how factories are fighting pollution with new technology.",
             "dialogue": "Engineer: 'These new filters can catch 99% of harmful particles!'\nMaya: 'Wow! Technology can really help clean the air!'",
-            "image_prompt": "Industrial scene showing Maya, Alex and classmates with hard hats visiting a modern factory. An engineer shows them new air filtration systems. Tall chimneys have much cleaner emissions. A banner reads 'Clean Tech Initiative'. The kids look amazed and hopeful. Style: educational comic book style with clear details, 1200x1600.",
+            "image_prompt": "Industrial vertical comic page (1400x2200) set inside a cutting-edge factory where an engineer presents glowing filtration towers to Maya, Alex, and classmates in hard hats. Add a teal narration banner that states \"Their science teacher took them on a field trip to see how factories are fighting pollution with new technology.\" Include a speech bubble from the engineer saying \"These new filters can catch 99% of harmful particles!\" and a speech bubble from Maya replying \"Wow! Technology can really help clean the air!\" Illuminate the scene with cinematic lighting and sleek comic panel effects.",
             "image_path": "/story-panels/smog-city/p3.png"
           },
           {
@@ -37,7 +37,7 @@
             "title": "Home Solutions",
             "caption": "Maya's family decided to make their home part of the solution with simple changes that made a big difference.",
             "dialogue": "Dad: 'Let's open windows at night when air is cleaner!'\nMaya: 'And our new air purifier has a green light - that means healthy air!'",
-            "image_prompt": "Cozy home interior showing Maya's family implementing air quality solutions. Dad opens windows at night, mom tends to indoor plants, Maya points to a small air purifier with green indicator light. A family checklist on wall shows: 'Walk more, Plant trees, Use public transport'. Style: warm, family-friendly comic art, 1200x1600.",
+            "image_prompt": "Warm vertical comic page (1400x2200) of Maya's family home at night with windows open to clean breezes, lush indoor plants, and a glowing air purifier. Add a soft narration ribbon that reads \"Maya's family decided to make their home part of the solution with simple changes that made a big difference.\" Include a speech bubble from Dad saying \"Let's open windows at night when air is cleaner!\" and a speech bubble from Maya responding \"And our new air purifier has a green light - that means healthy air!\" Infuse the page with cozy lighting, animated particle sparkle, and playful futuristic details.",
             "image_path": "/story-panels/smog-city/p4.png"
           },
           {
@@ -45,7 +45,7 @@
             "title": "Community Heroes",
             "caption": "The whole neighborhood joined 'Clean Air Week' - and Maya discovered she could be an environmental hero too!",
             "dialogue": "Maya: 'Look! Everyone's riding bikes and planting trees!'\nAlex: 'We're like superheroes saving our city!'",
-            "image_prompt": "Vibrant community scene during Clean Air Week. Maya and Alex ride bicycles with other families. A smooth-running bus lane moves efficiently. A community booth hands out tree saplings. People wear 'Clean Air Hero' badges. The sky shows hints of blue breaking through. Style: celebratory comic book art with bright colors, 1200x1600.",
+            "image_prompt": "Celebratory vertical comic page (1400x2200) of Clean Air Week with families biking, tree planting booths, and an efficient electric bus lane under a clearing sky. Add a bright narration tag that says \"The whole neighborhood joined 'Clean Air Week' - and Maya discovered she could be an environmental hero too!\" Include a speech bubble from Maya saying \"Look! Everyone's riding bikes and planting trees!\" and a speech bubble from Alex saying \"We're like superheroes saving our city!\" Use confetti particles, hero badges, and vivid gradients to make the scene pop.",
             "image_path": "/story-panels/smog-city/p5.png"
           },
           {
@@ -53,7 +53,7 @@
             "title": "Blue Skies Return",
             "caption": "Months later, Maya woke up to something amazing - a bright blue sky and fresh, clean air!",
             "dialogue": "Maya: 'Alex, look! I can see the sun clearly!'\nAlex: 'We did it! We helped bring back the blue skies!'",
-            "image_prompt": "Triumphant final panel showing Maya and Alex on their school rooftop, masks off, smiling broadly under a clear blue sky. The city skyline is much clearer. They hold a sign reading 'Air Quality: Good'. Birds fly in the clean air. The sun shines brightly. Style: uplifting, hopeful comic book art with bright, clean colors, 1200x1600.",
+            "image_prompt": "Triumphant vertical comic page (1400x2200) on the school rooftop where Maya and Alex stand without masks under a brilliant blue sky, a skyline now crisp with an 'Air Quality: Good' holo-board and birds soaring. Add a radiant narration box that reads \"Months later, Maya woke up to something amazing - a bright blue sky and fresh, clean air!\" Include a speech bubble from Maya saying \"Alex, look! I can see the sun clearly!\" and a speech bubble from Alex replying \"We did it! We helped bring back the blue skies!\" Highlight the celebration with sun flares and uplifting comic energy.",
             "image_path": "/story-panels/smog-city/p6.png"
           }
         ],
@@ -105,207 +105,498 @@
     },
     {
       "id": "journey-water-guardians",
-      "title": "The Water Guardians",
-      "description": "Follow Zara and Sam as they become Water Guardians, learning the ancient secrets of keeping water clean and precious!",
+      "title": "River Rescue: Source to City",
+      "description": "Trace a river from source to city using real-time sensors, community action, and policy to turn brown water clear again.",
       "type": "quiz",
       "difficulty": "medium",
       "content": {
         "story": [
           {
             "id": "p1",
-            "title": "The Tale of Two Streams",
-            "caption": "Zara discovered something shocking during her morning jog - two rivers meeting, but they looked completely different!",
-            "dialogue": "Zara: 'Sam, look! One river is crystal clear, but the other is all muddy and brown!'\nSam: 'Something's not right here. Let's investigate!'",
-            "image_prompt": "Dramatic comic panel showing Zara and Sam on a wooden bridge where two rivers meet - one crystal clear blue, one murky brown. The contrast is striking. Children look concerned and determined. A weathered sign reads 'River Watch Station'. Style: adventure comic book art with strong contrasts, 1200x1600.",
-            "image_path": "/story-panels/water-guardians/p1.png"
+            "title": "Confluence Mystery",
+            "caption": "Two rivers meet: one clear, one brown. Zara and Sam wonder why.",
+            "dialogue": "Zara: 'Sam, why is one river brown?'\nSam: 'Let\u2019s find out where it starts.'",
+            "image_prompt": "Ultra-realistic vertical comic page (1600x2400) at a river confluence: left stream crystal-clear, right stream muddy brown. Zara points at the contrast while Sam kneels to observe. Add a narration ribbon: 'Two rivers meet\u2014one clear, one brown. Something is wrong.' Include speech bubbles IN-IMAGE: Zara: 'Sam, why is one river brown?' Sam: 'Let\u2019s find out where it starts.' Use natural lighting, detailed water textures, subtle infographic overlays for clarity.",
+            "image_path": "/story-panels/river-rescue/p1.png"
           },
           {
             "id": "p2",
-            "title": "The Water Detective",
-            "caption": "At the Water Education Center, Zara and Sam learned about the secret life of water in every home.",
-            "dialogue": "Guide: 'See? Gray water from showers is different from black water from toilets!'\nZara: 'So we can actually reuse some water? That's amazing!'",
-            "image_prompt": "Educational cutaway diagram scene showing a house cross-section with colored pipes. A friendly guide points to 'Greywater' (blue pipes from showers/sinks) and 'Blackwater' (dark pipes from toilets). Zara and Sam take notes on tablets, looking fascinated. Style: clear, educational comic book illustration, 1200x1600.",
-            "image_path": "/story-panels/water-guardians/p2.png"
+            "title": "Upstream Baseline",
+            "caption": "At the cold mountain stream, they take a clean baseline sample.",
+            "dialogue": "Sam: 'Always collect an upstream baseline.'\nZara: 'So we know what 'clean' looks like.'",
+            "image_prompt": "Realistic mountain headwaters scene (1600x2400): cold, clear stream, forested banks. Zara fills a sample vial; Sam logs GPS on a phone. Narration ribbon: 'Baseline upstream: measure before the problem begins.' Include in-image bubbles: Sam: 'Always collect an upstream baseline.' Zara: 'So we know what 'clean' looks like.' Add minimal AR labels (pH, DO, turbidity) as tasteful overlays.",
+            "image_path": "/story-panels/river-rescue/p2.png"
           },
           {
             "id": "p3",
-            "title": "The Garden Experiment",
-            "caption": "Back home, Zara's grandmother showed them an ancient trick - turning used water into garden gold!",
-            "dialogue": "Grandma: 'We filter the shower water and use it for our plants!'\nSam: 'But never for drinking or cooking, right?'\nGrandma: 'Exactly! You're learning fast!'",
-            "image_prompt": "Cozy garden scene with Zara's wise grandmother demonstrating a simple greywater system. A small filter connects to a watering can. Lush plants thrive around them. A clear warning sign reads 'Garden Use Only - Not for Drinking'. The grandmother smiles proudly at the kids. Style: warm, family-oriented comic art, 1200x1600.",
-            "image_path": "/story-panels/water-guardians/p3.png"
+            "title": "Farm Runoff Alarm",
+            "caption": "After rain, a field drain gushes muddy water\u2014nutrient runoff.",
+            "dialogue": "Farmer: 'Heavy rain washed fertilizer.'\nZara: 'Let\u2019s test nitrates and phosphates.'",
+            "image_prompt": "Realistic farmland edge (1600x2400): drainage pipe releasing brown water into stream; fertilizer bags in the distance. Narration: 'Rain drives nutrients and soil into rivers.' In-image bubbles: Farmer: 'Heavy rain washed fertilizer.' Zara: 'Let\u2019s test nitrates and phosphates.' Show handheld strips with color scales; add small overlay icons: NO3-, PO4, turbidity.",
+            "image_path": "/story-panels/river-rescue/p3.png"
           },
           {
             "id": "p4",
-            "title": "Sky Water Treasure",
-            "caption": "The community center taught them how to catch treasure falling from the sky - rainwater!",
-            "dialogue": "Instructor: 'Every drop of rain is precious water we can save!'\nZara: 'And the mesh keeps mosquitoes out - smart!'\nSam: 'We're like water treasure hunters!'",
-            "image_prompt": "Community workshop scene showing an innovative rainwater harvesting setup. Rooftop gutters lead to a large blue collection barrel with mesh filter. Zara and Sam help place a 'Mosquito-Proof Lid'. Other families participate enthusiastically. Style: community-focused, educational comic art, 1200x1600.",
-            "image_path": "/story-panels/water-guardians/p4.png"
+            "title": "Industrial Outfall",
+            "caption": "A hidden pipe leaks grey effluent\u2014time to report.",
+            "dialogue": "Sam: 'Dark outfall detected.'\nZara: 'Document and call the hotline.'",
+            "image_prompt": "Urban riverbank (1600x2400) beneath a bridge: concealed pipe with grey discharge, warning signs nearby. Narration: 'Spot, document, report.' In-image dialog: Sam: 'Dark outfall detected.' Zara: 'Document and call the hotline.' Add phone UI overlay: snapping photo + reporting to pollution control helpline with location pin.",
+            "image_path": "/story-panels/river-rescue/p4.png"
           },
           {
             "id": "p5",
-            "title": "Water Quality Detectives",
-            "caption": "Armed with test kits, Zara and Sam became real water quality detectives, solving the mystery of the two rivers.",
-            "dialogue": "Zara: 'The upstream water tests clean, but downstream it's polluted!'\nSam: 'Look how much clearer it gets after the treatment plant!'\nVolunteer: 'You two are natural scientists!'",
-            "image_prompt": "Scientific investigation scene at a community water testing booth. Zara and Sam use colorful test strips on water samples labeled 'Upstream', 'Downstream', 'After Treatment'. A chart shows improving water clarity. They wear junior scientist badges and look excited about their discoveries. Style: scientific adventure comic, 1200x1600.",
-            "image_path": "/story-panels/water-guardians/p5.png"
+            "title": "Sewage Clue",
+            "caption": "Sour smell near storm drains suggests a sewage cross-connection.",
+            "dialogue": "Technician: 'Possible sewer leak.'\nSam: 'We\u2019ll map manholes and report.'",
+            "image_prompt": "Street-level scene (1600x2400): storm drain grate, damp patch, odor indicators. A utility technician joins. Narration: 'Stormwater \u2260 sewage.' In-image bubbles: Technician: 'Possible sewer leak.' Sam: 'We\u2019ll map manholes and report.' Include small map tablet with highlighted manholes and flow arrows.",
+            "image_path": "/story-panels/river-rescue/p5.png"
           },
           {
             "id": "p6",
-            "title": "The Water Guardians Victory",
-            "caption": "Months later, both rivers ran clear and clean. Zara and Sam had become true Water Guardians!",
-            "dialogue": "Zara: 'Look! Fish are swimming in both rivers now!'\nSam: 'We helped make this happen!'\nBoth: 'Segregate, Treat, Reuse - the Water Guardian way!'",
-            "image_prompt": "Triumphant final scene showing the same bridge location, but now both rivers flow clear blue-green. Fish are visible swimming. Zara and Sam wear 'Water Guardian' badges and hold a banner reading 'Segregate, Treat, Reuse'. Other community members celebrate in the background. Style: victorious, celebratory comic book art, 1200x1600.",
-            "image_path": "/story-panels/water-guardians/p6.png"
+            "title": "Citizen Sensors Online",
+            "caption": "They deploy low-cost sensors for turbidity and dissolved oxygen.",
+            "dialogue": "Zara: 'Sensor online!'\nSam: 'Live data to the cloud.'",
+            "image_prompt": "Close-up realistic shot (1600x2400): turbidity sensor on a stake, DO probe in water, solar power puck, phone showing live graph. Narration: 'Real-time monitoring changes the game.' In-image bubbles: Zara: 'Sensor online!' Sam: 'Live data to the cloud.' Neon data lines overlay the stream.",
+            "image_path": "/story-panels/river-rescue/p6.png"
+          },
+          {
+            "id": "p7",
+            "title": "Community Briefing",
+            "caption": "Neighbors gather as data trends tell the story.",
+            "dialogue": "Elder: 'We\u2019ve seen fish vanish.'\nZara: 'Your observations matter.'",
+            "image_prompt": "Community meeting at riverside park (1600x2400): portable screen shows graphs (turbidity spikes after rain, DO dips), volunteers in vests. Narration: 'Data + lived experience = power.' In-image speech: Elder: 'We\u2019ve seen fish vanish.' Zara: 'Your observations matter.' Add flyers and QR to join.",
+            "image_path": "/story-panels/river-rescue/p7.png"
+          },
+          {
+            "id": "p8",
+            "title": "Treatment Plant Tour",
+            "caption": "Inside the WWTP: screens, aeration tanks, clarifiers.",
+            "dialogue": "Engineer: 'Bar screens remove big debris.'\nSam: 'Aeration boosts DO.'",
+            "image_prompt": "Realistic wastewater treatment plant interior (1600x2400): bar screens, aeration with bubbles, secondary clarifiers. Narration: 'From dirty to clean.' In-image bubbles: Engineer: 'Bar screens remove big debris.' Sam: 'Aeration boosts DO.' Add subtle step labels: Primary \u2192 Aeration \u2192 Secondary.",
+            "image_path": "/story-panels/river-rescue/p8.png"
+          },
+          {
+            "id": "p9",
+            "title": "Green Infrastructure Fix",
+            "caption": "They build a rain garden to slow and clean stormwater.",
+            "dialogue": "Volunteer: 'Bioswale planted!'\nZara: 'Less runoff, clearer water.'",
+            "image_prompt": "Hands-on scene (1600x2400): students digging a shallow swale, adding native plants and mulch; water arrows showing infiltration. Narration: 'Slow it, spread it, sink it.' In-image bubbles: Volunteer: 'Bioswale planted!' Zara: 'Less runoff, clearer water.'",
+            "image_path": "/story-panels/river-rescue/p9.png"
+          },
+          {
+            "id": "p10",
+            "title": "Policy Roundtable",
+            "caption": "Officials commit to auditing outfalls and installing GI.",
+            "dialogue": "Official: 'We\u2019ll enforce permits.'\nSam: 'We\u2019ll keep monitoring.'",
+            "image_prompt": "Town hall room (1600x2400): roundtable with data printouts, map pins for hotspots. Narration: 'Policy follows proof.' In-image bubbles: Official: 'We\u2019ll enforce permits.' Sam: 'We\u2019ll keep monitoring.' Add checklists: Outfall audit, GI grants.",
+            "image_path": "/story-panels/river-rescue/p10.png"
+          },
+          {
+            "id": "p11",
+            "title": "Cleanup and Recovery",
+            "caption": "Volunteers remove trash; DO rises, turbidity drops after fixes.",
+            "dialogue": "Zara: '100 kg collected!'\nVolunteer: 'Look\u2014minnows are back!'",
+            "image_prompt": "Riverside cleanup (1600x2400): bags of trash, sorted recyclables, handheld meter showing DO\u2191, turbidity\u2193. Narration: 'Small actions, measurable gains.' In-image bubbles: Zara: '100 kg collected!' Volunteer: 'Look\u2014minnows are back!'",
+            "image_path": "/story-panels/river-rescue/p11.png"
+          },
+          {
+            "id": "p12",
+            "title": "River Rescue Network",
+            "caption": "A live map shows sensors, alerts, and community notes.",
+            "dialogue": "Sam: 'More guardians joined.'\nZara: 'The river breathes again.'",
+            "image_prompt": "Final uplifting scene (1600x2400): mobile app map with sensor icons along the river, green check badges. Narration: 'When data meets community, rivers recover.' In-image bubbles: Sam: 'More guardians joined.' Zara: 'The river breathes again.'",
+            "image_path": "/story-panels/river-rescue/p12.png"
           }
         ],
         "questions": [
           {
             "id": "q1",
-            "question": "What did Zara learn about greywater?",
+            "question": "Why collect an upstream baseline sample?",
             "options": [
-              "It comes from toilets and is very dirty",
-              "It comes from showers and sinks and can be reused safely",
-              "It's the same as drinking water",
-              "It can only be used for washing cars"
+              "To make the water colder",
+              "To compare clean conditions against downstream impacts",
+              "To avoid measuring nutrients",
+              "To skip testing later"
             ],
             "correct_answer": 1,
-            "explanation": "Greywater from showers, sinks, and laundry can be filtered and reused for gardens - it's much cleaner than blackwater from toilets!"
+            "explanation": "A baseline upstream sample helps compare 'clean' conditions to downstream sites and identify sources of pollution."
           },
           {
             "id": "q2",
-            "question": "Why did Zara's grandmother say 'never for drinking or cooking' about greywater?",
+            "question": "Which parameter best indicates oxygen for aquatic life?",
             "options": [
-              "Because it tastes bad",
-              "Because it's only safe for watering plants, not for human consumption",
-              "Because it's too expensive to use",
-              "Because it makes plants grow too fast"
+              "pH",
+              "Dissolved Oxygen (DO)",
+              "Nitrate",
+              "Turbidity"
             ],
             "correct_answer": 1,
-            "explanation": "Even filtered greywater isn't clean enough for drinking or cooking - it's perfect for gardens but not safe for our bodies!"
+            "explanation": "Dissolved Oxygen (DO) shows how much oxygen is available for fish and other organisms."
           },
           {
             "id": "q3",
-            "question": "How does rainwater harvesting help communities like Zara and Sam's?",
+            "question": "After heavy rain, which action reduces polluted runoff?",
             "options": [
-              "It makes it rain more often",
-              "It prevents all flooding forever",
-              "It provides extra water supply and reduces runoff",
-              "It makes the water taste better"
+              "Paving more surfaces",
+              "Building rain gardens and bioswales",
+              "Removing trees",
+              "Channelizing streams"
+            ],
+            "correct_answer": 1,
+            "explanation": "Green infrastructure like rain gardens and bioswales slows, filters, and infiltrates stormwater."
+          },
+          {
+            "id": "q4",
+            "question": "You find a suspicious industrial outfall. What is the safest step?",
+            "options": [
+              "Enter the pipe to look",
+              "Collect raw effluent with bare hands",
+              "Photograph, note GPS, and call the pollution hotline",
+              "Ignore it"
             ],
             "correct_answer": 2,
-            "explanation": "Collecting rainwater gives communities extra water to use and prevents too much water from running off and causing problems!"
+            "explanation": "Document safely from a distance and report to the proper authority; do not touch unknown discharges."
+          },
+          {
+            "id": "q5",
+            "question": "Which early wastewater step removes large debris?",
+            "options": [
+              "Chlorination",
+              "Bar screening",
+              "Secondary clarifier",
+              "Disinfection"
+            ],
+            "correct_answer": 1,
+            "explanation": "Bar screens are used up front to remove large solids before biological treatment."
           }
         ],
-        "time_limit": 300,
+        "time_limit": 420,
         "passing_score": 70
       },
-      "reward_points": 100,
-      "reward_coins": 50,
+      "reward_points": 120,
+      "reward_coins": 60,
       "is_active": true,
       "created_at": "2025-01-01T00:00:00Z"
     },
     {
       "id": "journey-zero-waste-heroes",
-      "title": "The Zero Waste Heroes",
-      "description": "Join Leo and Mia on their epic quest to master the Three Sacred Bins and save their neighborhood from the Waste Monster!",
+      "title": "Heatwave City: Urban Heat Mission",
+      "description": "Map hotspots, green the streets, and cool your city with real fixes that save lives during heatwaves.",
       "type": "quiz",
-      "difficulty": "easy",
+      "difficulty": "medium",
       "content": {
         "story": [
           {
             "id": "p1",
-            "title": "The Three Sacred Bins",
-            "caption": "Leo stared at the three mysterious bins in his kitchen. Each had a different color and purpose, but which was which?",
-            "dialogue": "Leo: 'Mia, I have a banana peel and a plastic bottle. Which bin do they go in?'\nMia: 'Let me teach you the secret of the Three Sacred Bins!'",
-            "image_prompt": "Kitchen scene with Leo holding a banana peel and plastic bottle, looking puzzled at three clearly labeled bins: 'Wet/Organic (Green)', 'Dry/Recyclable (Blue)', 'Reject (Red)'. His friend Mia stands confidently beside him, ready to teach. The bins have friendly faces and glow slightly. Style: colorful, kid-friendly comic book art, 1200x1600.",
-            "image_path": "/story-panels/zero-waste-heroes/p1.png"
+            "title": "Heatwave Alert",
+            "caption": "The city issues a red heat alert; streets shimmer.",
+            "dialogue": "Nina: 'It feels like an oven.'\nArun: 'Let\u2019s track the hotspots.'",
+            "image_prompt": "Ultra-realistic urban street (1600x2400) with heat haze, digital signage flashing 'RED HEAT ALERT'. Narration ribbon: 'When cities trap heat, health risks soar.' In-image bubbles: Nina: 'It feels like an oven.' Arun: 'Let\u2019s track the hotspots.' Add subtle thermal tint overlays.",
+            "image_path": "/story-panels/urban-heat-mission/p1.png"
           },
           {
             "id": "p2",
-            "title": "The Compost Magic Circle",
-            "caption": "In Mia's backyard, Leo discovered the amazing transformation happening in the compost bin - kitchen scraps becoming garden gold!",
-            "dialogue": "Mia: 'Watch this magic! Kitchen scraps plus dry leaves equals rich compost!'\nLeo: 'It's like nature's own recycling superpower!'\nMia: 'Exactly! We're helping the Earth heal itself!'",
-            "image_prompt": "Magical garden scene showing a cutaway view of a compost bin with layers of colorful kitchen scraps and brown leaves. Arrows show the transformation into rich, dark compost. Leo and Mia look amazed as earthworms and beneficial insects work their magic. Sparkles indicate the 'magic' of decomposition. Style: whimsical, educational comic art, 1200x1600.",
-            "image_path": "/story-panels/zero-waste-heroes/p2.png"
+            "title": "Mapping the Heat",
+            "caption": "They use IR thermometers and a heat map to plan.",
+            "dialogue": "Arun: 'Dark asphalt runs hottest.'\nNina: 'Let\u2019s verify at noon.'",
+            "image_prompt": "Field mapping scene (1600x2400): handheld infrared thermometer aimed at asphalt; phone shows satellite heat map (UHI). Narration: 'Measure to manage.' Dialog: Arun: 'Dark asphalt runs hottest.' Nina: 'Let\u2019s verify at noon.'",
+            "image_path": "/story-panels/urban-heat-mission/p2.png"
           },
           {
             "id": "p3",
-            "title": "The Recycling Adventure",
-            "caption": "At the Materials Recovery Facility, Leo and Mia saw how their sorted waste became treasure for new products!",
-            "dialogue": "Worker: 'Your sorted paper becomes new notebooks! Your plastic bottles become new toys!'\nLeo: 'We're not just throwing things away - we're giving them new life!'\nMia: 'We're like waste wizards!'",
-            "image_prompt": "Exciting industrial scene showing a modern recycling facility with conveyor belts sorting colorful materials. Workers in safety gear guide the process. Neat bales of paper, plastic, and metal are labeled for reuse. Leo and Mia wear visitor badges and hard hats, looking amazed at the transformation process. Style: dynamic, industrial comic book art, 1200x1600.",
-            "image_path": "/story-panels/zero-waste-heroes/p3.png"
+            "title": "Shade Audit",
+            "caption": "A crowded bus stop has zero shade and high radiant heat.",
+            "dialogue": "Elder: 'Nowhere to hide from the sun.'\nNina: 'We\u2019ll propose canopies.'",
+            "image_prompt": "Transit stop (1600x2400): people fanning themselves; temp readouts (surface 58\u00b0C). Narration: 'Design can protect.' Dialog: Elder: 'Nowhere to hide from the sun.' Nina: 'We\u2019ll propose canopies.' Add heat iconography.",
+            "image_path": "/story-panels/urban-heat-mission/p3.png"
           },
           {
             "id": "p4",
-            "title": "The Battle Against Waste Monster",
-            "caption": "Leo learned about the scary Waste Monster that grows when people don't sort their trash properly.",
-            "dialogue": "Teacher: 'When waste is mixed, it feeds the Waste Monster and harms our planet!'\nLeo: 'But when we sort properly, we shrink the monster!'\nMia: 'We're the heroes this planet needs!'",
-            "image_prompt": "Split-panel comic showing the contrast: Left side shows a menacing 'Waste Monster' (made of mixed garbage) threatening a landfill with birds and pollution. Right side shows the same area clean and green with proper waste sorting, recycling, and composting. Leo and Mia stand as heroes between the panels. Style: dramatic comic book art with clear good vs. evil contrast, 1200x1600.",
-            "image_path": "/story-panels/zero-waste-heroes/p4.png"
+            "title": "Cool Roof Demo",
+            "caption": "White coating turns a blazing roof into a cooler surface.",
+            "dialogue": "Contractor: 'Albedo up.'\nArun: 'Surface down by 15\u00b0C!'",
+            "image_prompt": "Rooftop scene (1600x2400): half roof dark, half newly coated white; side-by-side IR readings. Narration: 'Reflect the sun, reduce heat.' Dialog: Contractor: 'Albedo up.' Arun: 'Surface down by 15\u00b0C!'",
+            "image_path": "/story-panels/urban-heat-mission/p4.png"
           },
           {
             "id": "p5",
-            "title": "School Champions League",
-            "caption": "Leo and Mia started a Zero Waste Champions program at school, turning waste sorting into an exciting competition!",
-            "dialogue": "Leo: 'Class 5B is winning with perfect sorting!'\nMia: 'But Class 5A is catching up fast!'\nTeacher: 'Everyone's learning and having fun - that's the real victory!'",
-            "image_prompt": "Energetic school scene showing a colorful scoreboard titled 'Zero Waste Champions' with star ratings for different classes. Students enthusiastically sort waste into the correct bins during recess. Leo and Mia wear champion badges and cheer on their classmates. The atmosphere is competitive but fun. Style: school-friendly, energetic comic art, 1200x1600.",
-            "image_path": "/story-panels/zero-waste-heroes/p5.png"
+            "title": "Tree Plan, Native Shade",
+            "caption": "They mark sites for native shade trees and watering bags.",
+            "dialogue": "Nina: 'Roots need space.'\nArun: 'Gator bags for summer.'",
+            "image_prompt": "Streetscape planning (1600x2400): chalk marks for pits, tree list (native species), gator bags stacked. Narration: 'Green equals cool.' Dialog: Nina: 'Roots need space.' Arun: 'Gator bags for summer.'",
+            "image_path": "/story-panels/urban-heat-mission/p5.png"
           },
           {
             "id": "p6",
-            "title": "Zero Waste Neighborhood Victory",
-            "caption": "Their entire neighborhood became a Zero Waste Zone, with special collection trucks and happy residents!",
-            "dialogue": "Leo: 'Look! The truck has three compartments for our three types of waste!'\nMia: 'Our whole street is now a Zero Waste Hero Zone!'\nNeighbor: 'Thanks to you kids, our neighborhood is the cleanest it's ever been!'",
-            "image_prompt": "Celebratory neighborhood scene showing a specialized waste collection truck with three clearly marked compartments. Happy neighbors wave as their properly sorted waste is collected. A large banner reads 'Zero Waste Hero Zone'. Leo and Mia are surrounded by grateful community members. The street is clean and beautiful. Style: community celebration comic book art, 1200x1600.",
-            "image_path": "/story-panels/zero-waste-heroes/p6.png"
+            "title": "Schoolyard Greening",
+            "caption": "An asphalt yard transforms with shade sails, trees, cool paint.",
+            "dialogue": "Teacher: 'Kids will play again!'\nNina: 'Let\u2019s measure after.'",
+            "image_prompt": "Schoolyard makeover (1600x2400): shade sails, painted cool court, young trees. Narration: 'Cool spaces save days.' Dialog: Teacher: 'Kids will play again!' Nina: 'Let\u2019s measure after.' Include before/after thermometer overlays.",
+            "image_path": "/story-panels/urban-heat-mission/p6.png"
+          },
+          {
+            "id": "p7",
+            "title": "Cool Pavements Pilot",
+            "caption": "Permeable pavers and light surfaces drop ground temps.",
+            "dialogue": "Engineer: 'Permeable = evaporative cooling.'\nArun: 'Feels cooler underfoot.'",
+            "image_prompt": "Demonstration block (1600x2400): cross-section graphic of permeable pavers; water percolation arrows. Narration: 'Let the ground breathe.' Dialog: Engineer: 'Permeable = evaporative cooling.' Arun: 'Feels cooler underfoot.'",
+            "image_path": "/story-panels/urban-heat-mission/p7.png"
+          },
+          {
+            "id": "p8",
+            "title": "Hydration Network",
+            "caption": "New hydration kiosks and mist stations keep people safe.",
+            "dialogue": "Volunteer: 'Water, anyone?'\nElder: 'Thank you.'",
+            "image_prompt": "Plaza scene (1600x2400): blue hydration kiosk, misting arch; 'DRINK WATER' posters. Narration: 'Hydrate and shade to survive.' Dialog: Volunteer: 'Water, anyone?' Elder: 'Thank you.'",
+            "image_path": "/story-panels/urban-heat-mission/p8.png"
+          },
+          {
+            "id": "p9",
+            "title": "Heat Health Outreach",
+            "caption": "They check on seniors and share SMS heat tips.",
+            "dialogue": "Nina: 'Fans and fluids ready.'\nArun: 'Call if you feel dizzy.'",
+            "image_prompt": "Apartment visit (1600x2400): distributing fans and electrolyte packs; phone showing SMS tips. Narration: 'Protect the vulnerable.' Dialog: Nina: 'Fans and fluids ready.' Arun: 'Call if you feel dizzy.'",
+            "image_path": "/story-panels/urban-heat-mission/p9.png"
+          },
+          {
+            "id": "p10",
+            "title": "Policy Commitments",
+            "caption": "City commits to cool roof codes and shade targets.",
+            "dialogue": "Official: '20% more shade by 2027.'\nNina: 'We\u2019ll track progress.'",
+            "image_prompt": "City hall (1600x2400): large plan board with targets\u2014cool roofs, tree canopy, shaded transit. Narration: 'Commit to cool.' Dialog: Official: '20% more shade by 2027.' Nina: 'We\u2019ll track progress.'",
+            "image_path": "/story-panels/urban-heat-mission/p10.png"
+          },
+          {
+            "id": "p11",
+            "title": "Night Heat Check",
+            "caption": "Thermal camera shows retrofitted blocks cooling faster at night.",
+            "dialogue": "Arun: 'Cool roof block is 3\u00b0C lower.'\nNina: 'Proof that it works.'",
+            "image_prompt": "Night street (1600x2400): handheld thermal image comparing two blocks; retrofitted cooler colors. Narration: 'Cooling after dark matters.' Dialog: Arun: 'Cool roof block is 3\u00b0C lower.' Nina: 'Proof that it works.'",
+            "image_path": "/story-panels/urban-heat-mission/p11.png"
+          },
+          {
+            "id": "p12",
+            "title": "Festival of Shade",
+            "caption": "Community gathers under canopies; temperature board shows \u22124\u00b0C.",
+            "dialogue": "Child: 'So much cooler now!'\nOfficial: 'More projects coming.'",
+            "image_prompt": "Festive plaza (1600x2400): shade canopies, trees, hydration kiosk, scoreboard reading 'LOCAL TEMP \u22124\u00b0C'. Narration: 'Designing for life.' Dialog: Child: 'So much cooler now!' Official: 'More projects coming.'",
+            "image_path": "/story-panels/urban-heat-mission/p12.png"
           }
         ],
         "questions": [
           {
             "id": "q1",
-            "question": "Where should Leo put his banana peel according to the Three Sacred Bins system?",
+            "question": "Which surface most contributes to urban heat islands?",
             "options": [
-              "Blue bin (Dry/Recyclable)",
-              "Green bin (Wet/Organic)",
-              "Red bin (Reject)",
-              "Any bin is fine"
+              "Light reflective roofs",
+              "Dense tree canopy",
+              "Dark asphalt parking lots",
+              "Open water bodies"
             ],
-            "correct_answer": 1,
-            "explanation": "Banana peels are organic waste that can be composted, so they belong in the green bin with other wet/organic materials!"
+            "correct_answer": 2,
+            "explanation": "Dark asphalt absorbs solar energy and re-radiates heat, driving UHI."
           },
           {
             "id": "q2",
-            "question": "Why did Leo and Mia learn that mixed waste 'feeds the Waste Monster'?",
+            "question": "Which interventions help reduce urban heat?",
             "options": [
-              "Because monsters like to eat garbage",
-              "Because mixed waste makes recycling and composting impossible",
-              "Because it makes waste smell better",
-              "Because it helps plants grow faster"
+              "Removing trees and painting surfaces black",
+              "Planting shade trees, cool roofs, shaded transit stops",
+              "Adding more cars",
+              "Turning off hydration kiosks"
             ],
             "correct_answer": 1,
-            "explanation": "When waste is all mixed together, we can't recycle or compost it properly, so more goes to landfills and harms the environment!"
+            "explanation": "Shade trees, reflective roofs, and shade structures reduce heat exposure and surface temperatures."
           },
           {
             "id": "q3",
-            "question": "What amazing discovery did Leo make about proper waste sorting?",
+            "question": "Why does lightly watering/permeable paving cool surfaces?",
             "options": [
-              "It makes waste disappear completely",
-              "It costs more money than mixed waste",
-              "It allows more materials to be recycled and reused",
-              "It makes waste collection slower"
+              "It creates more humidity only",
+              "Evaporation absorbs heat, lowering surface temps",
+              "It makes the ground darker",
+              "It blocks wind"
             ],
-            "correct_answer": 2,
-            "explanation": "When we sort waste properly, much more of it can be recycled into new products or composted into soil, reducing what goes to landfills!"
+            "correct_answer": 1,
+            "explanation": "Evaporative cooling absorbs heat during water phase change, cooling the surface and nearby air."
+          },
+          {
+            "id": "q4",
+            "question": "A friend feels dizzy in a heatwave. What should you do?",
+            "options": [
+              "Keep walking in the sun",
+              "Move to shade, hydrate, cool down, seek help if needed",
+              "Drink only coffee",
+              "Wait for sunset"
+            ],
+            "correct_answer": 1,
+            "explanation": "Move to shade or AC, hydrate with water/electrolytes, cool the body, and seek medical help if symptoms persist."
           }
         ],
-        "time_limit": 240,
+        "time_limit": 420,
         "passing_score": 70
       },
-      "reward_points": 80,
-      "reward_coins": 40,
+      "reward_points": 120,
+      "reward_coins": 60,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "journey-happy-river",
+      "title": "Happy River: Kids Save a River",
+      "description": "A kid-led, real-time mission: investigate pollution, organize cleanups, rally adults, and restore a local river to life.",
+      "type": "quiz",
+      "difficulty": "medium",
+      "content": {
+        "story": [
+          {
+            "id": "p1",
+            "title": "Happy River",
+            "caption": "A sparkling blue river with playful fish, birds, and children celebrates a clean morning.",
+            "dialogue": "Kid 1: 'This river is our playground!'\nKid 2: 'Let\u2019s keep it smiling!'",
+            "image_prompt": "Ultra-realistic vertical comic page (1600x2400) of a sunlit neighborhood river: children skipping stones, clear blue water with small fish, and kingfishers darting overhead. Add a warm narration ribbon: 'Happy River.' Include in-image speech bubbles: Kid 1: 'This river is our playground!' Kid 2: 'Let\u2019s keep it smiling!' Capture natural light, soft reflections, and lively motion lines.",
+            "image_path": "/story-panels/happy-river/p1.png"
+          },
+          {
+            "id": "p2",
+            "title": "Trouble Begins",
+            "caption": "Trash and cloudy drains creep into the water near the walking path.",
+            "dialogue": "Kid 3: 'Why is a plastic bag floating here?'\nKid 1: 'And that drain looks muddy.'",
+            "image_prompt": "Realistic riverbank scene (1600x2400) showing plastic bags snagged on reeds and a roadside drain releasing cloudy water after traffic passes. Narration ribbon: 'Trouble begins.' Speech bubbles: Kid 3: 'Why is a plastic bag floating here?' Kid 1: 'And that drain looks muddy.' Highlight oily ripples and discarded wrappers for urgency.",
+            "image_path": "/story-panels/happy-river/p2.png"
+          },
+          {
+            "id": "p3",
+            "title": "Wildlife Hurt",
+            "caption": "Animals suffer as pollution spreads along the bank.",
+            "dialogue": "Kid 2: 'The turtle is trapped.'\nKid 3: 'That heron is coughing.'",
+            "image_prompt": "Split-panel vertical comic (1600x2400): left half shows a turtle tangled in plastic rings near the reeds; right half shows a heron coughing beside floating trash. Narration ribbon: 'Wildlife hurt.' Speech bubbles: Kid 2: 'The turtle is trapped.' Kid 3: 'That heron is coughing.' Use empathetic close-ups and muted colors to convey distress.",
+            "image_path": "/story-panels/happy-river/p3.png"
+          },
+          {
+            "id": "p4",
+            "title": "Kids Investigate",
+            "caption": "A kid team forms, walking upstream to collect clues and a clean baseline sample.",
+            "dialogue": "Kid 1: 'River Rangers, move out!'\nKid 2: 'Upstream sample first\u2014so we know what's clean.'",
+            "image_prompt": "Dynamic trail scene (1600x2400) with four kids wearing gloves and carrying notebooks, a turbidity tube, and a phone. They walk upstream beside the river, pinning a map. Narration ribbon: 'Kids investigate.' Speech bubbles: Kid 1: 'River Rangers, move out!' Kid 2: 'Upstream sample first\u2014so we know what\u2019s clean.' Add arrows marking 'UPSTREAM' and a clean water vial for baseline.",
+            "image_path": "/story-panels/happy-river/p4.png"
+          },
+          {
+            "id": "p5",
+            "title": "Discovery",
+            "caption": "Hidden pipes and careless washing reveal the pollution sources.",
+            "dialogue": "Kid 3: 'Secret pipe spotted!'\nWasher: 'We didn\u2019t know it hurts fish.'",
+            "image_prompt": "Realistic split-panel (1600x2400): left side shows kids parting bushes to photograph a hidden pipe leaking cloudy water; right side shows them talking kindly to a villager washing clothes at the river. Narration ribbon: 'Discovery.' Speech bubbles: Kid 3: 'Secret pipe spotted!' Washer: 'We didn\u2019t know it hurts fish.' Add camera UI overlay and gentle body language.",
+            "image_path": "/story-panels/happy-river/p5.png"
+          },
+          {
+            "id": "p6",
+            "title": "Testing & Evidence",
+            "caption": "Water tests show high turbidity and low dissolved oxygen near the pipe.",
+            "dialogue": "Kid 2: 'Turbidity is high.'\nKid 1: 'DO is dropping\u2014bad news.'",
+            "image_prompt": "Hands-on science panel (1600x2400): kids using a turbidity tube and dissolved oxygen strip beside the murky spot. Clipboards display readings with icons NTU\u2191 and DO\u2193. Narration ribbon: 'Testing and evidence.' Speech bubbles: Kid 2: 'Turbidity is high.' Kid 1: 'DO is dropping\u2014bad news.' Highlight AR-style overlays for clarity.",
+            "image_path": "/story-panels/happy-river/p6.png"
+          },
+          {
+            "id": "p7",
+            "title": "Community Rally",
+            "caption": "The kids present their findings and neighbors volunteer to help.",
+            "dialogue": "Teacher: 'Incredible detective work!'\nKid 3: 'Join our river cleanup!'",
+            "image_prompt": "Community hall scene (1600x2400): projector shows photos of the hidden pipe and graph data, volunteers sign up on a sheet. Narration ribbon: 'Community rally.' Speech bubbles: Teacher: 'Incredible detective work!' Kid 3: 'Join our river cleanup!' Include banners like 'Save the River'.",
+            "image_path": "/story-panels/happy-river/p7.png"
+          },
+          {
+            "id": "p8",
+            "title": "Cleanup Day",
+            "caption": "Teams collect trash, install bins, and plant warning signs.",
+            "dialogue": "Kid 2: 'Blue bin for recyclables!'\nVolunteer: 'Sign posted\u2014no dumping!'",
+            "image_prompt": "Action-packed riverbank cleanup (1600x2400): kids in gloves fill separate blue/green bins, others hammer a pictogram 'No Littering' sign into the ground. Narration ribbon: 'Cleanup day.' Speech bubbles: Kid 2: 'Blue bin for recyclables!' Volunteer: 'Sign posted\u2014no dumping!' Capture energetic teamwork and labeled bags.",
+            "image_path": "/story-panels/happy-river/p8.png"
+          },
+          {
+            "id": "p9",
+            "title": "Fixing Sources",
+            "caption": "Factories add filters, shops install drain nets, and households promise better habits.",
+            "dialogue": "Manager: 'Screen installed and on schedule.'\nResident: 'We\u2019ll use the bins now.'",
+            "image_prompt": "Split-panel vertical (1600x2400): left shows kids with a factory manager inspecting a new mesh filter on the outlet; right shows door-to-door chats with residents next to labeled bins and a fresh drain net. Narration ribbon: 'Fixing sources.' Speech bubbles: Manager: 'Screen installed and on schedule.' Resident: 'We\u2019ll use the bins now.' Add checklist graphics.",
+            "image_path": "/story-panels/happy-river/p9.png"
+          },
+          {
+            "id": "p10",
+            "title": "River Smiles Again",
+            "caption": "Clear water, returning wildlife, and proud kids celebrate the turnaround.",
+            "dialogue": "Volunteer: 'Fish are back!'\nKid 1: 'Small actions made a big change!'",
+            "image_prompt": "Triumphant river scene (1600x2400): crystal water with fish, kids playing safely, adults cheering with a pledge board in the background. Narration ribbon: 'River smiles again.' Speech bubbles: Volunteer: 'Fish are back!' Kid 1: 'Small actions made a big change!' Use bright sunlight, confetti, and before/after posters.",
+            "image_path": "/story-panels/happy-river/p10.png"
+          }
+        ],
+        "questions": [
+          {
+            "id": "q1",
+            "question": "Why did the kids walk upstream during their investigation?",
+            "options": [
+              "To find cleaner air",
+              "To locate potential sources entering the river",
+              "To get closer to the sea",
+              "To avoid talking to people"
+            ],
+            "correct_answer": 1,
+            "explanation": "Walking upstream helps trace where pollutants enter the river and identify sources like drains or pipes."
+          },
+          {
+            "id": "q2",
+            "question": "Which reading suggests water is getting healthier for fish?",
+            "options": [
+              "Lower dissolved oxygen (DO)",
+              "Higher turbidity (cloudiness)",
+              "Higher dissolved oxygen and lower turbidity",
+              "Stronger odor"
+            ],
+            "correct_answer": 2,
+            "explanation": "A rise in DO and a drop in turbidity indicate improved conditions for aquatic life."
+          },
+          {
+            "id": "q3",
+            "question": "What is a safe and effective action when you find a hidden discharge pipe?",
+            "options": [
+              "Enter the pipe to check",
+              "Touch the water to smell it",
+              "Photograph, log location, and report to authorities",
+              "Ignore and move on"
+            ],
+            "correct_answer": 2,
+            "explanation": "Document from a safe distance (photos, GPS) and report. Never touch unknown discharges."
+          },
+          {
+            "id": "q4",
+            "question": "Which community steps reduce river pollution?",
+            "options": [
+              "Installing drain nets and bins, cleanups, and awareness",
+              "Throwing all trash in one bin",
+              "Letting drains flow directly",
+              "Using more plastic bags"
+            ],
+            "correct_answer": 0,
+            "explanation": "Source controls (nets), proper bin use, cleanups, and awareness reduce trash entering the river."
+          },
+          {
+            "id": "q5",
+            "question": "Why add clear signs with pictures at hotspots?",
+            "options": [
+              "They look fancy",
+              "They help everyone understand quickly and act correctly",
+              "They replace all rules",
+              "They make the river louder"
+            ],
+            "correct_answer": 1,
+            "explanation": "Pictogram signs are inclusive and immediately understandable, guiding better behavior at the source."
+          }
+        ],
+        "time_limit": 540,
+        "passing_score": 70
+      },
+      "reward_points": 140,
+      "reward_coins": 70,
       "is_active": true,
       "created_at": "2025-01-01T00:00:00Z"
     }

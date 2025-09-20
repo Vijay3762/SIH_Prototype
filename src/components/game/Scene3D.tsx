@@ -204,13 +204,36 @@ const Scene3D = forwardRef<Scene3DRef, Scene3DProps>(({ pet, user, onPetInteract
     rendererRef.current = renderer
     cameraRef.current = camera
 
-    // Load penguin model
+    // Decide which model to load based on the logged-in user
+    const pickModelForUser = (u: User) => {
+      // Default penguin for student1; alternate model for student2
+      // Fallback to penguin if anything is unknown
+      const username = (u?.username || '').toLowerCase()
+      const id = u?.id || ''
+
+      // Known mappings in mock data
+      if (id === 'user-001' || username.includes('ecoexplorer')) {
+        return '/models/penguin+3d+model.glb'
+      }
+      if (id === 'user-002' || username.includes('natureguard')) {
+        return '/models/cute+forest+creature+3d+model.glb'
+      }
+
+      // If another student logs in, prefer the new cute forest creature as variety
+      return '/models/cute+forest+creature+3d+model.glb'
+    }
+
+    const modelUrl = pickModelForUser(user)
+
+    // Load the selected model
     const loader = new GLTFLoader()
     loader.load(
-      '/models/penguin+3d+model.glb',
+      modelUrl,
       (gltf) => {
         const model = gltf.scene
-        model.scale.setScalar(1.5) // Make model bigger
+        // Scale heuristics by file name so both models feel similar in scene
+        const scale = modelUrl.includes('penguin') ? 1.5 : 1.6
+        model.scale.setScalar(scale)
         model.position.set(0, 0, 0)
         
         // Set initial rotation (no fixed angle, user can control)
@@ -291,7 +314,66 @@ const Scene3D = forwardRef<Scene3DRef, Scene3DProps>(({ pet, user, onPetInteract
       },
       (error) => {
         console.error('Error loading model:', error)
-        setIsLoaded(true) // Still show the UI even if model fails to load
+        // Fallback to penguin if alternate model fails to load
+        if (!modelUrl.includes('penguin')) {
+          loader.load(
+            '/models/penguin+3d+model.glb',
+            (fallbackGltf) => {
+              const model = fallbackGltf.scene
+              model.scale.setScalar(1.5)
+              model.position.set(0, 0, 0)
+              model.rotation.y = 0
+              setBaseRotationY(0)
+              model.traverse((child) => {
+                if (child instanceof THREE.Mesh) {
+                  child.castShadow = true
+                  child.receiveShadow = true
+                }
+              })
+              scene.add(model)
+              modelRef.current = model
+              if (fallbackGltf.animations && fallbackGltf.animations.length > 0) {
+                const mixer = new THREE.AnimationMixer(model)
+                mixerRef.current = mixer
+                const actions: { [key: string]: THREE.AnimationAction } = {}
+                const states: string[] = []
+                const emotes: string[] = []
+                fallbackGltf.animations.forEach((clip) => {
+                  const action = mixer.clipAction(clip)
+                  actions[clip.name] = action
+                  const emoteNames = ['jump', 'wave', 'dance', 'yes', 'no', 'punch', 'thumbsup']
+                  const isEmote = emoteNames.some(emote => clip.name.toLowerCase().includes(emote))
+                  if (isEmote) {
+                    emotes.push(clip.name)
+                    action.clampWhenFinished = true
+                    action.loop = THREE.LoopOnce
+                  } else {
+                    states.push(clip.name)
+                    action.loop = THREE.LoopRepeat
+                  }
+                })
+                actionsRef.current = actions
+                setAvailableStates(states.length > 0 ? states : [])
+                setAvailableEmotes(emotes)
+                if (states.length > 0) {
+                  const initialState = states[0]
+                  activeActionRef.current = actions[initialState]
+                  activeActionRef.current.play()
+                  setCurrentState(initialState)
+                }
+              } else {
+                createProceduralAnimations(model)
+                setAvailableStates(['Idle', 'Walking', 'Running', 'Dance'])
+                setAvailableEmotes(['Jump'])
+              }
+              setIsLoaded(true)
+            },
+            undefined,
+            () => setIsLoaded(true)
+          )
+        } else {
+          setIsLoaded(true) // Show UI even if fallback also fails
+        }
       }
     )
 

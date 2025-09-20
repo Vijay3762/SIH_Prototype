@@ -106,8 +106,8 @@ export default function PetDisplay({ pet, inventory, user }: PetDisplayProps) {
     const stages = {
       egg: '🥚',
       baby: '🐣', 
-      child: '🌱',
-      adult: '🦋',
+      child: '🐧',
+      adult: '🐈',
       elder: '✨'
     }
     return stages[stage as keyof typeof stages] || '🐣'

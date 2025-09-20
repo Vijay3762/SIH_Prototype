@@ -1,0 +1,100 @@
+{
+  "quests": [
+    {
+      "id": "quest-55f26066-3570-4edb-a6ba-a1e58488ab23",
+      "title": "Eco-Warriors of the Ganga",
+      "description": "A team of young environmentalists work together to reduce air and water pollution in their community, learning about sustainable practices and the importance of clean air and water.",
+      "type": "quiz",
+      "difficulty": "medium",
+      "content": {
+        "story": [
+          {
+            "id": "panel1",
+            "title": "The Ganga's Cry",
+            "caption": "A hazy afternoon in Agra.  Riya, Rohan, and Priya stand near the polluted Ganga river, saddened by the sight of trash and dirty water. They recall their class learning about the importance of clean water and air, and the impact of pollution on the environment and health. The air is thick with smog.  This scene highlights the real-world problem-solving aspect of NEP 2020.\nReal-time context: 3 PM\nKey sustainable actions: Reduce, Reuse, Recycle, Plant trees, Clean up litter",
+            "dialogue": "Riya: This is terrible! The Ganga is so polluted.\nRohan: And the air... it's hard to breathe!\nPriya: We have to do something!",
+            "image_prompt": "Three children aged 8-13, looking concerned, stand by a polluted river with trash visible. The sky is hazy with smog.  Warm, muted lighting. Use a comic book style.",
+            "image_path": "/story-panels/smog-city/p1.png"
+          },
+          {
+            "id": "panel2",
+            "title": "A Plan Takes Shape",
+            "caption": "The children brainstorm solutions. They decide to create awareness about pollution in their school and community. They plan a school assembly, create posters about water and air pollution, and organize a community cleanup event. Joyful collaboration is a key element. \nReal-time context: Afternoon\nKey sustainable actions: Community cleanup, Awareness campaign, Reduce carbon footprint",
+            "dialogue": "",
+            "image_prompt": "Split panel: 1. Children drawing posters about clean water and air. 2. Children giving a presentation at school. 3. Children cleaning up the riverbank.",
+            "image_path": "/story-panels/smog-city/p2.png"
+          },
+          {
+            "id": "panel3",
+            "title": "Action!",
+            "caption": "The children present their project at school, inspiring other students to join their cause. This incorporates multidisciplinary learning. The community cleanup is a huge success!\nReal-time context: Morning\nKey sustainable actions: Community engagement, Waste segregation, Composting",
+            "dialogue": "",
+            "image_prompt": "Split panel: 1. Students listening attentively during the presentation. 2. Children planting trees. 3. Community members participating in the river cleanup.",
+            "image_path": "/story-panels/smog-city/p3.png"
+          },
+          {
+            "id": "panel4",
+            "title": "Spreading the Word",
+            "caption": "The children create a short video about their project, sharing it online. They also write articles for the local newspaper. This highlights the multidisciplinary aspects of NEP 2020.\nReal-time context: Evening\nKey sustainable actions: Digital advocacy, Community education, Sustainable living",
+            "dialogue": "",
+            "image_prompt": "Split panel: 1. Children filming a video about their project. 2. Children creating a newspaper article. 3. Children sharing their video online.",
+            "image_path": "/story-panels/smog-city/p4.png"
+          },
+          {
+            "id": "panel5",
+            "title": "A Cleaner Future",
+            "caption": "The river is visibly cleaner. The air quality has improved.  The children are proud and happy. They have made a measurable difference in their community.  They continue their efforts, inspiring others to join them. The scene showcases the hopeful, positive impact.\nReal-time context: A sunny morning\nKey sustainable actions: Environmental monitoring, Long-term commitment, Inspiring others",
+            "dialogue": "",
+            "image_prompt": "Split panel: 1. The cleaner Ganga river. 2. Children smiling, looking at the river. 3. A graph showing reduced pollution levels.",
+            "image_path": "/story-panels/smog-city/p5.png"
+          }
+        ],
+        "questions": [
+          {
+            "id": "question1",
+            "question": "What was the main environmental problem the children addressed in the story?",
+            "options": [
+              "Deforestation",
+              "Air and water pollution",
+              "Overfishing",
+              "Soil erosion"
+            ],
+            "correct_answer": 1,
+            "explanation": "The story focuses on the children's efforts to reduce air and water pollution in their community, inspired by the pollution affecting the Taj Mahal and Ganga river."
+          },
+          {
+            "id": "question2",
+            "question": "Which of the following actions did the children NOT take to address the pollution?",
+            "options": [
+              "Organized a community cleanup",
+              "Created awareness campaigns",
+              "Planted trees",
+              "Built a dam to stop the flow of polluted water"
+            ],
+            "correct_answer": 3,
+            "explanation": "While the children took many actions to combat pollution, building a dam was not mentioned in the story. Their focus was on community engagement, awareness, and direct cleanup."
+          },
+          {
+            "id": "question3",
+            "question": "What was the positive outcome of the children's efforts?",
+            "options": [
+              "They received a large sum of money",
+              "They became famous online",
+              "The river was visibly cleaner and the air quality improved",
+              "They moved to a new, cleaner city"
+            ],
+            "correct_answer": 2,
+            "explanation": "The story concludes with a description of the positive changes in the environment as a direct result of the children’s work.  The river is cleaner, and the air is healthier."
+          }
+        ],
+        "passing_score": 70,
+        "time_limit": 240
+      },
+      "reward_points": 100,
+      "reward_coins": 50,
+      "assigned_by": "user-003",
+      "is_active": true,
+      "created_at": "2025-09-20T08:47:11.021Z"
+    }
+  ]
+}

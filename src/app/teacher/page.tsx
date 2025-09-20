@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { authService } from '@/lib/auth'
-import { User } from '@/types'
+import { Quest, QuizQuest, User } from '@/types'
 import { useRouter } from 'next/navigation'
 import { 
   Users, 
@@ -15,16 +15,42 @@ import {
   Plus,
   Eye,
   CheckCircle,
-  Clock,
   Target
 } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+import CreateQuestModal from '@/components/teacher/CreateQuestModal'
 
 export default function TeacherDashboard() {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'overview' | 'students' | 'quests' | 'analytics'>('overview')
   const [showSettings, setShowSettings] = useState(false)
+  const [quests, setQuests] = useState<Quest[]>([])
+  const [questsLoading, setQuestsLoading] = useState(true)
+  const [questsError, setQuestsError] = useState<string | null>(null)
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const router = useRouter()
+
+  const loadQuests = useCallback(async () => {
+    try {
+      setQuestsLoading(true)
+      setQuestsError(null)
+      const response = await fetch('/api/quests')
+      if (!response.ok) {
+        const errorPayload = await response.json().catch(() => null)
+        const message = errorPayload?.error || `Failed to load quests (${response.status})`
+        throw new Error(message)
+      }
+      const data = await response.json()
+      const fetchedQuests = Array.isArray(data?.quests) ? data.quests : []
+      setQuests(fetchedQuests)
+    } catch (error) {
+      setQuestsError((error as Error).message)
+      console.error('Failed to fetch quests', error)
+    } finally {
+      setQuestsLoading(false)
+    }
+  }, [])
 
   useEffect(() => {
     const currentUser = authService.getCurrentUser()
@@ -37,6 +63,11 @@ export default function TeacherDashboard() {
     setUser(currentUser)
     setIsLoading(false)
   }, [router])
+
+  useEffect(() => {
+    if (!user) return
+    loadQuests()
+  }, [user, loadQuests])
 
   const handleLogout = async () => {
     await authService.logout()
@@ -128,7 +159,7 @@ export default function TeacherDashboard() {
                 <div className="w-2 h-2 bg-cyan-400"></div>
                 <span className="text-white font-mono">{activity.student}</span>
                 <span className="text-gray-400 font-mono">{activity.action}</span>
-                <span className="text-cyan-400 font-mono">"{activity.quest}"</span>
+                <span className="text-cyan-400 font-mono">&ldquo;{activity.quest}&rdquo;</span>
               </div>
               <span className="text-gray-500 text-sm font-mono">{activity.time}</span>
             </div>
@@ -195,40 +226,85 @@ export default function TeacherDashboard() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold text-white font-mono">QUEST MANAGEMENT</h2>
-        <button className="bg-green-600 text-white px-4 py-2 font-mono hover:bg-green-500 flex items-center space-x-2">
+        <button
+          onClick={() => setIsCreateModalOpen(true)}
+          className="bg-green-600 text-white px-4 py-2 font-mono hover:bg-green-500 flex items-center space-x-2"
+        >
           <Plus className="h-4 w-4" />
           <span>CREATE QUEST</span>
         </button>
       </div>
 
       <div className="bg-gray-800 border-2 border-gray-600">
-        <div className="border-b-2 border-gray-600 p-4 grid grid-cols-6 gap-4 font-mono text-gray-400 text-sm">
-          <div>QUEST</div>
-          <div>TYPE</div>
-          <div>DIFFICULTY</div>
-          <div>COMPLETION</div>
-          <div>REWARD</div>
-          <div>STATUS</div>
-        </div>
-        {[
-          { name: 'Ocean Cleanup Challenge', type: 'PHOTO', difficulty: 'MEDIUM', completion: '15/24', reward: '50pts', status: 'ACTIVE' },
-          { name: 'Renewable Energy Quiz', type: 'QUIZ', difficulty: 'HARD', completion: '8/24', reward: '75pts', status: 'ACTIVE' },
-          { name: 'Tree Planting Mission', type: 'QR', difficulty: 'EASY', completion: '22/24', reward: '30pts', status: 'ACTIVE' },
-        ].map((quest, index) => (
-          <div key={index} className="p-4 border-b border-gray-700 grid grid-cols-6 gap-4 items-center">
-            <div className="text-white font-mono">{quest.name}</div>
-            <div className="text-blue-400 font-mono">{quest.type}</div>
-            <div className={`font-mono ${
-              quest.difficulty === 'EASY' ? 'text-green-400' : 
-              quest.difficulty === 'MEDIUM' ? 'text-yellow-400' : 'text-red-400'
-            }`}>
-              {quest.difficulty}
-            </div>
-            <div className="text-cyan-400 font-mono">{quest.completion}</div>
-            <div className="text-yellow-400 font-mono">{quest.reward}</div>
-            <div className="text-green-400 font-mono">{quest.status}</div>
+        {questsLoading && (
+          <div className="p-8 text-center text-cyan-200 font-mono">Loading quests...</div>
+        )}
+
+        {!questsLoading && questsError && (
+          <div className="p-6 text-red-300 font-mono border-b border-red-500/40">
+            <p className="mb-3">{questsError}</p>
+            <button
+              onClick={loadQuests}
+              className="bg-red-500/20 border border-red-400 px-3 py-1 text-sm hover:bg-red-500/30"
+            >
+              Retry
+            </button>
           </div>
-        ))}
+        )}
+
+        {!questsLoading && !questsError && quests.length === 0 && (
+          <div className="p-8 text-center text-gray-300 font-mono">
+            No quests found yet. Generate your first AI-powered quest to populate the student dashboard.
+          </div>
+        )}
+
+        {!questsLoading && !questsError && quests.length > 0 && (
+          <div>
+            <div className="border-b-2 border-gray-600 p-4 grid grid-cols-6 gap-4 font-mono text-gray-400 text-sm">
+              <div>QUEST</div>
+              <div>TYPE</div>
+              <div>DIFFICULTY</div>
+              <div>QUESTIONS</div>
+              <div>REWARD</div>
+              <div>CREATED</div>
+            </div>
+            {quests.map((quest) => {
+              const questDescription = quest.description || quest.title
+              const description = questDescription.length > 140 ? `${questDescription.slice(0, 137)}...` : questDescription
+              const quizContent = quest.type === 'quiz' ? (quest.content as QuizQuest) : null
+              const questionsCount = quizContent?.questions?.length ?? '—'
+              const difficultyColor = quest.difficulty === 'easy'
+                ? 'text-green-400'
+                : quest.difficulty === 'hard'
+                  ? 'text-red-400'
+                  : 'text-yellow-400'
+              const createdAt = quest.created_at ? new Date(quest.created_at).toLocaleDateString() : '—'
+
+              return (
+                <div key={quest.id} className="p-4 border-b border-gray-700 grid grid-cols-6 gap-4 items-start">
+                  <div>
+                    <div className="flex items-center space-x-3">
+                      <p className="text-white font-mono text-sm">{quest.title}</p>
+                      <span className={`text-xs font-bold ${quest.is_active ? 'text-green-400' : 'text-gray-500'}`}>
+                        {quest.is_active ? 'ACTIVE' : 'INACTIVE'}
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-400 mt-2">
+                      {description}
+                    </p>
+                  </div>
+                  <div className="text-blue-400 font-mono uppercase">{quest.type}</div>
+                  <div className={`${difficultyColor} font-mono uppercase`}>{quest.difficulty}</div>
+                  <div className="text-cyan-400 font-mono">{questionsCount}</div>
+                  <div className="text-yellow-400 font-mono text-sm">
+                    {quest.reward_points} pts / {quest.reward_coins} coins
+                  </div>
+                  <div className="text-gray-300 font-mono text-sm">{createdAt}</div>
+                </div>
+              )
+            })}
+          </div>
+        )}
       </div>
     </div>
   )
@@ -252,6 +328,13 @@ export default function TeacherDashboard() {
       </div>
     </div>
   )
+
+  const dashboardTabs: Array<{ id: typeof activeTab; label: string; icon: LucideIcon }> = [
+    { id: 'overview', label: 'OVERVIEW', icon: TrendingUp },
+    { id: 'students', label: 'STUDENTS', icon: Users },
+    { id: 'quests', label: 'QUESTS', icon: BookOpen },
+    { id: 'analytics', label: 'ANALYTICS', icon: Award }
+  ]
 
   return (
     <div className="min-h-screen bg-gray-900 font-mono">
@@ -297,20 +380,15 @@ export default function TeacherDashboard() {
 
       {/* Navigation Tabs */}
       <nav className="bg-gray-800 border-b-2 border-gray-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex space-x-0">
-            {[
-              { id: 'overview', label: 'OVERVIEW', icon: TrendingUp },
-              { id: 'students', label: 'STUDENTS', icon: Users },
-              { id: 'quests', label: 'QUESTS', icon: BookOpen },
-              { id: 'analytics', label: 'ANALYTICS', icon: Award },
-            ].map((tab) => {
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex space-x-0">
+            {dashboardTabs.map((tab) => {
               const Icon = tab.icon
               const isActive = activeTab === tab.id
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center space-x-3 px-6 py-4 font-bold text-sm border-2 ${
                     isActive
                       ? 'text-white bg-cyan-600 border-cyan-400'
@@ -333,6 +411,16 @@ export default function TeacherDashboard() {
         {activeTab === 'quests' && renderQuests()}
         {activeTab === 'analytics' && renderAnalytics()}
       </main>
+
+      <CreateQuestModal
+        open={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onCreated={(quest) => {
+          setQuests((prev) => [quest, ...prev.filter(existing => existing.id !== quest.id)])
+          loadQuests()
+        }}
+        teacherId={user.id}
+      />
     </div>
   )
 }

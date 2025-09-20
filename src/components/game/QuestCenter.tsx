@@ -1,9 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { GameState, Quest, QuizQuest, StoryPanel } from '@/types'
-import { MapPin, Clock, Star, Trophy, Camera, QrCode, CheckCircle, Play, ChevronLeft, ChevronRight, SkipForward, BookOpen, Zap } from 'lucide-react'
-import questsData from '@/data/quests.json'
+import { useState, useEffect, useCallback } from 'react'
+import { GameState, Quest, QuizQuest } from '@/types'
+import { MapPin, Clock, Star, Trophy, Camera, QrCode, CheckCircle, Play, ChevronLeft, ChevronRight, BookOpen, Zap } from 'lucide-react'
+import questsSeedData from '@/data/quests.json'
+import Image from 'next/image'
+
+const seedQuests = (questsSeedData.quests ?? []) as Quest[]
 
 interface QuestCenterProps {
   gameState: GameState
@@ -15,6 +18,8 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
   const [selectedQuest, setSelectedQuest] = useState<Quest | null>(null)
   const [filter, setFilter] = useState<QuestFilter>('all')
   const [quests, setQuests] = useState<Quest[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [fetchError, setFetchError] = useState<string | null>(null)
   // Quiz state
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [selectedAnswers, setSelectedAnswers] = useState<number[]>([])
@@ -24,10 +29,40 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
   const [currentPanel, setCurrentPanel] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
 
-  useEffect(() => {
-    // Load quests from seed data
-    setQuests(questsData.quests as Quest[])
+  const loadQuests = useCallback(async () => {
+    try {
+      setIsLoading(true)
+      setFetchError(null)
+
+      const response = await fetch('/api/quests')
+      if (!response.ok) {
+        const errorPayload = await response.json().catch(() => null)
+        const message = errorPayload?.error || `Failed to fetch quests (${response.status})`
+        throw new Error(message)
+      }
+
+      const data = await response.json()
+      const remoteQuests = Array.isArray(data?.quests) ? data.quests as Quest[] : []
+
+      if (remoteQuests.length > 0) {
+        setQuests(remoteQuests)
+      } else {
+        setQuests(seedQuests)
+      }
+    } catch (error) {
+      console.error('QuestCenter failed to fetch quests', error)
+      setFetchError((error as Error).message)
+      setQuests(seedQuests)
+    } finally {
+      setIsLoading(false)
+    }
   }, [])
+
+  const playerDisplayName = gameState.user.username || gameState.user.email || 'Guardian'
+
+  useEffect(() => {
+    loadQuests()
+  }, [loadQuests])
 
   useEffect(() => {
     // Reset quiz state when entering quiz phase (not during story)
@@ -85,11 +120,6 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
       // Handle other quest types
       console.log('Starting quest:', quest.title)
     }
-  }
-
-  const handleQuizAnswer = (questionIndex: number, answerIndex: number) => {
-    // TODO: Implement quiz logic
-    console.log('Quiz answer:', { questionIndex, answerIndex })
   }
 
   const handlePanelTransition = (direction: 'next' | 'prev') => {
@@ -172,23 +202,35 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
               </div>
 
               {/* Image Area */}
-              <div className="relative h-96 bg-gradient-to-br from-sky-100 to-blue-200 flex items-center justify-center">
-                {/* Image placeholder with comic-style border */}
-                <div className="w-full h-full bg-white border-4 border-dashed border-gray-400 flex items-center justify-center">
-                  <div className="text-center text-gray-500">
-                    <Camera className="h-16 w-16 mx-auto mb-4 opacity-50" />
-                    <p className="text-lg font-medium">Comic Panel Image</p>
-                    <p className="text-sm">Will appear here after generation</p>
+              <div className="relative h-96 bg-gradient-to-br from-sky-100 to-blue-200 flex items-center justify-center overflow-hidden">
+                {currentPanelData.image_path ? (
+                  <div className="absolute inset-0 border-4 border-gray-800 overflow-hidden">
+                    <Image
+                      src={currentPanelData.image_path}
+                      alt={currentPanelData.caption || currentPanelData.title || 'Quest panel'}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 640px"
+                      className="object-cover"
+                      unoptimized
+                    />
                   </div>
-                </div>
+                ) : (
+                  <div className="w-full h-full bg-white border-4 border-dashed border-gray-400 flex items-center justify-center">
+                    <div className="text-center text-gray-500">
+                      <Camera className="h-16 w-16 mx-auto mb-4 opacity-50" />
+                      <p className="text-lg font-medium">Comic Panel Image</p>
+                      <p className="text-sm">Will appear here after generation</p>
+                    </div>
+                  </div>
+                )}
                 
                 {/* Comic-style speech bubble for dialogue */}
-                {(currentPanelData as any).dialogue && (
+                {currentPanelData.dialogue && (
                   <div className="absolute top-4 left-4 right-4">
-                    <div className="bg-white rounded-2xl p-4 border-4 border-gray-800 shadow-lg relative">
+                    <div className="bg-white/95 rounded-2xl p-4 border-4 border-gray-800 shadow-lg relative">
                       <div className="absolute -bottom-3 left-8 w-6 h-6 bg-white border-l-4 border-b-4 border-gray-800 transform rotate-45"></div>
                       <p className="text-gray-800 font-medium leading-relaxed whitespace-pre-line">
-                        {(currentPanelData as any).dialogue}
+                        {currentPanelData.dialogue}
                       </p>
                     </div>
                   </div>
@@ -420,7 +462,7 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
       {/* Header */}
       <div className="mb-8">
         <h2 className="text-2xl font-bold text-neon-cyan font-pixel mb-2">QUEST CENTER</h2>
-        <p className="text-neon-green font-mono">COMPLETE QUESTS TO EARN POINTS AND FEED YOUR PET! 🎯</p>
+        <p className="text-neon-green font-mono">Commander {playerDisplayName}, complete quests to earn points and feed your pet! 🎯</p>
       </div>
 
       {/* Filter Tabs */}
@@ -450,18 +492,39 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
         })}
       </div>
 
-      {/* Quest Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {filteredQuests.map(renderQuestCard)}
-      </div>
-
-      {/* Empty State */}
-      {filteredQuests.length === 0 && (
-        <div className="text-center py-12">
-          <MapPin className="h-16 w-16 text-neon-cyan mx-auto mb-4 pixel-perfect" />
-          <h3 className="text-lg font-bold text-neon-cyan font-pixel mb-2">NO QUESTS FOUND</h3>
-          <p className="text-neon-green font-mono">TRY CHANGING THE FILTER TO SEE MORE QUESTS.</p>
+      {fetchError && (
+        <div className="mb-6 bg-danger-color/10 border-2 border-danger-color text-danger-color px-4 py-3 rounded-lg">
+          <p className="text-sm font-mono">
+            We had trouble syncing fresh quests: {fetchError}. Showing the offline quest pack for now.
+          </p>
+          <button
+            onClick={loadQuests}
+            className="mt-2 inline-flex items-center px-3 py-1 border border-danger-color text-xs font-bold uppercase tracking-wide hover:bg-danger-color/20"
+          >
+            Retry Sync
+          </button>
         </div>
+      )}
+
+      {isLoading ? (
+        <div className="flex flex-col items-center justify-center py-16 text-neon-cyan">
+          <Play className="h-10 w-10 animate-pulse mb-4" />
+          <p className="font-mono">Loading quests from mission control...</p>
+        </div>
+      ) : (
+        <>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {filteredQuests.map(renderQuestCard)}
+          </div>
+
+          {filteredQuests.length === 0 && (
+            <div className="text-center py-12">
+              <MapPin className="h-16 w-16 text-neon-cyan mx-auto mb-4 pixel-perfect" />
+              <h3 className="text-lg font-bold text-neon-cyan font-pixel mb-2">NO QUESTS FOUND</h3>
+              <p className="text-neon-green font-mono">TRY CHANGING THE FILTER TO SEE MORE QUESTS.</p>
+            </div>
+          )}
+        </>
       )}
     </div>
   )

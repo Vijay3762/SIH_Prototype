@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { GameState } from '@/types'
+import { useEffect, useState } from 'react'
+import { GameState, UserInventory } from '@/types'
 import { 
   Heart, 
   Star, 
@@ -19,6 +19,7 @@ import QuestCenter from './QuestCenter'
 import PetStore from './PetStore'
 import Leaderboard from './Leaderboard'
 import UserProfile from './UserProfile'
+import { authService } from '@/lib/auth'
 
 interface GameDashboardProps {
   gameState: GameState
@@ -30,21 +31,42 @@ type ActiveTab = 'home' | 'quests' | 'store' | 'leaderboard' | 'profile'
 export default function GameDashboard({ gameState, onLogout }: GameDashboardProps) {
   const [activeTab, setActiveTab] = useState<ActiveTab>('home')
   const [showSettings, setShowSettings] = useState(false)
+  const [currentState, setCurrentState] = useState<GameState>(gameState)
 
-  const { user, pet, inventory } = gameState
+  useEffect(() => {
+    setCurrentState(gameState)
+  }, [gameState])
+
+  const userId = currentState.user.id
+
+  const handleQuestComplete = () => {
+    const latestState = authService.getGameState(userId)
+    if (latestState) {
+      setCurrentState(latestState)
+    }
+  }
+
+  const handleInventoryChange = (updatedInventory: UserInventory) => {
+    setCurrentState(prev => ({
+      ...prev,
+      inventory: updatedInventory
+    }))
+  }
+
+  const { user, pet, inventory } = currentState
 
   const renderActiveTab = () => {
     switch (activeTab) {
       case 'home':
         return <PetDisplay pet={pet} inventory={inventory} user={user} />
       case 'quests':
-        return <QuestCenter gameState={gameState} />
+        return <QuestCenter gameState={currentState} onQuestComplete={handleQuestComplete} />
       case 'store':
-        return <PetStore inventory={inventory} />
+        return <PetStore inventory={inventory} onInventoryChange={handleInventoryChange} />
       case 'leaderboard':
         return <Leaderboard userId={user.id} schoolId={user.school_id} />
       case 'profile':
-        return <UserProfile user={user} gameState={gameState} />
+        return <UserProfile user={user} gameState={currentState} />
       default:
         return <PetDisplay pet={pet} inventory={inventory} user={user} />
     }

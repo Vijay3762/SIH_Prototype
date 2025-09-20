@@ -1,30 +1,77 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { UserInventory, FoodItem } from '@/types'
-import { ShoppingBag, Coins, Star, Package } from 'lucide-react'
+import { UserInventory } from '@/types'
+import { Coins, Star, Package } from 'lucide-react'
 import storeData from '@/data/store.json'
+import { authService } from '@/lib/auth'
 
 interface PetStoreProps {
   inventory: UserInventory
+  onInventoryChange?: (updated: UserInventory) => void
 }
 
 type StoreTab = 'food' | 'accessories'
 
-export default function PetStore({ inventory }: PetStoreProps) {
-  const [activeTab, setActiveTab] = useState<StoreTab>('food')
-  const [selectedItem, setSelectedItem] = useState<any>(null)
-  const [showPurchaseModal, setShowPurchaseModal] = useState(false)
+type StoreFoodItem = {
+  id: string
+  name: string
+  description: string
+  image_url: string
+  price: number
+  nutrition_value: number
+  happiness_boost: number
+  rarity: 'common' | 'rare' | 'legendary'
+}
 
-  const handlePurchase = async (item: any) => {
-    if (inventory.coins >= item.price) {
-      // TODO: Implement purchase logic
+type StoreAccessoryItem = {
+  id: string
+  name: string
+  description: string
+  image_url: string
+  price: number
+  type: string
+  unlocked_at_stage: string
+}
+
+type StoreItem = StoreFoodItem | StoreAccessoryItem
+
+const foodItems = storeData.food_items as StoreFoodItem[]
+const accessoryItems = storeData.accessories as StoreAccessoryItem[]
+
+export default function PetStore({ inventory, onInventoryChange }: PetStoreProps) {
+  const [activeTab, setActiveTab] = useState<StoreTab>('food')
+  const [selectedItem, setSelectedItem] = useState<StoreItem | null>(null)
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false)
+  const [balance, setBalance] = useState(inventory.coins)
+
+  useEffect(() => {
+    setBalance(inventory.coins)
+  }, [inventory.coins])
+
+  const handlePurchase = async (item: StoreItem) => {
+    if (balance < item.price) {
+      alert('Not enough coins! Complete more quests to earn coins.')
+      return
+    }
+
+    const user = authService.getCurrentUser()
+    if (!user) {
+      alert('You must be logged in to purchase.')
+      return
+    }
+
+    const updated = authService.consumeInventoryItem({ userId: user.id, item })
+
+    if (updated) {
+      setBalance(updated.coins)
+      onInventoryChange?.(updated)
       console.log('Purchasing:', item.name, 'for', item.price, 'coins')
       alert(`Successfully purchased ${item.name}!`)
       setShowPurchaseModal(false)
       setSelectedItem(null)
     } else {
-      alert('Not enough coins! Complete more quests to earn coins.')
+      alert('Purchase failed. Please try again.')
     }
   }
 
@@ -52,7 +99,7 @@ export default function PetStore({ inventory }: PetStoreProps) {
 
   const renderFoodItems = () => (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {storeData.food_items.map((item) => (
+      {foodItems.map((item) => (
         <div key={item.id} className={`card-pixel p-4 transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 ${getRarityColor(item.rarity)}`}>
           <div className="flex items-start justify-between mb-3">
             <div className="text-4xl mb-2 pixel-perfect">🍃</div>
@@ -98,7 +145,7 @@ export default function PetStore({ inventory }: PetStoreProps) {
                 setSelectedItem(item)
                 setShowPurchaseModal(true)
               }}
-              disabled={inventory.coins < item.price}
+              disabled={balance < item.price}
               className="btn-pixel bg-neon-green border-neon-green text-gray-900 hover:shadow-neon-green disabled:bg-game-tertiary disabled:border-ui-border disabled:text-foreground-secondary font-mono font-bold"
             >
               BUY
@@ -111,7 +158,7 @@ export default function PetStore({ inventory }: PetStoreProps) {
 
   const renderAccessories = () => (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {storeData.accessories.map((item) => (
+      {accessoryItems.map((item) => (
         <div key={item.id} className="card-pixel border-neon-purple p-4 transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 hover:shadow-neon-purple">
           <div className="text-4xl mb-3 text-center pixel-perfect">✨</div>
 
@@ -132,7 +179,7 @@ export default function PetStore({ inventory }: PetStoreProps) {
                 setSelectedItem(item)
                 setShowPurchaseModal(true)
               }}
-              disabled={inventory.coins < item.price}
+              disabled={balance < item.price}
               className="btn-pixel bg-neon-purple border-neon-purple text-foreground hover:shadow-neon-purple disabled:bg-game-tertiary disabled:border-ui-border disabled:text-foreground-secondary font-mono font-bold"
             >
               BUY
@@ -171,14 +218,14 @@ export default function PetStore({ inventory }: PetStoreProps) {
               <span className="text-neon-green font-mono">YOUR COINS:</span>
               <div className="flex items-center space-x-1 text-neon-yellow">
                 <Coins className="h-4 w-4" />
-                <span className="font-bold font-mono">{inventory.coins}</span>
+                <span className="font-bold font-mono">{balance}</span>
               </div>
             </div>
             <div className="flex items-center justify-between border-t-2 border-ui-border pt-2">
               <span className="text-neon-green font-mono">AFTER PURCHASE:</span>
               <div className="flex items-center space-x-1 text-neon-yellow">
                 <Coins className="h-4 w-4" />
-                <span className="font-bold font-mono">{inventory.coins - selectedItem.price}</span>
+                <span className="font-bold font-mono">{balance - selectedItem.price}</span>
               </div>
             </div>
           </div>
@@ -195,7 +242,7 @@ export default function PetStore({ inventory }: PetStoreProps) {
             </button>
             <button
               onClick={() => handlePurchase(selectedItem)}
-              disabled={inventory.coins < selectedItem.price}
+              disabled={balance < selectedItem.price}
               className="flex-1 btn-pixel bg-neon-green border-neon-green text-gray-900 hover:shadow-neon-green disabled:bg-game-tertiary disabled:border-ui-border disabled:text-foreground-secondary font-mono font-bold"
             >
               BUY NOW
@@ -217,7 +264,7 @@ export default function PetStore({ inventory }: PetStoreProps) {
 
         <div className="flex items-center space-x-2 bg-neon-yellow border-2 border-neon-yellow px-4 py-2 shadow-pixel">
           <Coins className="h-5 w-5 text-gray-900" />
-          <span className="font-bold text-gray-900 font-mono">{inventory.coins} COINS</span>
+          <span className="font-bold text-gray-900 font-mono">{balance} COINS</span>
         </div>
       </div>
 

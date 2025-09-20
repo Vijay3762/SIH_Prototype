@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Leaderboard as LeaderboardType } from '@/types'
-import { Trophy, Medal, Star, School, Globe, Filter } from 'lucide-react'
+import { Trophy, Medal, Star, School, Globe, Filter, Coins } from 'lucide-react'
+import { authService } from '@/lib/auth'
 
 interface LeaderboardProps {
   userId: string
@@ -18,68 +19,42 @@ export default function Leaderboard({ userId, schoolId }: LeaderboardProps) {
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardType[]>([])
   const [userRank, setUserRank] = useState<LeaderboardType | null>(null)
 
-  useEffect(() => {
-    loadLeaderboardData()
-  }, [filter, period])
+  const loadLeaderboardData = useCallback(() => {
+    const snapshot = authService.getLeaderboardSnapshot()
 
-  const loadLeaderboardData = async () => {
-    // Mock leaderboard data - in real app this would come from API
-    const mockData: LeaderboardType[] = [
-      {
-        id: '1',
-        user_id: 'user-005',
-        username: 'DragonMaster',
-        school_id: 'school-002',
-        school_name: 'Riverdale Middle School',
-        points: 750,
-        badges_count: 4,
-        pet_stage: 'adult',
-        period: 'all-time',
-        rank: 1,
-        updated_at: new Date().toISOString()
-      },
-      {
-        id: '2',
-        user_id: 'user-002',
-        username: 'NatureGuard',
-        school_id: 'school-001',
-        school_name: 'Greenwood Elementary',
-        points: 520,
-        badges_count: 3,
-        pet_stage: 'adult',
-        period: 'all-time',
-        rank: 2,
-        updated_at: new Date().toISOString()
-      },
-      {
-        id: '3',
-        user_id: 'user-001',
-        username: 'EcoExplorer',
-        school_id: 'school-001',
-        school_name: 'Greenwood Elementary',
-        points: 350,
-        badges_count: 2,
-        pet_stage: 'child',
-        period: 'all-time',
-        rank: 3,
-        updated_at: new Date().toISOString()
-      }
-    ]
+    const formatted = snapshot.map((record, index) => ({
+      id: record.user_id,
+      user_id: record.user_id,
+      username: record.username,
+      school_id: record.school_id,
+      school_name: record.school_name,
+      points: record.points,
+      coins: record.coins,
+      badges_count: record.badges_count,
+      pet_stage: record.pet_stage,
+      period,
+      rank: index + 1,
+      updated_at: record.updated_at
+    }))
 
-    // Filter by school if needed
-    let filteredData = mockData
+    const sortedAll = formatted
+      .slice()
+      .sort((a, b) => (b.points !== a.points ? b.points - a.points : (b.coins ?? 0) - (a.coins ?? 0)))
+      .map((entry, idx) => ({ ...entry, rank: idx + 1 }))
+
+    let scoped = sortedAll
     if (filter === 'school' && schoolId) {
-      filteredData = mockData.filter(entry => entry.school_id === schoolId)
+      const scopedList = sortedAll.filter(entry => entry.school_id === schoolId)
+      scoped = scopedList.map((entry, idx) => ({ ...entry, rank: idx + 1 }))
     }
 
-    setLeaderboardData(filteredData)
+    setLeaderboardData(scoped)
 
-    // Find current user's rank
-    const currentUser = filteredData.find(entry => entry.user_id === userId)
-    if (currentUser) {
-      setUserRank(currentUser)
+    const currentUserEntry = scoped.find(entry => entry.user_id === userId) || sortedAll.find(entry => entry.user_id === userId)
+
+    if (currentUserEntry) {
+      setUserRank(currentUserEntry)
     } else {
-      // User not in top rankings, create mock entry
       setUserRank({
         id: 'current',
         user_id: userId,
@@ -87,14 +62,24 @@ export default function Leaderboard({ userId, schoolId }: LeaderboardProps) {
         school_id: schoolId,
         school_name: 'Your School',
         points: 0,
+        coins: 0,
         badges_count: 0,
         pet_stage: 'baby',
-        period: 'all-time',
-        rank: filteredData.length + 1,
+        period,
+        rank: scoped.length + 1,
         updated_at: new Date().toISOString()
       })
     }
-  }
+  }, [filter, period, schoolId, userId])
+
+  useEffect(() => {
+    loadLeaderboardData()
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('prakritiLeaderboardUpdate', loadLeaderboardData)
+      return () => window.removeEventListener('prakritiLeaderboardUpdate', loadLeaderboardData)
+    }
+  }, [loadLeaderboardData])
 
   const getRankIcon = (rank: number) => {
     switch (rank) {
@@ -120,7 +105,7 @@ export default function Leaderboard({ userId, schoolId }: LeaderboardProps) {
     return emojis[stage as keyof typeof emojis] || '🐣'
   }
 
-  const renderLeaderboardEntry = (entry: LeaderboardType, index: number) => {
+  const renderLeaderboardEntry = (entry: LeaderboardType) => {
     const isCurrentUser = entry.user_id === userId
 
     return (
@@ -158,6 +143,10 @@ export default function Leaderboard({ userId, schoolId }: LeaderboardProps) {
           <div className="flex items-center space-x-1 text-neon-yellow">
             <Star className="h-4 w-4" />
             <span className="font-bold font-mono">{entry.points}</span>
+          </div>
+          <div className="flex items-center space-x-1 text-neon-green">
+            <Coins className="h-4 w-4" />
+            <span className="font-bold font-mono">{entry.coins ?? 0}</span>
           </div>
           <div className="flex items-center space-x-1 text-neon-purple">
             <Trophy className="h-4 w-4" />
@@ -229,7 +218,7 @@ export default function Leaderboard({ userId, schoolId }: LeaderboardProps) {
             <Filter className="h-4 w-4 mr-1" />
             YOUR RANK
           </h3>
-          {renderLeaderboardEntry(userRank, -1)}
+          {renderLeaderboardEntry(userRank)}
         </div>
       )}
 
@@ -241,7 +230,7 @@ export default function Leaderboard({ userId, schoolId }: LeaderboardProps) {
         </h3>
 
         {leaderboardData.length > 0 ? (
-          leaderboardData.map((entry, index) => renderLeaderboardEntry(entry, index))
+          leaderboardData.map((entry) => renderLeaderboardEntry(entry))
         ) : (
           <div className="text-center py-12">
             <Trophy className="h-16 w-16 text-neon-cyan mx-auto mb-4 pixel-perfect" />

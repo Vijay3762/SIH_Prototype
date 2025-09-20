@@ -2,17 +2,19 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { GameState, Quest, QuizQuest } from '@/types'
+import { GameState, Quest, QuizQuest, QuizSubmission } from '@/types'
 import { MapPin, Clock, Star, Trophy, Camera, QrCode, CheckCircle, Play, BookOpen, Zap } from 'lucide-react'
 import questsData from '@/data/quests.json'
+import { authService } from '@/lib/auth'
 
 interface QuestCenterProps {
   gameState: GameState
+  onQuestComplete?: () => void
 }
 
 type QuestFilter = 'all' | 'quiz' | 'photo' | 'qr' | 'daily-action'
 
-export default function QuestCenter({ gameState }: QuestCenterProps) {
+export default function QuestCenter({ gameState, onQuestComplete }: QuestCenterProps) {
   const [selectedQuest, setSelectedQuest] = useState<Quest | null>(null)
   const [filter, setFilter] = useState<QuestFilter>('all')
   const [quests, setQuests] = useState<Quest[]>([])
@@ -22,6 +24,15 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
   const [timeLeft, setTimeLeft] = useState(300)
   // Story state
   const [showStory, setShowStory] = useState(false)
+  const [scoreDialog, setScoreDialog] = useState({
+    isOpen: false,
+    score: 0,
+    questTitle: '',
+    message: '',
+    rewardPoints: 0,
+    rewardCoins: 0,
+    isPerfect: false
+  })
 
   useEffect(() => {
     // Load quests from seed data
@@ -83,11 +94,6 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
       // Handle other quest types
       console.log('Starting quest:', quest.title)
     }
-  }
-
-  const handleQuizAnswer = (questionIndex: number, answerIndex: number) => {
-    // TODO: Implement quiz logic
-    console.log('Quiz answer:', { questionIndex, answerIndex })
   }
 
   const renderStoryInterface = (quest: Quest) => {
@@ -253,10 +259,38 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
       })
 
       const score = Math.round((correct / quizContent.questions.length) * 100)
+      const isPerfect = score === 100
+      const awardedPoints = isPerfect ? quest.reward_points : 0
+      const awardedCoins = isPerfect ? quest.reward_coins : 0
 
-      // TODO: Save quest completion
-      console.log('Quiz completed with score:', score)
-      alert(`QUIZ COMPLETED! SCORE: ${score}%`)
+      const submission: QuizSubmission = {
+        answers,
+        time_taken: Math.max(0, (quizContent.time_limit || 0) - timeLeft),
+        score
+      }
+
+      authService.recordQuestCompletion({
+        user: gameState.user,
+        quest,
+        submission
+      })
+
+      const feedbackMessage = getScoreCelebration(score, isPerfect)
+
+      setScoreDialog({
+        isOpen: true,
+        score,
+        questTitle: quest.title,
+        message: feedbackMessage,
+        rewardPoints: awardedPoints,
+        rewardCoins: awardedCoins,
+        isPerfect
+      })
+
+      if (typeof onQuestComplete === 'function') {
+        onQuestComplete()
+      }
+
       setSelectedQuest(null)
     }
 
@@ -326,15 +360,119 @@ export default function QuestCenter({ gameState }: QuestCenterProps) {
     )
   }
 
+  const getScoreCelebration = (score: number, isPerfect: boolean) => {
+    if (isPerfect) {
+      return 'Flawless eco victory! Your pet is cheering with twinkling eyes.'
+    }
+    if (score >= 75) {
+      return 'Great job Explorer! Rewards unlock only with a perfect run—give it another go.'
+    }
+    if (score >= 50) {
+      return "Nice effort! Study the panels again and aim for a perfect streak to earn rewards."
+    }
+    return 'Every attempt grows greener roots. Review the story and try again for a perfect score!'
+  }
+
+  const closeScoreDialog = () => {
+    setScoreDialog(prev => ({ ...prev, isOpen: false }))
+  }
+
+  const renderScoreDialog = () => {
+    if (!scoreDialog.isOpen) return null
+
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
+        <div className="relative max-w-2xl w-full bg-game-secondary border-4 border-neon-cyan shadow-[0_0_30px_rgba(0,255,255,0.4)] p-6 overflow-hidden">
+          <div className="absolute -top-20 -right-20 w-60 h-60 bg-neon-purple/30 blur-3xl" />
+          <div className="relative grid md:grid-cols-[1.2fr_1fr] gap-6 items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-neon-cyan font-pixel mb-2">QUEST COMPLETE!</h2>
+              <p className="text-neon-green font-mono mb-6 uppercase">{scoreDialog.questTitle}</p>
+
+              <div className="bg-game-tertiary border-2 border-neon-cyan p-4 shadow-pixel mb-4">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm text-foreground-secondary font-mono">SCORE</span>
+                  <span
+                    className={`text-sm font-mono ${
+                      scoreDialog.isPerfect ? 'text-neon-green' : 'text-foreground-secondary'
+                    }`}
+                  >
+                    {scoreDialog.isPerfect ? 'Rewards unlocked!' : 'Perfect score needed for rewards'}
+                  </span>
+                </div>
+                <div className="flex items-end space-x-3">
+                  <span className="text-5xl font-bold text-neon-yellow font-pixel">{scoreDialog.score}</span>
+                  <span className="text-xl text-neon-yellow font-mono">%</span>
+                </div>
+                <div className="flex flex-wrap gap-3 mt-4 text-sm font-mono">
+                  <div
+                    className={`px-3 py-2 border-2 shadow-pixel ${
+                      scoreDialog.rewardPoints > 0
+                        ? 'border-neon-yellow text-neon-yellow'
+                        : 'border-ui-border text-foreground-secondary'
+                    }`}
+                  >
+                    +{scoreDialog.rewardPoints} pts
+                  </div>
+                  <div
+                    className={`px-3 py-2 border-2 shadow-pixel ${
+                      scoreDialog.rewardCoins > 0
+                        ? 'border-neon-green text-neon-green'
+                        : 'border-ui-border text-foreground-secondary'
+                    }`}
+                  >
+                    +{scoreDialog.rewardCoins} coins
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-foreground font-mono text-lg mb-4">{scoreDialog.message}</p>
+
+              <button
+                onClick={closeScoreDialog}
+                className="btn-pixel bg-neon-green border-neon-green text-gray-900 hover:shadow-neon-green font-mono font-bold"
+              >
+                CONTINUE YOUR JOURNEY →
+              </button>
+            </div>
+
+            <div className="relative h-60 md:h-full min-h-[240px] bg-game-tertiary border-2 border-ui-border flex items-center justify-center">
+              <Image
+                src="/model_2dimage.jpeg"
+                alt="Eco companion celebrating"
+                fill
+                className="object-contain p-4"
+                sizes="(max-width: 768px) 60vw, 320px"
+                priority
+              />
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/60 via-transparent to-black/30" />
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   if (selectedQuest) {
     if (showStory) {
-      return renderStoryInterface(selectedQuest)
+      return (
+        <>
+          {renderScoreDialog()}
+          {renderStoryInterface(selectedQuest)}
+        </>
+      )
     }
-    return renderQuizInterface(selectedQuest)
+    return (
+      <>
+        {renderScoreDialog()}
+        {renderQuizInterface(selectedQuest)}
+      </>
+    )
   }
 
   return (
     <div className="p-6 bg-game-dark font-mono">
+      {renderScoreDialog()}
       {/* Header */}
       <div className="mb-8">
         <h2 className="text-2xl font-bold text-neon-cyan font-pixel mb-2">QUEST CENTER</h2>

@@ -1,29 +1,59 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { authService } from '@/lib/auth'
 import { User } from '@/types'
 import { useRouter } from 'next/navigation'
-import { 
-  Users, 
-  Award, 
-  BookOpen, 
-  TrendingUp, 
-  Settings, 
+import {
+  Users,
+  Award,
+  BookOpen,
+  TrendingUp,
+  Settings,
   LogOut,
   Search,
   Plus,
   Eye,
-  CheckCircle,
-  Clock,
+  Coins,
   Target
 } from 'lucide-react'
+
+interface QuestHistoryRecord {
+  id: string
+  user_id: string
+  quest_id: string
+  quest_title: string
+  quest_type: string
+  username: string
+  reward_points: number
+  reward_coins?: number
+  is_perfect?: boolean
+  score?: number
+  completed_at: string
+  submission?: {
+    score: number
+  }
+}
+
+interface LeaderboardRecord {
+  user_id: string
+  username: string
+  school_id?: string
+  school_name?: string
+  points: number
+  coins: number
+  badges_count: number
+  pet_stage: string
+  updated_at: string
+}
 
 export default function TeacherDashboard() {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'overview' | 'students' | 'quests' | 'analytics'>('overview')
   const [showSettings, setShowSettings] = useState(false)
+  const [leaderboard, setLeaderboard] = useState<LeaderboardRecord[]>([])
+  const [questHistory, setQuestHistory] = useState<QuestHistoryRecord[]>([])
   const router = useRouter()
 
   useEffect(() => {
@@ -38,10 +68,147 @@ export default function TeacherDashboard() {
     setIsLoading(false)
   }, [router])
 
+  useEffect(() => {
+    const loadHistory = () => {
+      const history = authService.getQuestHistorySnapshot() as QuestHistoryRecord[]
+      const sorted = history
+        .slice()
+        .sort((a, b) => new Date(b.completed_at).getTime() - new Date(a.completed_at).getTime())
+      setQuestHistory(sorted)
+    }
+
+    loadHistory()
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('prakritiQuestUpdate', loadHistory)
+      return () => window.removeEventListener('prakritiQuestUpdate', loadHistory)
+    }
+  }, [])
+
+  useEffect(() => {
+    const loadLeaderboard = () => {
+      const records = authService.getLeaderboardSnapshot() as LeaderboardRecord[]
+      setLeaderboard(records)
+    }
+
+    loadLeaderboard()
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('prakritiLeaderboardUpdate', loadLeaderboard)
+      return () => window.removeEventListener('prakritiLeaderboardUpdate', loadLeaderboard)
+    }
+  }, [])
+
   const handleLogout = async () => {
     await authService.logout()
     router.push('/')
   }
+
+  const stats = useMemo(() => {
+    const relevantLeaderboard = leaderboard.filter(entry => {
+      if (!user?.school_id) return true
+      return entry.school_id === user.school_id
+    })
+
+    const uniqueStudents = relevantLeaderboard.length
+    const uniqueQuests = new Set(questHistory.map(entry => entry.quest_id)).size
+    const totalCompletions = questHistory.length
+    const totalScore = questHistory.reduce((sum, entry) => {
+      const score = entry.score ?? entry.submission?.score ?? 0
+      return sum + score
+    }, 0)
+    const avgScore = totalCompletions > 0 ? Math.round(totalScore / totalCompletions) : 0
+    const totalCoins = relevantLeaderboard.reduce((sum, entry) => sum + entry.coins, 0)
+    const totalPoints = relevantLeaderboard.reduce((sum, entry) => sum + entry.points, 0)
+
+    return {
+      uniqueStudents,
+      uniqueQuests,
+      totalCompletions,
+      avgScore,
+      totalCoins,
+      totalPoints
+    }
+  }, [leaderboard, questHistory, user?.school_id])
+
+  const recentActivity = useMemo(() => questHistory.slice(0, 6), [questHistory])
+
+  const studentSummaries = useMemo(() => {
+    const questSummary = new Map<string, {
+      quests: number
+      totalScore: number
+      totalReward: number
+      totalRewardCoins: number
+      lastQuest: string
+      lastCompletedAt: string
+      lastScore: number
+      lastRewardPoints: number
+      lastRewardCoins: number
+    }>()
+
+    questHistory.forEach(entry => {
+      const existing = questSummary.get(entry.user_id) || {
+        quests: 0,
+        totalScore: 0,
+        totalReward: 0,
+        totalRewardCoins: 0,
+        lastQuest: '',
+        lastCompletedAt: '',
+        lastScore: 0,
+        lastRewardPoints: 0,
+        lastRewardCoins: 0
+      }
+
+      const score = entry.score ?? entry.submission?.score ?? 0
+      const rewardPoints = entry.reward_points ?? 0
+      const rewardCoins = entry.reward_coins ?? 0
+
+      existing.quests += 1
+      existing.totalScore += score
+      existing.totalReward += rewardPoints
+      existing.totalRewardCoins += rewardCoins
+
+      if (!existing.lastCompletedAt || new Date(entry.completed_at) > new Date(existing.lastCompletedAt)) {
+        existing.lastCompletedAt = entry.completed_at
+        existing.lastQuest = entry.quest_title
+        existing.lastScore = score
+        existing.lastRewardPoints = rewardPoints
+        existing.lastRewardCoins = rewardCoins
+      }
+
+      questSummary.set(entry.user_id, existing)
+    })
+
+    const relevantLeaderboard = leaderboard.filter(entry => {
+      if (!user?.school_id) return true
+      return entry.school_id === user.school_id
+    })
+
+    return relevantLeaderboard
+      .map(record => {
+        const history = questSummary.get(record.user_id)
+        const questCount = history?.quests ?? 0
+        const averageScore = questCount > 0 ? Math.round((history?.totalScore ?? 0) / questCount) : 0
+        const progressPercent = Math.min(100, Math.round((questCount / 10) * 100))
+
+        return {
+          userId: record.user_id,
+          name: record.username,
+          points: record.points,
+          coinBalance: record.coins,
+          quests: questCount,
+          averageScore,
+          totalReward: history?.totalReward ?? 0,
+          totalRewardCoins: history?.totalRewardCoins ?? 0,
+          lastQuest: history?.lastQuest ?? '',
+          lastScore: history?.lastScore ?? 0,
+          lastRewardPoints: history?.lastRewardPoints ?? 0,
+          lastRewardCoins: history?.lastRewardCoins ?? 0,
+          progressPercent
+        }
+      })
+      .sort((a, b) => (b.points !== a.points ? b.points - a.points : b.averageScore - a.averageScore))
+  }, [leaderboard, questHistory, user?.school_id])
 
   if (isLoading) {
     return (
@@ -74,8 +241,8 @@ export default function TeacherDashboard() {
         <div className="bg-gray-800 border-2 border-cyan-400 p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-400 text-sm font-mono">TOTAL STUDENTS</p>
-              <p className="text-2xl font-bold text-white font-mono">24</p>
+              <p className="text-gray-400 text-sm font-mono">STUDENTS TRACKED</p>
+              <p className="text-2xl font-bold text-white font-mono">{stats.uniqueStudents}</p>
             </div>
             <Users className="h-8 w-8 text-cyan-400" />
           </div>
@@ -84,8 +251,8 @@ export default function TeacherDashboard() {
         <div className="bg-gray-800 border-2 border-green-400 p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-400 text-sm font-mono">ACTIVE QUESTS</p>
-              <p className="text-2xl font-bold text-white font-mono">8</p>
+              <p className="text-gray-400 text-sm font-mono">QUESTS TRACKED</p>
+              <p className="text-2xl font-bold text-white font-mono">{stats.uniqueQuests}</p>
             </div>
             <BookOpen className="h-8 w-8 text-green-400" />
           </div>
@@ -94,10 +261,10 @@ export default function TeacherDashboard() {
         <div className="bg-gray-800 border-2 border-blue-400 p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-400 text-sm font-mono">COMPLETIONS</p>
-              <p className="text-2xl font-bold text-white font-mono">156</p>
+              <p className="text-gray-400 text-sm font-mono">COIN BANK</p>
+              <p className="text-2xl font-bold text-white font-mono">{stats.totalCoins}</p>
             </div>
-            <CheckCircle className="h-8 w-8 text-blue-400" />
+            <Coins className="h-8 w-8 text-blue-400" />
           </div>
         </div>
 
@@ -105,7 +272,7 @@ export default function TeacherDashboard() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-400 text-sm font-mono">AVG SCORE</p>
-              <p className="text-2xl font-bold text-white font-mono">87%</p>
+              <p className="text-2xl font-bold text-white font-mono">{stats.avgScore}%</p>
             </div>
             <Award className="h-8 w-8 text-yellow-400" />
           </div>
@@ -114,29 +281,77 @@ export default function TeacherDashboard() {
 
       {/* Recent Activity */}
       <div className="bg-gray-800 border-2 border-gray-600">
-        <div className="border-b-2 border-gray-600 p-4">
+        <div className="border-b-2 border-gray-600 p-4 flex items-center justify-between">
           <h2 className="text-xl font-bold text-white font-mono">RECENT ACTIVITY</h2>
+          <span className="text-sm text-gray-400 font-mono">{stats.totalCompletions} completions logged</span>
         </div>
         <div className="p-4 space-y-4">
-          {[
-            { student: 'EcoExplorer', action: 'completed quest', quest: 'Ocean Cleanup', time: '2 min ago' },
-            { student: 'NatureGuard', action: 'submitted photo', quest: 'Tree Planting', time: '5 min ago' },
-            { student: 'DragonMaster', action: 'earned badge', quest: 'Eco Warrior', time: '10 min ago' },
-          ].map((activity, index) => (
-            <div key={index} className="flex items-center justify-between bg-gray-700 p-3 border border-gray-600">
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-cyan-400"></div>
-                <span className="text-white font-mono">{activity.student}</span>
-                <span className="text-gray-400 font-mono">{activity.action}</span>
-                <span className="text-cyan-400 font-mono">"{activity.quest}"</span>
-              </div>
-              <span className="text-gray-500 text-sm font-mono">{activity.time}</span>
+          {recentActivity.length > 0 ? (
+            recentActivity.map((activity) => {
+              const score = activity.score ?? activity.submission?.score ?? 0
+              const completedAt = new Date(activity.completed_at).toLocaleString()
+              const rewardCoins = activity.reward_coins ?? 0
+              return (
+                <div key={activity.id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gray-700 p-3 border border-gray-600 gap-2">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-cyan-400 mt-1"></div>
+                    <div>
+                      <p className="text-white font-mono text-sm">
+                        {activity.username.toUpperCase()} COMPLETED {activity.quest_title.toUpperCase()}
+                      </p>
+                      <p className="text-gray-400 text-xs font-mono">Score {score}% · +{activity.reward_points} pts · +{rewardCoins} coins</p>
+                    </div>
+                  </div>
+                  <div className="text-gray-400 text-xs font-mono text-right">{completedAt}</div>
+                </div>
+              )
+            })
+          ) : (
+            <div className="text-center text-gray-400 font-mono py-6">
+              No quiz activity yet. Encourage your explorers to attempt a quest!
             </div>
-          ))}
+          )}
         </div>
       </div>
     </div>
   )
+
+  const renderTopPerformers = () => {
+    const performers = leaderboard
+      .filter(entry => !user?.school_id || entry.school_id === user.school_id)
+      .slice()
+      .sort((a, b) => (b.points !== a.points ? b.points - a.points : b.coins - a.coins))
+      .slice(0, 3)
+
+    return (
+      <div className="bg-gray-800 border-2 border-gray-600">
+        <div className="border-b-2 border-gray-600 p-4">
+          <h2 className="text-xl font-bold text-white font-mono">TOP PERFORMERS</h2>
+        </div>
+        <div className="p-4 space-y-3">
+          {performers.length > 0 ? (
+            performers.map((entry, index) => (
+              <div key={entry.user_id} className="flex items-center justify-between bg-gray-700 p-4 border border-gray-600">
+                <div className="flex items-center space-x-3">
+                  <span className="text-lg font-bold text-cyan-400 font-mono">#{index + 1}</span>
+                  <div>
+                    <p className="text-white font-mono text-sm">{entry.username.toUpperCase()}</p>
+                    <p className="text-xs text-gray-400 font-mono">{entry.school_name || '—'}</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-4 text-sm font-mono">
+                  <span className="text-yellow-400">{entry.points} pts</span>
+                  <span className="text-green-400">{entry.coins} coins</span>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="text-center text-gray-400 font-mono py-6">No leaderboard data yet.</div>
+          )}
+        </div>
+      </div>
+    )
+  }
 
   const renderStudents = () => (
     <div className="space-y-6">
@@ -155,38 +370,52 @@ export default function TeacherDashboard() {
       </div>
 
       <div className="bg-gray-800 border-2 border-gray-600">
-        <div className="border-b-2 border-gray-600 p-4 grid grid-cols-5 gap-4 font-mono text-gray-400 text-sm">
+        <div className="border-b-2 border-gray-600 p-4 grid grid-cols-7 gap-4 font-mono text-gray-400 text-sm">
           <div>STUDENT</div>
-          <div>PROGRESS</div>
-          <div>PET STAGE</div>
+          <div>JOURNEY</div>
+          <div>AVG SCORE</div>
+          <div>LAST QUEST</div>
           <div>POINTS</div>
+          <div>COINS</div>
           <div>ACTIONS</div>
         </div>
-        {[
-          { name: 'EcoExplorer', progress: 75, petStage: 'child', points: 350, status: 'active' },
-          { name: 'NatureGuard', progress: 90, petStage: 'adult', points: 520, status: 'active' },
-          { name: 'DragonMaster', progress: 95, petStage: 'adult', points: 750, status: 'active' },
-        ].map((student, index) => (
-          <div key={index} className="p-4 border-b border-gray-700 grid grid-cols-5 gap-4 items-center">
-            <div className="text-white font-mono">{student.name}</div>
-            <div className="flex items-center space-x-2">
-              <div className="w-full bg-gray-700 h-2">
-                <div 
-                  className="bg-cyan-400 h-2" 
-                  style={{ width: `${student.progress}%` }}
-                ></div>
+        {studentSummaries.length > 0 ? (
+          studentSummaries.map((student) => (
+            <div key={student.userId} className="p-4 border-b border-gray-700 grid grid-cols-7 gap-4 items-center">
+              <div className="text-white font-mono">{student.name}</div>
+              <div>
+                <div className="w-full bg-gray-700 h-2">
+                  <div
+                    className="bg-cyan-400 h-2"
+                    style={{ width: `${student.progressPercent}%` }}
+                  ></div>
+                </div>
+                <span className="text-gray-300 text-xs font-mono block mt-1">
+                  {student.quests} quests completed
+                </span>
               </div>
-              <span className="text-white text-sm font-mono">{student.progress}%</span>
+              <div className="text-cyan-400 font-mono">{student.averageScore}%</div>
+              <div className="text-white font-mono">
+                <div>{student.lastQuest || '—'}</div>
+                <div className="text-xs text-gray-400">Score {student.lastScore}% · +{student.lastRewardPoints} pts · +{student.lastRewardCoins} coins</div>
+              </div>
+              <div className="text-yellow-400 font-mono">
+                <div>+{student.totalReward} pts</div>
+                <div className="text-xs text-green-400">+{student.totalRewardCoins} coins</div>
+              </div>
+              <div className="text-green-400 font-mono">{student.coinBalance}</div>
+              <div className="flex space-x-2">
+                <button className="bg-blue-600 text-white p-2 hover:bg-blue-500">
+                  <Eye className="h-4 w-4" />
+                </button>
+              </div>
             </div>
-            <div className="text-green-400 font-mono uppercase">{student.petStage}</div>
-            <div className="text-yellow-400 font-mono">{student.points}</div>
-            <div className="flex space-x-2">
-              <button className="bg-blue-600 text-white p-2 hover:bg-blue-500">
-                <Eye className="h-4 w-4" />
-              </button>
-            </div>
+          ))
+        ) : (
+          <div className="text-center text-gray-400 font-mono py-8">
+            No quest attempts recorded yet.
           </div>
-        ))}
+        )}
       </div>
     </div>
   )
@@ -310,7 +539,7 @@ export default function TeacherDashboard() {
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id as 'overview' | 'students' | 'quests' | 'analytics')}
                   className={`flex items-center space-x-3 px-6 py-4 font-bold text-sm border-2 ${
                     isActive
                       ? 'text-white bg-cyan-600 border-cyan-400'
@@ -328,7 +557,12 @@ export default function TeacherDashboard() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {activeTab === 'overview' && renderOverview()}
+        {activeTab === 'overview' && (
+          <div className="space-y-6">
+            {renderOverview()}
+            {renderTopPerformers()}
+          </div>
+        )}
         {activeTab === 'students' && renderStudents()}
         {activeTab === 'quests' && renderQuests()}
         {activeTab === 'analytics' && renderAnalytics()}

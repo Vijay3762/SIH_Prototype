@@ -184,6 +184,7 @@ export interface Leaderboard {
   school_id?: string;
   school_name?: string;
   points: number;
+  coins?: number;
   badges_count: number;
   pet_stage: PetGrowthStage;
   period: 'daily' | 'weekly' | 'monthly' | 'all-time';

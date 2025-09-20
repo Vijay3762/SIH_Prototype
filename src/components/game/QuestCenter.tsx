@@ -252,13 +252,19 @@ export default function QuestCenter({ gameState, onQuestComplete }: QuestCenterP
     const handleQuizComplete = (answers: number[]) => {
       // Calculate score
       let correct = 0
+      let attempted = 0
       quizContent.questions.forEach((q, index) => {
-        if (answers[index] === q.correct_answer) {
-          correct++
+        // Skip questions marked with -1
+        if (answers[index] !== -1) {
+          attempted++
+          if (answers[index] === q.correct_answer) {
+            correct++
+          }
         }
       })
 
-      const score = Math.round((correct / quizContent.questions.length) * 100)
+      // Calculate score based on attempted questions only, not counting skipped ones
+      const score = attempted > 0 ? Math.round((correct / attempted) * 100) : 0
       const isPerfect = score === 100
       const awardedPoints = isPerfect ? quest.reward_points : 0
       const awardedCoins = isPerfect ? quest.reward_coins : 0
@@ -348,13 +354,28 @@ export default function QuestCenter({ gameState, onQuestComplete }: QuestCenterP
             ← BACK TO QUESTS
           </button>
 
-          <button
-            onClick={handleNextQuestion}
-            disabled={selectedAnswers[currentQuestion] === undefined}
-            className="btn-pixel bg-neon-green border-neon-green text-gray-900 hover:shadow-neon-green disabled:bg-game-tertiary disabled:border-ui-border disabled:text-foreground-secondary font-mono font-bold"
-          >
-            {currentQuestion === quizContent.questions.length - 1 ? 'COMPLETE QUIZ' : 'NEXT QUESTION →'}
-          </button>
+          <div className="flex space-x-3">
+            <button
+              onClick={() => {
+                // Skip current question by setting a default answer (-1)
+                const newAnswers = [...selectedAnswers]
+                newAnswers[currentQuestion] = -1
+                setSelectedAnswers(newAnswers)
+                handleNextQuestion()
+              }}
+              className="btn-pixel bg-yellow-600 border-yellow-400 text-white hover:shadow-yellow-400 font-mono"
+            >
+              SKIP QUESTION
+            </button>
+
+            <button
+              onClick={handleNextQuestion}
+              disabled={selectedAnswers[currentQuestion] === undefined}
+              className="btn-pixel bg-neon-green border-neon-green text-gray-900 hover:shadow-neon-green disabled:bg-game-tertiary disabled:border-ui-border disabled:text-foreground-secondary font-mono font-bold"
+            >
+              {currentQuestion === quizContent.questions.length - 1 ? 'COMPLETE QUIZ' : 'NEXT QUESTION →'}
+            </button>
+          </div>
         </div>
       </div>
     )

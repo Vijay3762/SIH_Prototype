@@ -12,13 +12,18 @@
         "role": "student",
         "school_id": "school-001",
         "points": 350,
-        "badges": ["first-quest", "eco-warrior-bronze"],
+        "badges": [
+          "first-quest",
+          "eco-warrior-bronze"
+        ],
         "avatar": {
           "skin_tone": "medium",
           "hair_style": "short",
           "hair_color": "brown",
           "outfit": "casual-green",
-          "accessories": ["eco-backpack"]
+          "accessories": [
+            "eco-backpack"
+          ]
         },
         "created_at": "2024-01-15T10:00:00Z"
       },
@@ -30,17 +35,29 @@
         "health": 85,
         "happiness": 90,
         "hunger": 30,
-        "accessories": ["bamboo-toy"],
+        "accessories": [
+          "bamboo-toy"
+        ],
         "last_fed": "2024-03-15T14:30:00Z"
       },
       "inventory": {
         "coins": 125,
         "food_items": [
-          { "item_id": "basic-seeds", "quantity": 5 },
-          { "item_id": "fresh-berries", "quantity": 3 }
+          {
+            "item_id": "basic-seeds",
+            "quantity": 5
+          },
+          {
+            "item_id": "fresh-berries",
+            "quantity": 3
+          }
         ],
         "accessories": [
-          { "accessory_id": "bamboo-toy", "equipped": true, "purchased_at": "2024-02-01T12:00:00Z" }
+          {
+            "accessory_id": "bamboo-toy",
+            "equipped": true,
+            "purchased_at": "2024-02-01T12:00:00Z"
+          }
         ]
       }
     },
@@ -56,13 +73,19 @@
         "role": "student",
         "school_id": "school-001",
         "points": 520,
-        "badges": ["first-quest", "eco-warrior-bronze", "quiz-master"],
+        "badges": [
+          "first-quest",
+          "eco-warrior-bronze",
+          "quiz-master"
+        ],
         "avatar": {
           "skin_tone": "light",
           "hair_style": "long",
           "hair_color": "blonde",
           "outfit": "nature-ranger",
-          "accessories": ["flower-crown"]
+          "accessories": [
+            "flower-crown"
+          ]
         },
         "created_at": "2024-01-10T08:30:00Z"
       },
@@ -74,18 +97,35 @@
         "health": 95,
         "happiness": 85,
         "hunger": 20,
-        "accessories": ["leaf-crown", "eco-bandana"],
+        "accessories": [
+          "leaf-crown",
+          "eco-bandana"
+        ],
         "last_fed": "2024-03-15T16:00:00Z"
       },
       "inventory": {
         "coins": 200,
         "food_items": [
-          { "item_id": "organic-vegetables", "quantity": 4 },
-          { "item_id": "algae-smoothie", "quantity": 2 }
+          {
+            "item_id": "organic-vegetables",
+            "quantity": 4
+          },
+          {
+            "item_id": "algae-smoothie",
+            "quantity": 2
+          }
         ],
         "accessories": [
-          { "accessory_id": "leaf-crown", "equipped": true, "purchased_at": "2024-02-15T10:00:00Z" },
-          { "accessory_id": "eco-bandana", "equipped": true, "purchased_at": "2024-03-01T14:00:00Z" }
+          {
+            "accessory_id": "leaf-crown",
+            "equipped": true,
+            "purchased_at": "2024-02-15T10:00:00Z"
+          },
+          {
+            "accessory_id": "eco-bandana",
+            "equipped": true,
+            "purchased_at": "2024-03-01T14:00:00Z"
+          }
         ]
       }
     },
@@ -107,7 +147,9 @@
           "hair_style": "professional",
           "hair_color": "black",
           "outfit": "teacher-casual",
-          "accessories": ["glasses"]
+          "accessories": [
+            "glasses"
+          ]
         },
         "created_at": "2024-01-01T09:00:00Z"
       }
@@ -147,13 +189,20 @@
         "role": "student",
         "school_id": "school-002",
         "points": 750,
-        "badges": ["first-quest", "eco-warrior-bronze", "eco-warrior-silver", "pet-master"],
+        "badges": [
+          "first-quest",
+          "eco-warrior-bronze",
+          "eco-warrior-silver",
+          "pet-master"
+        ],
         "avatar": {
           "skin_tone": "tan",
           "hair_style": "spiky",
           "hair_color": "red",
           "outfit": "adventure",
-          "accessories": ["dragon-pendant"]
+          "accessories": [
+            "dragon-pendant"
+          ]
         },
         "created_at": "2024-01-05T11:00:00Z"
       },
@@ -165,18 +214,218 @@
         "health": 100,
         "happiness": 95,
         "hunger": 15,
-        "accessories": ["crystal-necklace", "solar-wings"],
+        "accessories": [
+          "crystal-necklace",
+          "solar-wings"
+        ],
         "last_fed": "2024-03-15T17:30:00Z"
       },
       "inventory": {
         "coins": 300,
         "food_items": [
-          { "item_id": "energy-crystals", "quantity": 3 },
-          { "item_id": "solar-fruit", "quantity": 2 }
+          {
+            "item_id": "energy-crystals",
+            "quantity": 3
+          },
+          {
+            "item_id": "solar-fruit",
+            "quantity": 2
+          }
         ],
         "accessories": [
-          { "accessory_id": "crystal-necklace", "equipped": true, "purchased_at": "2024-02-20T10:00:00Z" },
-          { "accessory_id": "solar-wings", "equipped": true, "purchased_at": "2024-03-10T15:00:00Z" }
+          {
+            "accessory_id": "crystal-necklace",
+            "equipped": true,
+            "purchased_at": "2024-02-20T10:00:00Z"
+          },
+          {
+            "accessory_id": "solar-wings",
+            "equipped": true,
+            "purchased_at": "2024-03-10T15:00:00Z"
+          }
+        ]
+      }
+    },
+    {
+      "id": "user-006",
+      "credentials": {
+        "id": "1234",
+        "password": "1234"
+      },
+      "profile": {
+        "email": "1234@greenwood.edu",
+        "username": "1234",
+        "role": "student",
+        "school_id": "school-001",
+        "points": 350,
+        "badges": [
+          "first-quest",
+          "eco-warrior-bronze"
+        ],
+        "avatar": {
+          "skin_tone": "medium",
+          "hair_style": "short",
+          "hair_color": "brown",
+          "outfit": "casual-green",
+          "accessories": [
+            "eco-backpack"
+          ]
+        },
+        "created_at": "2025-09-20T09:57:24.881Z"
+      },
+      "pet": {
+        "id": "pet-006",
+        "name": "Glacie",
+        "species": "eco-penguin",
+        "growth_stage": "child",
+        "health": 85,
+        "happiness": 90,
+        "hunger": 30,
+        "accessories": [
+          "bamboo-toy"
+        ],
+        "last_fed": "2024-03-15T14:30:00Z"
+      },
+      "inventory": {
+        "coins": 125,
+        "food_items": [
+          {
+            "item_id": "basic-seeds",
+            "quantity": 5
+          },
+          {
+            "item_id": "fresh-berries",
+            "quantity": 3
+          }
+        ],
+        "accessories": [
+          {
+            "accessory_id": "bamboo-toy",
+            "equipped": true,
+            "purchased_at": "2024-02-01T12:00:00Z"
+          }
+        ]
+      }
+    },
+    {
+      "id": "user-007",
+      "credentials": {
+        "id": "rohith",
+        "password": "1234"
+      },
+      "profile": {
+        "email": "rohith@greenwood.edu",
+        "username": "rohith",
+        "role": "student",
+        "school_id": "school-001",
+        "points": 350,
+        "badges": [
+          "first-quest",
+          "eco-warrior-bronze"
+        ],
+        "avatar": {
+          "skin_tone": "medium",
+          "hair_style": "short",
+          "hair_color": "brown",
+          "outfit": "casual-green",
+          "accessories": [
+            "eco-backpack"
+          ]
+        },
+        "created_at": "2025-09-20T10:01:44.473Z"
+      },
+      "pet": {
+        "id": "pet-007",
+        "name": "Glacie",
+        "species": "eco-penguin",
+        "growth_stage": "child",
+        "health": 85,
+        "happiness": 90,
+        "hunger": 30,
+        "accessories": [
+          "bamboo-toy"
+        ],
+        "last_fed": "2024-03-15T14:30:00Z"
+      },
+      "inventory": {
+        "coins": 125,
+        "food_items": [
+          {
+            "item_id": "basic-seeds",
+            "quantity": 5
+          },
+          {
+            "item_id": "fresh-berries",
+            "quantity": 3
+          }
+        ],
+        "accessories": [
+          {
+            "accessory_id": "bamboo-toy",
+            "equipped": true,
+            "purchased_at": "2024-02-01T12:00:00Z"
+          }
+        ]
+      }
+    },
+    {
+      "id": "user-008",
+      "credentials": {
+        "id": "abdul",
+        "password": "daksh"
+      },
+      "profile": {
+        "email": "abdul@greenwood.edu",
+        "username": "abdul",
+        "role": "student",
+        "school_id": "school-001",
+        "points": 350,
+        "badges": [
+          "first-quest",
+          "eco-warrior-bronze"
+        ],
+        "avatar": {
+          "skin_tone": "medium",
+          "hair_style": "short",
+          "hair_color": "brown",
+          "outfit": "casual-green",
+          "accessories": [
+            "eco-backpack"
+          ]
+        },
+        "created_at": "2025-09-20T10:32:23.113Z"
+      },
+      "pet": {
+        "id": "pet-008",
+        "name": "Glacie",
+        "species": "eco-penguin",
+        "growth_stage": "child",
+        "health": 85,
+        "happiness": 90,
+        "hunger": 30,
+        "accessories": [
+          "bamboo-toy"
+        ],
+        "last_fed": "2024-03-15T14:30:00Z"
+      },
+      "inventory": {
+        "coins": 125,
+        "food_items": [
+          {
+            "item_id": "basic-seeds",
+            "quantity": 5
+          },
+          {
+            "item_id": "fresh-berries",
+            "quantity": 3
+          }
+        ],
+        "accessories": [
+          {
+            "accessory_id": "bamboo-toy",
+            "equipped": true,
+            "purchased_at": "2024-02-01T12:00:00Z"
+          }
         ]
       }
     }
@@ -187,7 +436,10 @@
       "name": "Greenwood Elementary",
       "location": "Mumbai, Maharashtra",
       "admin_id": "user-004",
-      "students": ["user-001", "user-002"],
+      "students": [
+        "user-001",
+        "user-002"
+      ],
       "created_at": "2024-01-01T00:00:00Z"
     },
     {
@@ -195,7 +447,9 @@
       "name": "Riverdale Middle School",
       "location": "Pune, Maharashtra",
       "admin_id": "user-006",
-      "students": ["user-005"],
+      "students": [
+        "user-005"
+      ],
       "created_at": "2024-01-01T00:00:00Z"
     }
   ]

@@ -53,6 +53,11 @@ export default function TeacherDashboard() {
   const [isLoading, setIsLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'overview' | 'students' | 'quests' | 'analytics'>('overview')
   const [showSettings, setShowSettings] = useState(false)
+  const [showAddStudent, setShowAddStudent] = useState(false)
+  const [newStudentUsername, setNewStudentUsername] = useState('')
+  const [newStudentPassword, setNewStudentPassword] = useState('')
+  const [addStudentError, setAddStudentError] = useState('')
+  const [addStudentSuccess, setAddStudentSuccess] = useState('')
   const [leaderboard, setLeaderboard] = useState<LeaderboardRecord[]>([])
   const [questHistory, setQuestHistory] = useState<QuestHistoryRecord[]>([])
   const [teacherQuests, setTeacherQuests] = useState<Quest[]>([])
@@ -384,6 +389,18 @@ export default function TeacherDashboard() {
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold text-white font-mono">STUDENT MANAGEMENT</h2>
         <div className="flex space-x-4">
+          <button
+            className="bg-cyan-600 text-white px-4 py-2 font-mono hover:bg-cyan-500 flex items-center space-x-2"
+            onClick={() => {
+              setShowAddStudent(true)
+              setNewStudentUsername('')
+              setNewStudentPassword('')
+              setAddStudentError('')
+            }}
+          >
+            <Plus className="h-4 w-4" />
+            <span>ADD STUDENT</span>
+          </button>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
             <input 
@@ -394,6 +411,126 @@ export default function TeacherDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Add Student Modal */}
+      {showAddStudent && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+          <div className="bg-gray-900 border-2 border-cyan-400 p-8 rounded-lg w-full max-w-md">
+            <h3 className="text-xl font-bold text-white mb-4 font-mono">Add New Student</h3>
+            <form
+              onSubmit={async e => {
+                e.preventDefault()
+                setAddStudentError('')
+                setAddStudentSuccess('')
+                if (!newStudentUsername.trim() || !newStudentPassword.trim()) {
+                  setAddStudentError('Username and password are required.')
+                  return
+                }
+                try {
+                  // Fetch the mock-users.json file
+                  const res = await fetch('/api/mock-users')
+                  const data = await res.json()
+                  const users = data.users || []
+                  // Find a template student (first with role student)
+                  const template = users.find((u: any) => u.profile && u.profile.role === 'student')
+                  if (!template) {
+                    setAddStudentError('No template student found.')
+                    return
+                  }
+                  // Generate new unique user id
+                  let maxId = 0
+                  users.forEach((u: any) => {
+                    const match = (u.id || '').match(/user-(\d+)/)
+                    if (match) maxId = Math.max(maxId, parseInt(match[1]))
+                  })
+                  const newId = `user-${String(maxId + 1).padStart(3, '0')}`
+                  // Generate new pet id if template has pet
+                  let newPet = undefined
+                  if (template.pet) {
+                    let maxPetId = 0
+                    users.forEach((u: any) => {
+                      if (u.pet && u.pet.id) {
+                        const match = (u.pet.id || '').match(/pet-(\d+)/)
+                        if (match) maxPetId = Math.max(maxPetId, parseInt(match[1]))
+                      }
+                    })
+                    newPet = { ...template.pet, id: `pet-${String(maxPetId + 1).padStart(3, '0')}` }
+                  }
+                  // Copy and update student object
+                  const newStudent = {
+                    ...template,
+                    id: newId,
+                    credentials: {
+                      id: newStudentUsername,
+                      password: newStudentPassword
+                    },
+                    profile: {
+                      ...template.profile,
+                      email: `${newStudentUsername}@${template.profile.email.split('@')[1]}`,
+                      username: newStudentUsername,
+                      created_at: new Date().toISOString()
+                    },
+                    pet: newPet,
+                  }
+                  users.push(newStudent)
+                  // Write back to mock-users.json (dev only, works if file system is writable)
+                  const updated = { ...data, users }
+                  const saveRes = await fetch('/api/mock-users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(updated)
+                  })
+                  if (!saveRes.ok) throw new Error('Failed to save user')
+                  setAddStudentSuccess('Student added successfully!')
+                  setShowAddStudent(false)
+                  // Optionally, reload page or update state
+                  window.dispatchEvent(new Event('prakritiLeaderboardUpdate'))
+                } catch (err) {
+                  setAddStudentError('Failed to add student. (Dev only)')
+                }
+              }}
+              className="space-y-4"
+            >
+              <div>
+                <label className="block text-gray-300 font-mono mb-1">Username</label>
+                <input
+                  type="text"
+                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 text-white font-mono"
+                  value={newStudentUsername}
+                  onChange={e => setNewStudentUsername(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-gray-300 font-mono mb-1">Password</label>
+                <input
+                  type="password"
+                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 text-white font-mono"
+                  value={newStudentPassword}
+                  onChange={e => setNewStudentPassword(e.target.value)}
+                  required
+                />
+              </div>
+              {addStudentError && <div className="text-red-400 font-mono text-sm">{addStudentError}</div>}
+              <div className="flex justify-end space-x-2">
+                <button
+                  type="button"
+                  className="px-4 py-2 bg-gray-700 text-white font-mono border border-gray-600 hover:bg-gray-600"
+                  onClick={() => setShowAddStudent(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-cyan-600 text-white font-mono border border-cyan-400 hover:bg-cyan-500"
+                >
+                  Add Student
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       <div className="bg-gray-800 border-2 border-gray-600">
         <div className="border-b-2 border-gray-600 p-4 grid grid-cols-7 gap-4 font-mono text-gray-400 text-sm">

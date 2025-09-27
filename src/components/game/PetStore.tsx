@@ -102,7 +102,7 @@ export default function PetStore({ inventory, onInventoryChange }: PetStoreProps
       {foodItems.map((item) => (
         <div key={item.id} className={`card-pixel p-4 transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 ${getRarityColor(item.rarity)}`}>
           <div className="flex items-start justify-between mb-3">
-            <div className="text-4xl mb-2 pixel-perfect">🍃</div>
+            <img src={item.image_url} alt={item.name} className="w-16 h-16 object-contain mb-2" />
             <span className={getRarityBadge(item.rarity)}>{item.rarity.toUpperCase()}</span>
           </div>
 
@@ -160,7 +160,7 @@ export default function PetStore({ inventory, onInventoryChange }: PetStoreProps
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {accessoryItems.map((item) => (
         <div key={item.id} className="card-pixel border-neon-purple p-4 transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 hover:shadow-neon-purple">
-          <div className="text-4xl mb-3 text-center pixel-perfect">✨</div>
+          <img src={item.image_url} alt={item.name} className="w-16 h-16 object-contain mb-3 mx-auto" />
 
           <h3 className="font-bold text-neon-purple font-pixel mb-1">{item.name.toUpperCase()}</h3>
           <p className="text-sm text-foreground-secondary font-mono mb-2">{item.description}</p>
@@ -199,9 +199,7 @@ export default function PetStore({ inventory, onInventoryChange }: PetStoreProps
           <h3 className="text-lg font-bold text-neon-green font-pixel mb-4">CONFIRM PURCHASE</h3>
 
           <div className="text-center mb-6">
-            <div className="text-6xl mb-2 pixel-perfect">
-              {activeTab === 'food' ? '🍃' : '✨'}
-            </div>
+            <img src={selectedItem.image_url} alt={selectedItem.name} className="w-24 h-24 object-contain mb-2 mx-auto" />
             <h4 className="font-bold text-neon-cyan font-pixel">{selectedItem.name.toUpperCase()}</h4>
             <p className="text-sm text-foreground-secondary font-mono mt-1">{selectedItem.description}</p>
           </div>

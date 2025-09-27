@@ -67,7 +67,7 @@ interface GeminiAPIResponse {
   candidates?: GeminiAPIResponseCandidate[]
 }
 
-const DEFAULT_MODEL = 'gemini-1.5-flash-latest'
+const DEFAULT_MODEL = 'gemini-1.5-flash'
 const HARDCODED_GEMINI_API_KEY = 'AIzaSyDXZ8a4RFpIxB8R_4wLXVtbI6rAeF4_l-E'
 
 const shouldUseStub = () => process.env.NEXT_PUBLIC_USE_GEMINI_STUB === 'true'

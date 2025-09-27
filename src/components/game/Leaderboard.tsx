@@ -161,8 +161,8 @@ export default function Leaderboard({ userId, schoolId }: LeaderboardProps) {
     <div className="p-6 bg-game-dark font-mono">
       {/* Header */}
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-neon-cyan font-pixel mb-2">LEADERBOARD</h2>
-        <p className="text-neon-green font-mono">SEE HOW YOU RANK AGAINST OTHER ECO-WARRIORS! 🏆</p>
+        <h2 className="font-bold text-neon-cyan font-pixel mb-2" style={{ fontSize: '24px' }}>LEADERBOARD</h2>
+        <p className="text-neon-green font-mono" style={{ fontSize: '15px' }}>SEE HOW YOU RANK AGAINST OTHER ECO-WARRIORS! 🏆</p>
       </div>
 
       {/* Filters */}

@@ -268,44 +268,44 @@ export default function TeacherDashboard() {
   const renderOverview = () => (
     <div className="space-y-6">
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-gray-800 border-2 border-cyan-400 p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="bg-gray-800 border-2 border-cyan-400 p-4 sm:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-400 text-sm font-mono">STUDENTS TRACKED</p>
-              <p className="text-2xl font-bold text-white font-mono">{stats.uniqueStudents}</p>
+              <p className="text-gray-400 text-xs sm:text-sm font-mono">STUDENTS TRACKED</p>
+              <p className="text-xl sm:text-2xl font-bold text-white font-mono">{stats.uniqueStudents}</p>
             </div>
-            <Users className="h-8 w-8 text-cyan-400" />
+            <Users className="h-6 w-6 sm:h-8 sm:w-8 text-cyan-400" />
           </div>
         </div>
 
-        <div className="bg-gray-800 border-2 border-green-400 p-6">
+        <div className="bg-gray-800 border-2 border-green-400 p-4 sm:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-400 text-sm font-mono">QUESTS TRACKED</p>
-              <p className="text-2xl font-bold text-white font-mono">{stats.uniqueQuests}</p>
+              <p className="text-gray-400 text-xs sm:text-sm font-mono">QUESTS TRACKED</p>
+              <p className="text-xl sm:text-2xl font-bold text-white font-mono">{stats.uniqueQuests}</p>
             </div>
-            <BookOpen className="h-8 w-8 text-green-400" />
+            <BookOpen className="h-6 w-6 sm:h-8 sm:w-8 text-green-400" />
           </div>
         </div>
 
-        <div className="bg-gray-800 border-2 border-blue-400 p-6">
+        <div className="bg-gray-800 border-2 border-blue-400 p-4 sm:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-400 text-sm font-mono">COIN BANK</p>
-              <p className="text-2xl font-bold text-white font-mono">{stats.totalCoins}</p>
+              <p className="text-gray-400 text-xs sm:text-sm font-mono">COIN BANK</p>
+              <p className="text-xl sm:text-2xl font-bold text-white font-mono">{stats.totalCoins}</p>
             </div>
-            <Coins className="h-8 w-8 text-blue-400" />
+            <Coins className="h-6 w-6 sm:h-8 sm:w-8 text-blue-400" />
           </div>
         </div>
 
-        <div className="bg-gray-800 border-2 border-yellow-400 p-6">
+        <div className="bg-gray-800 border-2 border-yellow-400 p-4 sm:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-gray-400 text-sm font-mono">AVG SCORE</p>
-              <p className="text-2xl font-bold text-white font-mono">{stats.avgScore}%</p>
+              <p className="text-gray-400 text-xs sm:text-sm font-mono">AVG SCORE</p>
+              <p className="text-xl sm:text-2xl font-bold text-white font-mono">{stats.avgScore}%</p>
             </div>
-            <Award className="h-8 w-8 text-yellow-400" />
+            <Award className="h-6 w-6 sm:h-8 sm:w-8 text-yellow-400" />
           </div>
         </div>
       </div>
@@ -386,11 +386,11 @@ export default function TeacherDashboard() {
 
   const renderStudents = () => (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-white font-mono">STUDENT MANAGEMENT</h2>
-        <div className="flex space-x-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
+        <h2 className="text-xl sm:text-2xl font-bold text-white font-mono">STUDENT MANAGEMENT</h2>
+        <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
           <button
-            className="bg-cyan-600 text-white px-4 py-2 font-mono hover:bg-cyan-500 flex items-center space-x-2"
+            className="bg-cyan-600 text-white px-4 py-2 font-mono hover:bg-cyan-500 flex items-center justify-center space-x-2 w-full sm:w-auto"
             onClick={() => {
               setShowAddStudent(true)
               setNewStudentUsername('')
@@ -401,12 +401,12 @@ export default function TeacherDashboard() {
             <Plus className="h-4 w-4" />
             <span>ADD STUDENT</span>
           </button>
-          <div className="relative">
+          <div className="relative w-full sm:w-auto">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
             <input 
               type="text" 
               placeholder="Search students..."
-              className="bg-gray-800 border-2 border-gray-600 text-white pl-10 pr-4 py-2 font-mono focus:border-cyan-400"
+              className="bg-gray-800 border-2 border-gray-600 text-white pl-10 pr-4 py-2 font-mono focus:border-cyan-400 w-full sm:w-64"
             />
           </div>
         </div>
@@ -532,53 +532,55 @@ export default function TeacherDashboard() {
         </div>
       )}
 
-      <div className="bg-gray-800 border-2 border-gray-600">
-        <div className="border-b-2 border-gray-600 p-4 grid grid-cols-7 gap-4 font-mono text-gray-400 text-sm">
-          <div>STUDENT</div>
-          <div>JOURNEY</div>
-          <div>AVG SCORE</div>
-          <div>LAST QUEST</div>
-          <div>POINTS</div>
-          <div>COINS</div>
-          <div>ACTIONS</div>
-        </div>
-        {studentSummaries.length > 0 ? (
-          studentSummaries.map((student) => (
-            <div key={student.userId} className="p-4 border-b border-gray-700 grid grid-cols-7 gap-4 items-center">
-              <div className="text-white font-mono">{student.name}</div>
-              <div>
-                <div className="w-full bg-gray-700 h-2">
-                  <div
-                    className="bg-cyan-400 h-2"
-                    style={{ width: `${student.progressPercent}%` }}
-                  ></div>
-                </div>
-                <span className="text-gray-300 text-xs font-mono block mt-1">
-                  {student.quests} quests completed
-                </span>
-              </div>
-              <div className="text-cyan-400 font-mono">{student.averageScore}%</div>
-              <div className="text-white font-mono">
-                <div>{student.lastQuest || '—'}</div>
-                <div className="text-xs text-gray-400">Score {student.lastScore}% · +{student.lastRewardPoints} pts · +{student.lastRewardCoins} coins</div>
-              </div>
-              <div className="text-yellow-400 font-mono">
-                <div>+{student.totalReward} pts</div>
-                <div className="text-xs text-green-400">+{student.totalRewardCoins} coins</div>
-              </div>
-              <div className="text-green-400 font-mono">{student.coinBalance}</div>
-              <div className="flex space-x-2">
-                <button className="bg-blue-600 text-white p-2 hover:bg-blue-500">
-                  <Eye className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <div className="text-center text-gray-400 font-mono py-8">
-            No quest attempts recorded yet.
+      <div className="bg-gray-800 border-2 border-gray-600 overflow-x-auto">
+        <div className="min-w-[800px]">
+          <div className="border-b-2 border-gray-600 p-4 grid grid-cols-7 gap-4 font-mono text-gray-400 text-sm">
+            <div>STUDENT</div>
+            <div>JOURNEY</div>
+            <div>AVG SCORE</div>
+            <div>LAST QUEST</div>
+            <div>POINTS</div>
+            <div>COINS</div>
+            <div>ACTIONS</div>
           </div>
-        )}
+          {studentSummaries.length > 0 ? (
+            studentSummaries.map((student) => (
+              <div key={student.userId} className="p-4 border-b border-gray-700 grid grid-cols-7 gap-4 items-center">
+                <div className="text-white font-mono truncate">{student.name}</div>
+                <div>
+                  <div className="w-full bg-gray-700 h-2">
+                    <div
+                      className="bg-cyan-400 h-2"
+                      style={{ width: `${student.progressPercent}%` }}
+                    ></div>
+                  </div>
+                  <span className="text-gray-300 text-xs font-mono block mt-1">
+                    {student.quests} quests completed
+                  </span>
+                </div>
+                <div className="text-cyan-400 font-mono">{student.averageScore}%</div>
+                <div className="text-white font-mono min-w-0">
+                  <div className="truncate">{student.lastQuest || '—'}</div>
+                  <div className="text-xs text-gray-400">Score {student.lastScore}% · +{student.lastRewardPoints} pts · +{student.lastRewardCoins} coins</div>
+                </div>
+                <div className="text-yellow-400 font-mono">
+                  <div>+{student.totalReward} pts</div>
+                  <div className="text-xs text-green-400">+{student.totalRewardCoins} coins</div>
+                </div>
+                <div className="text-green-400 font-mono">{student.coinBalance}</div>
+                <div className="flex space-x-2">
+                  <button className="bg-blue-600 text-white p-2 hover:bg-blue-500">
+                    <Eye className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="text-center text-gray-400 font-mono py-8">
+              No quest attempts recorded yet.
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
@@ -599,63 +601,65 @@ export default function TeacherDashboard() {
         </button>
       </div>
 
-      <div className="bg-gray-800 border-2 border-gray-600">
-        <div className="border-b-2 border-gray-600 p-4 grid grid-cols-6 gap-4 font-mono text-gray-400 text-sm">
-          <div>QUEST</div>
-          <div>DIFFICULTY</div>
-          <div>QUIZ</div>
-          <div>REWARDS</div>
-          <div>CREATED</div>
-          <div>STATUS</div>
-        </div>
-        {sortedTeacherQuests.length > 0 ? (
-          sortedTeacherQuests.map((quest) => {
-            const quizContent = quest.content as QuizQuest
-            const storyPanels = quizContent.story?.length ?? 0
-            const questionCount = quizContent.questions.length
-            const createdOn = new Date(quest.created_at)
-            const createdLabel = Number.isNaN(createdOn.getTime())
-              ? '—'
-              : createdOn.toLocaleString()
-
-            return (
-              <div key={quest.id} className="p-4 border-b border-gray-700 grid grid-cols-6 gap-4 items-start">
-                <div>
-                  <div className="text-white font-mono font-semibold">{quest.title}</div>
-                  <p className="text-xs text-gray-400 font-mono mt-1 max-w-prose">{quest.description}</p>
-                  <p className="text-xs text-cyan-400 font-mono mt-1">Story panels: {storyPanels} · Questions: {questionCount}</p>
-                </div>
-                <div className={`font-mono uppercase text-sm ${
-                  quest.difficulty === 'easy'
-                    ? 'text-green-400'
-                    : quest.difficulty === 'hard'
-                      ? 'text-red-400'
-                      : 'text-yellow-400'
-                }`}>
-                  {quest.difficulty}
-                </div>
-                <div className="text-sm font-mono text-cyan-300">
-                  <div>Pass: {quizContent.passing_score}%</div>
-                  <div className="text-xs text-gray-400">Time: {quizContent.time_limit ? `${quizContent.time_limit}s` : '—'}</div>
-                </div>
-                <div className="text-sm font-mono text-yellow-300">
-                  <div>{quest.reward_points} pts</div>
-                  <div className="text-xs text-green-300">{quest.reward_coins} coins</div>
-                </div>
-                <div className="text-sm font-mono text-gray-200">
-                  {createdLabel}
-                </div>
-                <div className="text-sm font-mono text-green-400">
-                  {quest.is_active ? 'READY' : 'INACTIVE'}
-                </div>
-              </div>
-            )
-          })
-        ) : (
-          <div className="text-center text-gray-400 font-mono py-8">
-            No teacher-created quests yet. Click “Create Quest” to launch your first SDG13 mission.
+      <div className="bg-gray-800 border-2 border-gray-600 overflow-x-auto">
+        <div className="min-w-[900px]">
+          <div className="border-b-2 border-gray-600 p-4 grid grid-cols-6 gap-4 font-mono text-gray-400 text-sm">
+            <div>QUEST</div>
+            <div>DIFFICULTY</div>
+            <div>QUIZ</div>
+            <div>REWARDS</div>
+            <div>CREATED</div>
+            <div>STATUS</div>
           </div>
-        )}
+          {sortedTeacherQuests.length > 0 ? (
+            sortedTeacherQuests.map((quest) => {
+              const quizContent = quest.content as QuizQuest
+              const storyPanels = quizContent.story?.length ?? 0
+              const questionCount = quizContent.questions.length
+              const createdOn = new Date(quest.created_at)
+              const createdLabel = Number.isNaN(createdOn.getTime())
+                ? '—'
+                : createdOn.toLocaleString()
+
+              return (
+                <div key={quest.id} className="p-4 border-b border-gray-700 grid grid-cols-6 gap-4 items-start">
+                  <div className="min-w-0">
+                    <div className="text-white font-mono font-semibold truncate">{quest.title}</div>
+                    <p className="text-xs text-gray-400 font-mono mt-1 line-clamp-2">{quest.description}</p>
+                    <p className="text-xs text-cyan-400 font-mono mt-1">Story panels: {storyPanels} · Questions: {questionCount}</p>
+                  </div>
+                  <div className={`font-mono uppercase text-sm ${
+                    quest.difficulty === 'easy'
+                      ? 'text-green-400'
+                      : quest.difficulty === 'hard'
+                        ? 'text-red-400'
+                        : 'text-yellow-400'
+                  }`}>
+                    {quest.difficulty}
+                  </div>
+                  <div className="text-sm font-mono text-cyan-300">
+                    <div>Pass: {quizContent.passing_score}%</div>
+                    <div className="text-xs text-gray-400">Time: {quizContent.time_limit ? `${quizContent.time_limit}s` : '—'}</div>
+                  </div>
+                  <div className="text-sm font-mono text-yellow-300">
+                    <div>{quest.reward_points} pts</div>
+                    <div className="text-xs text-green-300">{quest.reward_coins} coins</div>
+                  </div>
+                  <div className="text-sm font-mono text-gray-200 truncate">
+                    {createdLabel}
+                  </div>
+                  <div className="text-sm font-mono text-green-400">
+                    {quest.is_active ? 'READY' : 'INACTIVE'}
+                  </div>
+                </div>
+              )
+            })
+          ) : (
+            <div className="text-center text-gray-400 font-mono py-8">
+              No teacher-created quests yet. Click "Create Quest" to launch your first SDG13 mission.
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
@@ -685,25 +689,25 @@ export default function TeacherDashboard() {
       {/* Header */}
       <header className="bg-gray-800 border-b-4 border-cyan-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
+          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center py-4 lg:py-6 space-y-4 lg:space-y-0">
             {/* Logo and User Info */}
-            <div className="flex items-center space-x-4">
-              <div className="h-16 w-16 bg-cyan-400 flex items-center justify-center">
-                <Target className="h-8 w-8 text-gray-900" />
+            <div className="flex items-center space-x-3 lg:space-x-4">
+              <div className="h-12 w-12 lg:h-16 lg:w-16 bg-cyan-400 flex items-center justify-center">
+                <Target className="h-6 w-6 lg:h-8 lg:w-8 text-gray-900" />
               </div>
-              <div>
-                <h1 className="text-3xl font-bold text-white">PRAKRITI ODYSSEY</h1>
-                <p className="text-cyan-400 font-semibold">TEACHER DASHBOARD - {user.username}</p>
+              <div className="min-w-0 flex-1">
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white truncate">PRAKRITI ODYSSEY</h1>
+                <p className="text-sm sm:text-base lg:text-lg text-cyan-400 font-semibold truncate">TEACHER DASHBOARD - {user.username}</p>
               </div>
             </div>
 
             {/* Settings */}
-            <div className="relative">
+            <div className="relative self-end lg:self-auto">
               <button
                 onClick={() => setShowSettings(!showSettings)}
-                className="p-3 bg-gray-700 hover:bg-gray-600 text-white border-2 border-gray-600"
+                className="p-2 lg:p-3 bg-gray-700 hover:bg-gray-600 text-white border-2 border-gray-600"
               >
-                <Settings className="h-6 w-6" />
+                <Settings className="h-5 w-5 lg:h-6 lg:w-6" />
               </button>
 
               {showSettings && (
@@ -725,7 +729,7 @@ export default function TeacherDashboard() {
       {/* Navigation Tabs */}
       <nav className="bg-gray-800 border-b-2 border-gray-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex space-x-0">
+          <div className="flex flex-wrap space-x-0">
             {[
               { id: 'overview', label: 'OVERVIEW', icon: TrendingUp },
               { id: 'students', label: 'STUDENTS', icon: Users },
@@ -738,13 +742,13 @@ export default function TeacherDashboard() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as 'overview' | 'students' | 'quests' | 'analytics')}
-                  className={`flex items-center space-x-3 px-6 py-4 font-bold text-sm border-2 ${
+                  className={`flex items-center space-x-2 sm:space-x-3 px-3 py-3 sm:px-6 sm:py-4 font-bold text-xs sm:text-sm border-2 ${
                     isActive
                       ? 'text-white bg-cyan-600 border-cyan-400'
                       : 'text-gray-400 hover:text-white bg-gray-700 border-gray-600 hover:border-gray-500'
                   }`}
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                   <span className="hidden sm:inline font-mono">{tab.label}</span>
                 </button>
               )
@@ -754,7 +758,7 @@ export default function TeacherDashboard() {
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         {activeTab === 'overview' && (
           <div className="space-y-6">
             {renderOverview()}

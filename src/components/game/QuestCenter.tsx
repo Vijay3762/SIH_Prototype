@@ -198,40 +198,41 @@ export default function QuestCenter({ gameState, onQuestComplete }: QuestCenterP
   }
 
   const renderQuestCard = (quest: Quest) => (
-    <div key={quest.id} className="card-pixel border-neon-cyan p-6 hover:shadow-neon-cyan transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1">
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center space-x-3">
+    <div key={quest.id} className="card-pixel border-neon-cyan p-4 sm:p-6 hover:shadow-neon-cyan transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1">
+      <div className="flex items-start justify-between mb-3 sm:mb-4">
+        <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
           {getQuestIcon(quest.type)}
-          <div>
-            <h3 className="font-bold text-neon-cyan font-pixel">{quest.title.toUpperCase()}</h3>
-            <p className="text-sm text-neon-green font-mono capitalize">{quest.type.replace('-', ' ')} QUEST</p>
+          <div className="min-w-0 flex-1">
+            <h3 className="font-bold text-neon-cyan font-pixel truncate" style={{ fontSize: '18px' }}>{quest.title.toUpperCase()}</h3>
+            <p className="text-neon-green font-mono capitalize" style={{ fontSize: '12px' }}>{quest.type.replace('-', ' ')} QUEST</p>
           </div>
         </div>
 
-        <span className={`px-2 py-1 border-2 text-xs font-bold font-mono capitalize ${getDifficultyColor(quest.difficulty)}`}>
+        <span className={`px-2 py-1 border-2 text-xs font-bold font-mono capitalize flex-shrink-0 ${getDifficultyColor(quest.difficulty)}`}>
           {quest.difficulty}
         </span>
       </div>
 
-      <p className="text-foreground-secondary mb-4 font-mono">{quest.description}</p>
+      <p className="text-foreground-secondary mb-3 sm:mb-4 font-mono line-clamp-2" style={{ fontSize: '14px' }}>{quest.description}</p>
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+        <div className="flex items-center space-x-3 sm:space-x-4">
           <div className="flex items-center space-x-1 text-neon-yellow">
-            <Star className="h-4 w-4" />
-            <span className="text-sm font-bold font-mono">{quest.reward_points} PTS</span>
+            <Star className="h-5 w-5" />
+            <span className="font-bold font-mono" style={{ fontSize: '12px' }}>{quest.reward_points} PTS</span>
           </div>
           <div className="flex items-center space-x-1 text-neon-yellow">
-            <span className="text-lg pixel-perfect">🪙</span>
-            <span className="text-sm font-bold font-mono">{quest.reward_coins} COINS</span>
+            <span className="pixel-perfect" style={{ fontSize: '20px' }}>🪙</span>
+            <span className="font-bold font-mono" style={{ fontSize: '12px' }}>{quest.reward_coins} COINS</span>
           </div>
         </div>
 
         <button
           onClick={() => handleStartQuest(quest)}
-          className="btn-pixel bg-neon-green border-neon-green text-gray-900 hover:shadow-neon-green font-mono font-bold"
+          className="btn-pixel bg-neon-green border-neon-green text-gray-900 hover:shadow-neon-green font-mono font-bold w-full sm:w-auto"
+          style={{ fontSize: '16px' }}
         >
-          <Play className="h-4 w-4 mr-2" />
+          <Play className="h-5 w-5 mr-2" />
           <span>START QUEST</span>
         </button>
       </div>
@@ -500,16 +501,16 @@ export default function QuestCenter({ gameState, onQuestComplete }: QuestCenterP
   }
 
   return (
-    <div className="p-6 bg-game-dark font-mono">
+    <div className="p-3 sm:p-6 bg-game-dark font-mono">
       {renderScoreDialog()}
       {/* Header */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-neon-cyan font-pixel mb-2">QUEST CENTER</h2>
-        <p className="text-neon-green font-mono">COMPLETE QUESTS TO EARN POINTS AND FEED YOUR PET! 🎯</p>
+      <div className="mb-6 sm:mb-8">
+        <h2 className="font-bold text-neon-cyan font-pixel mb-2" style={{ fontSize: '24px' }}>QUEST CENTER</h2>
+        <p className="text-neon-green font-mono" style={{ fontSize: '15px' }}>COMPLETE QUESTS TO EARN POINTS AND FEED YOUR PET! 🎯</p>
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex space-x-1 mb-6 bg-game-secondary border-2 border-ui-border p-1 shadow-pixel">
+      <div className="flex flex-wrap gap-1 mb-4 sm:mb-6 bg-game-secondary border-2 border-ui-border p-1 shadow-pixel">
         {[
           { id: 'all', label: 'ALL QUESTS', icon: MapPin, color: 'neon-cyan' },
           { id: 'quiz', label: 'QUIZ', icon: Trophy, color: 'neon-yellow' },
@@ -522,13 +523,13 @@ export default function QuestCenter({ gameState, onQuestComplete }: QuestCenterP
             <button
               key={tab.id}
               onClick={() => setFilter(tab.id as QuestFilter)}
-              className={`flex items-center space-x-2 px-4 py-2 btn-pixel transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 ${
+              className={`flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 btn-pixel transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 text-xs sm:text-sm ${
                 filter === tab.id
                   ? `bg-neon-${tab.color} border-neon-${tab.color} text-gray-900 shadow-neon-${tab.color}`
                   : 'bg-game-tertiary border-ui-border text-foreground-secondary hover:border-neon-cyan'
               }`}
             >
-              <Icon className="h-4 w-4" />
+              <Icon className="h-3 w-3 sm:h-4 sm:w-4" />
               <span className="hidden sm:inline">{tab.label}</span>
             </button>
           )
@@ -536,7 +537,7 @@ export default function QuestCenter({ gameState, onQuestComplete }: QuestCenterP
       </div>
 
       {/* Quest Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {filteredQuests.map(renderQuestCard)}
       </div>
 

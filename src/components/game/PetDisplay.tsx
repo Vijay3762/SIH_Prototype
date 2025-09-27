@@ -156,29 +156,29 @@ export default function PetDisplay({ pet, inventory, user }: PetDisplayProps) {
 
   return (
     <div className="relative w-full min-h-[85vh] bg-game-dark font-body">
-      <div className="max-w-7xl mx-auto p-4 md:p-6">
-        <div className="relative card-pixel overflow-hidden h-[80vh]">
+      <div className="max-w-7xl mx-auto p-2 sm:p-4 md:p-6">
+        <div className="relative card-pixel overflow-hidden h-[70vh] sm:h-[75vh] md:h-[80vh]">
           {/* Stats Panel - inside card */}
-          <div className={`absolute top-4 left-4 z-20 transition-all duration-200 ${showStats ? 'translate-x-0' : '-translate-x-full'}`}>
-             <div className="card-pixel">
+          <div className={`absolute top-16 left-2 sm:top-20 sm:left-4 z-20 transition-all duration-200 ${showStats ? 'translate-x-0' : '-translate-x-full'}`}>
+             <div className="card-pixel max-w-[280px] sm:max-w-none">
               <button
                 onClick={() => setShowStats(!showStats)}
-                className="absolute -right-4 top-1/2 -translate-y-1/2 bg-white border rounded-full p-1 shadow"
+                className="absolute -right-3 sm:-right-4 top-1/2 -translate-y-1/2 bg-white border rounded-full p-1 shadow"
                 aria-label="Toggle stats"
                 title="Toggle stats"
               >
                 {showStats ? (
-                  <ChevronLeft className="h-5 w-5" style={{ color: '#2563eb' }} />
+                  <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: '#2563eb' }} />
                 ) : (
-                  <ChevronRight className="h-5 w-5" style={{ color: '#2563eb' }} />
+                  <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: '#2563eb' }} />
                 )}
               </button>
 
-              <div className="flex items-center gap-3 mb-4">
-                <div className="text-4xl">{getStageEmoji(petStats.growth_stage)}</div>
-                <div>
-                  <h3 className="text-xl font-heading font-semibold" style={{ color: '#1e293b' }}>{pet.name}</h3>
-                  <p className="text-sm font-body capitalize" style={{ color: '#10b981' }}>{petStats.growth_stage} {petStats.species.replace('-', ' ')}</p>
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <div className="text-2xl sm:text-4xl">{getStageEmoji(petStats.growth_stage)}</div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-lg sm:text-xl font-heading font-semibold truncate" style={{ color: '#1e293b' }}>{pet.name}</h3>
+                  <p className="text-xs sm:text-sm font-body capitalize truncate" style={{ color: '#10b981' }}>{petStats.growth_stage} {petStats.species.replace('-', ' ')}</p>
                 </div>
               </div>
 
@@ -259,66 +259,66 @@ export default function PetDisplay({ pet, inventory, user }: PetDisplayProps) {
           </div>
 
           {/* Animation Controls - Top Right */}
-          <div className="absolute top-4 right-4 z-20">
-            <div className="flex items-center gap-2 flex-wrap">
+          <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-20">
+            <div className="flex items-center gap-1 sm:gap-2 flex-wrap max-w-[calc(100vw-2rem)] sm:max-w-none">
               <button
                 onClick={() => handleAnimationChange('Idle')}
-                className={`btn-pixel ${currentAnimation === 'Idle' ? 'bg-neon-cyan text-gray-900' : ''}`}
+                className={`btn-pixel text-xs sm:text-sm ${currentAnimation === 'Idle' ? 'bg-neon-cyan text-gray-900' : ''}`}
                 title="Idle Animation"
               >
-                <div className="flex items-center gap-2">
-                  <Pause className="h-4 w-4" />
-                  <span className="text-sm">Idle</span>
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <Pause className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Idle</span>
                 </div>
               </button>
               <button
                 onClick={() => handleAnimationChange('Walking')}
-                className={`btn-pixel ${currentAnimation === 'Walking' ? 'bg-neon-green text-gray-900' : ''}`}
+                className={`btn-pixel text-xs sm:text-sm ${currentAnimation === 'Walking' ? 'bg-neon-green text-gray-900' : ''}`}
                 title="Walking Animation"
               >
-                <div className="flex items-center gap-2">
-                  <Play className="h-4 w-4" />
-                  <span className="text-sm">Walk</span>
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <Play className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Walk</span>
                 </div>
               </button>
               <button
                 onClick={() => handleAnimationChange('Running')}
-                className={`btn-pixel ${currentAnimation === 'Running' ? 'bg-neon-yellow text-gray-900' : ''}`}
+                className={`btn-pixel text-xs sm:text-sm ${currentAnimation === 'Running' ? 'bg-neon-yellow text-gray-900' : ''}`}
                 title="Running Animation"
               >
-                <div className="flex items-center gap-2">
-                  <Lightning className="h-4 w-4" />
-                  <span className="text-sm">Run</span>
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <Lightning className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Run</span>
                 </div>
               </button>
               <button
                 onClick={() => handleAnimationChange('Dance')}
-                className={`btn-pixel ${currentAnimation === 'Dance' ? 'bg-neon-purple text-white' : ''}`}
+                className={`btn-pixel text-xs sm:text-sm ${currentAnimation === 'Dance' ? 'bg-neon-purple text-white' : ''}`}
                 title="Dance Animation"
               >
-                <div className="flex items-center gap-2">
-                  <Star className="h-4 w-4" />
-                  <span className="text-sm">Dance</span>
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <Star className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Dance</span>
                 </div>
               </button>
               <button
                 onClick={() => handleAnimationChange('Jump')}
-                className={`btn-pixel ${currentAnimation === 'Jump' ? 'bg-neon-blue text-gray-900' : ''}`}
+                className={`btn-pixel text-xs sm:text-sm ${currentAnimation === 'Jump' ? 'bg-neon-blue text-gray-900' : ''}`}
                 title="Jump Animation"
               >
-                <div className="flex items-center gap-2">
-                  <RotateCcw className="h-4 w-4" />
-                  <span className="text-sm">Jump</span>
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <RotateCcw className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Jump</span>
                 </div>
               </button>
               <button
                 onClick={() => setShowFeedingOptions(true)}
-                className="btn-pixel bg-neon-orange text-gray-900"
+                className="btn-pixel bg-neon-orange text-gray-900 text-xs sm:text-sm"
                 title="Feed Pet"
               >
-                <div className="flex items-center gap-2">
-                  <Utensils className="h-4 w-4" />
-                  <span className="text-sm">Feed</span>
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <Utensils className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Feed</span>
                 </div>
               </button>
             </div>

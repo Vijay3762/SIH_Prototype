@@ -494,4 +494,48 @@ body {
   .font-pixel {
     font-size: 8px;
   }
+  
+  /* Mobile-specific improvements */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Better touch targets on mobile */
+  .btn-pixel {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent horizontal scroll on mobile */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Better spacing for mobile cards */
+  .card-pixel {
+    margin-bottom: 1rem;
+  }
+  
+  /* Mobile-friendly text sizes */
+  .text-mobile-sm {
+    font-size: 0.75rem;
+  }
+  
+  .text-mobile-base {
+    font-size: 0.875rem;
+  }
+  
+  .text-mobile-lg {
+    font-size: 1rem;
+  }
 }

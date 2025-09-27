@@ -92,7 +92,7 @@ export default function UserProfile({ user, gameState }: UserProfileProps) {
     return total + (completion.reward_points ?? 0)
   }, 0)
   const totalRewardCoins = completedQuests.reduce((total, completion) => {
-    return total + (completion.reward_coins ?? 0)
+    return total + ((completion as any).reward_coins ?? 0)
   }, 0)
   const averageScore = totalCompleted
     ? Math.round(
@@ -198,27 +198,27 @@ export default function UserProfile({ user, gameState }: UserProfileProps) {
             ) : (
               <div>
                 <div className="flex items-center space-x-2 mb-2">
-                  <h1 className="text-2xl font-bold text-neon-cyan font-pixel">{user.username.toUpperCase()}</h1>
+                  <h1 className="font-bold text-neon-cyan font-pixel" style={{ fontSize: '18px' }}>{user.username.toUpperCase()}</h1>
                   <button
                     onClick={() => setIsEditing(true)}
                     className="p-1 text-neon-green hover:text-neon-cyan transition-colors"
                   >
-                    <Edit3 className="h-4 w-4" />
+                    <Edit3 className="h-5 w-5" />
                   </button>
                 </div>
                 <div className="space-y-1 text-neon-green font-mono">
                   <div className="flex items-center space-x-2">
                     <Mail className="h-4 w-4" />
-                    <span>{user.email}</span>
+                    <span className="text-base sm:text-lg">{user.email}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Calendar className="h-4 w-4" />
-                    <span>JOINED {getJoinDate().toUpperCase()}</span>
+                    <span className="text-base sm:text-lg">JOINED {getJoinDate().toUpperCase()}</span>
                   </div>
                   {user.school_id && (
                     <div className="flex items-center space-x-2">
                       <School className="h-4 w-4" />
-                      <span>SCHOOL MEMBER</span>
+                      <span className="text-base sm:text-lg">SCHOOL MEMBER</span>
                     </div>
                   )}
                 </div>
@@ -231,27 +231,27 @@ export default function UserProfile({ user, gameState }: UserProfileProps) {
       {/* Stats Overview */}
       <div className="grid md:grid-cols-3 gap-6 mb-8">
         <div className="card-pixel border-neon-yellow p-6 text-center">
-          <div className="text-3xl font-bold text-neon-yellow font-pixel mb-2">{user.points}</div>
-          <div className="flex items-center justify-center space-x-1 text-foreground-secondary font-mono">
+          <div className="font-bold text-neon-yellow font-pixel mb-2" style={{ fontSize: '48px' }}>{user.points}</div>
+          <div className="flex items-center justify-center space-x-1 text-foreground-secondary font-mono" style={{ fontSize: '16px' }}>
             <Star className="h-4 w-4" />
             <span>TOTAL POINTS</span>
           </div>
         </div>
 
         <div className="card-pixel border-neon-purple p-6 text-center">
-          <div className="text-3xl font-bold text-neon-purple font-pixel mb-2">{user.badges.length}</div>
-          <div className="flex items-center justify-center space-x-1 text-foreground-secondary font-mono">
+          <div className="font-bold text-neon-purple font-pixel mb-2" style={{ fontSize: '48px' }}>{user.badges.length}</div>
+          <div className="flex items-center justify-center space-x-1 text-foreground-secondary font-mono" style={{ fontSize: '16px' }}>
             <Trophy className="h-4 w-4" />
             <span>BADGES EARNED</span>
           </div>
         </div>
 
         <div className="card-pixel border-neon-green p-6 text-center">
-          <div className="text-3xl font-bold text-neon-green font-pixel mb-2 capitalize">
+          <div className="font-bold text-neon-green font-pixel mb-2 capitalize" style={{ fontSize: '48px' }}>
             {gameState.pet.growth_stage}
           </div>
-          <div className="flex items-center justify-center space-x-1 text-foreground-secondary font-mono">
-            <span className="pixel-perfect">🐾</span>
+          <div className="flex items-center justify-center space-x-1 text-foreground-secondary font-mono" style={{ fontSize: '16px' }}>
+            <span className="pixel-perfect" style={{ fontSize: '15px' }}>🐾</span>
             <span>PET STAGE</span>
           </div>
         </div>
@@ -260,12 +260,12 @@ export default function UserProfile({ user, gameState }: UserProfileProps) {
       {/* Journey Progress */}
       <div className="card-pixel border-neon-blue p-6 mb-8">
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-          <h2 className="text-xl font-bold text-neon-blue font-pixel flex items-center">
-            <Compass className="h-5 w-5 mr-2" />
+          <h2 className="font-bold text-neon-blue font-pixel flex items-center" style={{ fontSize: '28px' }}>
+            <Compass className="h-8 w-8 mr-2" />
             YOUR JOURNEY
           </h2>
-          <div className="flex items-center space-x-2 text-neon-green font-mono">
-            <TrendingUp className="h-4 w-4" />
+          <div className="flex items-center space-x-2 text-neon-green font-mono text-lg sm:text-xl">
+            <TrendingUp className="h-5 w-5" />
             <span>{averageScore}% avg. score</span>
           </div>
         </div>
@@ -273,7 +273,7 @@ export default function UserProfile({ user, gameState }: UserProfileProps) {
         {totalCompleted > 0 ? (
           <>
             <div className="mb-6">
-              <div className="flex items-center justify-between text-xs text-foreground-secondary font-mono mb-2">
+              <div className="flex items-center justify-between text-sm sm:text-base text-foreground-secondary font-mono mb-2">
                 <span>{totalCompleted} quests completed</span>
                 <span>Next milestone in {questsToNextMilestone} quest{questsToNextMilestone === 1 ? '' : 's'}</span>
               </div>
@@ -287,20 +287,20 @@ export default function UserProfile({ user, gameState }: UserProfileProps) {
 
             <div className="grid md:grid-cols-3 gap-4 mb-6">
               <div className="bg-game-tertiary border-2 border-neon-blue p-4 shadow-pixel">
-                <div className="text-sm text-foreground-secondary font-mono mb-1">BEST SCORE</div>
-                <div className="text-2xl font-bold text-neon-blue font-pixel">{topScore}%</div>
+                <div className="text-base sm:text-lg text-foreground-secondary font-mono mb-1">BEST SCORE</div>
+                <div className="text-3xl sm:text-4xl font-bold text-neon-blue font-pixel">{topScore}%</div>
               </div>
             <div className="bg-game-tertiary border-2 border-neon-blue p-4 shadow-pixel">
-              <div className="text-sm text-foreground-secondary font-mono mb-1">TOTAL REWARD</div>
-              <div className="text-2xl font-bold text-neon-blue font-pixel flex items-baseline space-x-2">
+              <div className="text-base sm:text-lg text-foreground-secondary font-mono mb-1">TOTAL REWARD</div>
+              <div className="text-3xl sm:text-4xl font-bold text-neon-blue font-pixel flex items-baseline space-x-2">
                 <span>{totalRewardPoints}</span>
-                <span className="text-sm font-mono">pts</span>
+                <span className="text-base font-mono">pts</span>
               </div>
-              <div className="text-xs text-neon-green font-mono mt-1">+{totalRewardCoins} coins earned</div>
+              <div className="text-sm text-neon-green font-mono mt-1">+{totalRewardCoins} coins earned</div>
             </div>
               <div className="bg-game-tertiary border-2 border-neon-blue p-4 shadow-pixel">
-                <div className="text-sm text-foreground-secondary font-mono mb-1">LATEST QUEST</div>
-                <div className="text-base font-semibold text-neon-green font-mono">
+                <div className="text-base sm:text-lg text-foreground-secondary font-mono mb-1">LATEST QUEST</div>
+                <div className="text-lg sm:text-xl font-semibold text-neon-green font-mono">
                   {recentCompletions[0]?.quest_title || '—'}
                 </div>
               </div>
@@ -416,7 +416,7 @@ export default function UserProfile({ user, gameState }: UserProfileProps) {
                 const completionScore = resolveScore(completion)
                 const completedAt = new Date(completion.completed_at).toLocaleString()
                 const rewardPoints = completion.reward_points ?? 0
-                const rewardCoins = completion.reward_coins ?? 0
+                const rewardCoins = (completion as any).reward_coins ?? 0
                 return (
                   <div
                     key={completion.id}
@@ -448,8 +448,8 @@ export default function UserProfile({ user, gameState }: UserProfileProps) {
 
       {/* Badges Section */}
       <div className="card-pixel border-neon-yellow p-6 mb-8">
-        <h2 className="text-xl font-bold text-neon-yellow font-pixel mb-4 flex items-center">
-          <Trophy className="h-5 w-5 mr-2" />
+        <h2 className="font-bold text-neon-yellow font-pixel mb-4 flex items-center" style={{ fontSize: '22px' }}>
+          <Trophy className="h-8 w-8 mr-2" />
           ACHIEVEMENT BADGES
         </h2>
 
@@ -460,13 +460,13 @@ export default function UserProfile({ user, gameState }: UserProfileProps) {
                 key={badge.id || index}
                 className="card-pixel-hover border-ui-border p-4 text-center transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1"
               >
-                <div className="text-3xl mb-2 pixel-perfect">
+                <div className="text-4xl mb-2 pixel-perfect">
                   {getBadgeIcon(badge.type)}
                 </div>
-                <h3 className="font-bold text-neon-cyan font-pixel text-sm mb-1">
+                <h3 className="font-bold text-neon-cyan font-pixel text-base sm:text-lg mb-1">
                   {badge.name || badge.id}
                 </h3>
-                <p className="text-xs text-foreground-secondary font-mono">
+                <p className="text-sm sm:text-base text-foreground-secondary font-mono">
                   {badge.description || 'ACHIEVEMENT UNLOCKED!'}
                 </p>
               </div>
@@ -483,41 +483,41 @@ export default function UserProfile({ user, gameState }: UserProfileProps) {
 
       {/* Pet Information */}
       <div className="card-pixel border-neon-pink p-6">
-        <h2 className="text-xl font-bold text-neon-pink font-pixel mb-4 flex items-center">
-          <span className="mr-2 pixel-perfect">🐾</span>
+        <h2 className="font-bold text-neon-pink font-pixel mb-4 flex items-center" style={{ fontSize: '28px' }}>
+          <span className="mr-2 pixel-perfect" style={{ fontSize: '28px' }}>🐾</span>
           MY PET: {gameState.pet.name.toUpperCase()}
         </h2>
 
         <div className="grid md:grid-cols-2 gap-6">
           <div className="space-y-3">
             <div className="flex justify-between">
-              <span className="text-neon-green font-mono">SPECIES:</span>
-              <span className="font-bold text-neon-cyan font-mono capitalize">
+              <span className="text-neon-green font-mono text-base sm:text-lg">SPECIES:</span>
+              <span className="font-bold text-neon-cyan font-mono capitalize text-base sm:text-lg">
                 {gameState.pet.species.replace('-', ' ')}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neon-green font-mono">GROWTH STAGE:</span>
-              <span className="font-bold text-neon-cyan font-mono capitalize">{gameState.pet.growth_stage}</span>
+              <span className="text-neon-green font-mono text-base sm:text-lg">GROWTH STAGE:</span>
+              <span className="font-bold text-neon-cyan font-mono capitalize text-base sm:text-lg">{gameState.pet.growth_stage}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neon-green font-mono">HEALTH:</span>
-              <span className="font-bold text-neon-cyan font-mono">{gameState.pet.health}/100</span>
+              <span className="text-neon-green font-mono text-base sm:text-lg">HEALTH:</span>
+              <span className="font-bold text-neon-cyan font-mono text-base sm:text-lg">{gameState.pet.health}/100</span>
             </div>
           </div>
 
           <div className="space-y-3">
             <div className="flex justify-between">
-              <span className="text-neon-green font-mono">HAPPINESS:</span>
-              <span className="font-bold text-neon-cyan font-mono">{gameState.pet.happiness}/100</span>
+              <span className="text-neon-green font-mono text-base sm:text-lg">HAPPINESS:</span>
+              <span className="font-bold text-neon-cyan font-mono text-base sm:text-lg">{gameState.pet.happiness}/100</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neon-green font-mono">HUNGER:</span>
-              <span className="font-bold text-neon-cyan font-mono">{gameState.pet.hunger}/100</span>
+              <span className="text-neon-green font-mono text-base sm:text-lg">HUNGER:</span>
+              <span className="font-bold text-neon-cyan font-mono text-base sm:text-lg">{gameState.pet.hunger}/100</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neon-green font-mono">ACCESSORIES:</span>
-              <span className="font-bold text-neon-cyan font-mono">{gameState.pet.accessories.length}</span>
+              <span className="text-neon-green font-mono text-base sm:text-lg">ACCESSORIES:</span>
+              <span className="font-bold text-neon-cyan font-mono text-base sm:text-lg">{gameState.pet.accessories.length}</span>
             </div>
           </div>
         </div>

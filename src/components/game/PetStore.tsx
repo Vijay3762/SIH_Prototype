@@ -98,36 +98,36 @@ export default function PetStore({ inventory, onInventoryChange }: PetStoreProps
   }
 
   const renderFoodItems = () => (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {foodItems.map((item) => (
-        <div key={item.id} className={`card-pixel p-4 transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 ${getRarityColor(item.rarity)}`}>
+        <div key={item.id} className={`card-pixel p-3 sm:p-4 transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 ${getRarityColor(item.rarity)}`}>
           <div className="flex items-start justify-between mb-3">
-            <img src={item.image_url} alt={item.name} className="w-16 h-16 object-contain mb-2" />
-            <span className={getRarityBadge(item.rarity)}>{item.rarity.toUpperCase()}</span>
+            <img src={item.image_url} alt={item.name} className="w-12 h-12 sm:w-16 sm:h-16 object-contain mb-2" />
+            <span className={`${getRarityBadge(item.rarity)} text-xs`}>{item.rarity.toUpperCase()}</span>
           </div>
 
-          <h3 className="font-bold text-neon-cyan font-pixel mb-1">{item.name.toUpperCase()}</h3>
-          <p className="text-sm text-foreground-secondary font-mono mb-3">{item.description}</p>
+          <h3 className="font-bold text-neon-cyan font-pixel mb-1" style={{ fontSize: '24px' }}>{item.name.toUpperCase()}</h3>
+          <p className="text-foreground-secondary font-mono mb-3 line-clamp-2" style={{ fontSize: '16px' }}>{item.description}</p>
 
-          <div className="space-y-2 mb-4">
-            <div className="flex items-center justify-between text-sm">
+          <div className="space-y-2 mb-3 sm:mb-4">
+            <div className="flex items-center justify-between text-xs sm:text-sm">
               <span className="text-neon-green font-mono">NUTRITION:</span>
               <div className="flex items-center space-x-1">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`h-3 w-3 ${i < Math.floor(item.nutrition_value / 20) ? 'text-neon-yellow fill-current' : 'text-foreground-muted'}`}
+                    className={`h-2 w-2 sm:h-3 sm:w-3 ${i < Math.floor(item.nutrition_value / 20) ? 'text-neon-yellow fill-current' : 'text-foreground-muted'}`}
                   />
                 ))}
               </div>
             </div>
-            <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center justify-between text-xs sm:text-sm">
               <span className="text-neon-pink font-mono">HAPPINESS:</span>
               <div className="flex items-center space-x-1">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`h-3 w-3 ${i < Math.floor(item.happiness_boost / 20) ? 'text-neon-pink fill-current' : 'text-foreground-muted'}`}
+                    className={`h-2 w-2 sm:h-3 sm:w-3 ${i < Math.floor(item.happiness_boost / 20) ? 'text-neon-pink fill-current' : 'text-foreground-muted'}`}
                   />
                 ))}
               </div>
@@ -136,8 +136,8 @@ export default function PetStore({ inventory, onInventoryChange }: PetStoreProps
 
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-1 text-neon-yellow">
-              <Coins className="h-4 w-4" />
-              <span className="font-bold font-mono">{item.price}</span>
+              <Coins className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="font-bold font-mono text-xs sm:text-sm">{item.price}</span>
             </div>
 
             <button
@@ -146,7 +146,7 @@ export default function PetStore({ inventory, onInventoryChange }: PetStoreProps
                 setShowPurchaseModal(true)
               }}
               disabled={balance < item.price}
-              className="btn-pixel bg-neon-green border-neon-green text-gray-900 hover:shadow-neon-green disabled:bg-game-tertiary disabled:border-ui-border disabled:text-foreground-secondary font-mono font-bold"
+              className="btn-pixel bg-neon-green border-neon-green text-gray-900 hover:shadow-neon-green disabled:bg-game-tertiary disabled:border-ui-border disabled:text-foreground-secondary font-mono font-bold text-xs sm:text-sm"
             >
               BUY
             </button>
@@ -157,21 +157,21 @@ export default function PetStore({ inventory, onInventoryChange }: PetStoreProps
   )
 
   const renderAccessories = () => (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {accessoryItems.map((item) => (
-        <div key={item.id} className="card-pixel border-neon-purple p-4 transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 hover:shadow-neon-purple">
-          <img src={item.image_url} alt={item.name} className="w-16 h-16 object-contain mb-3 mx-auto" />
+        <div key={item.id} className="card-pixel border-neon-purple p-3 sm:p-4 transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 hover:shadow-neon-purple">
+          <img src={item.image_url} alt={item.name} className="w-12 h-12 sm:w-16 sm:h-16 object-contain mb-3 mx-auto" />
 
-          <h3 className="font-bold text-neon-purple font-pixel mb-1">{item.name.toUpperCase()}</h3>
-          <p className="text-sm text-foreground-secondary font-mono mb-2">{item.description}</p>
-          <p className="text-xs text-neon-cyan font-mono mb-4 capitalize">
+          <h3 className="font-bold text-neon-purple font-pixel mb-1" style={{ fontSize: '24px' }}>{item.name.toUpperCase()}</h3>
+          <p className="text-foreground-secondary font-mono mb-2 line-clamp-2" style={{ fontSize: '16px' }}>{item.description}</p>
+          <p className="text-sm text-neon-cyan font-mono mb-3 sm:mb-4 capitalize">
             TYPE: {item.type} • UNLOCKS AT: {item.unlocked_at_stage}
           </p>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-1 text-neon-yellow">
-              <Coins className="h-4 w-4" />
-              <span className="font-bold font-mono">{item.price}</span>
+              <Coins className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="font-bold font-mono text-xs sm:text-sm">{item.price}</span>
             </div>
 
             <button
@@ -180,7 +180,7 @@ export default function PetStore({ inventory, onInventoryChange }: PetStoreProps
                 setShowPurchaseModal(true)
               }}
               disabled={balance < item.price}
-              className="btn-pixel bg-neon-purple border-neon-purple text-foreground hover:shadow-neon-purple disabled:bg-game-tertiary disabled:border-ui-border disabled:text-foreground-secondary font-mono font-bold"
+              className="btn-pixel bg-neon-purple border-neon-purple text-foreground hover:shadow-neon-purple disabled:bg-game-tertiary disabled:border-ui-border disabled:text-foreground-secondary font-mono font-bold text-xs sm:text-sm"
             >
               BUY
             </button>
@@ -252,42 +252,42 @@ export default function PetStore({ inventory, onInventoryChange }: PetStoreProps
   }
 
   return (
-    <div className="p-6 bg-game-dark font-mono">
+    <div className="p-3 sm:p-6 bg-game-dark font-mono">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-8 space-y-4 sm:space-y-0">
         <div>
-          <h2 className="text-2xl font-bold text-neon-cyan font-pixel mb-2">PET STORE</h2>
-          <p className="text-neon-green font-mono">BUY FOOD AND ACCESSORIES FOR YOUR PET! 🛒</p>
+          <h2 className="font-bold text-neon-cyan font-pixel mb-2" style={{ fontSize: '24px' }}>PET STORE</h2>
+          <p className="text-neon-green font-mono" style={{ fontSize: '15px' }}>BUY FOOD AND ACCESSORIES FOR YOUR PET! 🛒</p>
         </div>
 
-        <div className="flex items-center space-x-2 bg-neon-yellow border-2 border-neon-yellow px-4 py-2 shadow-pixel">
-          <Coins className="h-5 w-5 text-gray-900" />
-          <span className="font-bold text-gray-900 font-mono">{balance} COINS</span>
+        <div className="flex items-center space-x-2 bg-neon-yellow border-2 border-neon-yellow px-3 py-2 sm:px-4 sm:py-2 shadow-pixel self-start sm:self-auto">
+          <Coins className="h-4 w-4 sm:h-5 sm:w-5 text-gray-900" />
+          <span className="font-bold text-gray-900 font-mono text-sm sm:text-base">{balance} COINS</span>
         </div>
       </div>
 
       {/* Store Tabs */}
-      <div className="flex space-x-1 mb-6 bg-game-secondary border-2 border-ui-border p-1 shadow-pixel">
+      <div className="flex space-x-1 mb-4 sm:mb-6 bg-game-secondary border-2 border-ui-border p-1 shadow-pixel">
         <button
           onClick={() => setActiveTab('food')}
-          className={`flex items-center space-x-2 px-4 py-2 btn-pixel transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 ${
+          className={`flex items-center space-x-1 sm:space-x-2 px-3 py-2 sm:px-4 sm:py-2 btn-pixel transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 text-xs sm:text-sm ${
             activeTab === 'food'
               ? 'bg-neon-green border-neon-green text-gray-900 shadow-neon-green'
               : 'bg-game-tertiary border-ui-border text-foreground-secondary hover:border-neon-cyan'
           }`}
         >
-          <Package className="h-4 w-4" />
+          <Package className="h-3 w-3 sm:h-4 sm:w-4" />
           <span>FOOD ITEMS</span>
         </button>
         <button
           onClick={() => setActiveTab('accessories')}
-          className={`flex items-center space-x-2 px-4 py-2 btn-pixel transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 ${
+          className={`flex items-center space-x-1 sm:space-x-2 px-3 py-2 sm:px-4 sm:py-2 btn-pixel transition-all duration-300 transform hover:translate-x-1 hover:-translate-y-1 text-xs sm:text-sm ${
             activeTab === 'accessories'
               ? 'bg-neon-purple border-neon-purple text-foreground shadow-neon-purple'
               : 'bg-game-tertiary border-ui-border text-foreground-secondary hover:border-neon-cyan'
           }`}
         >
-          <Star className="h-4 w-4" />
+          <Star className="h-3 w-3 sm:h-4 sm:w-4" />
           <span>ACCESSORIES</span>
         </button>
       </div>
